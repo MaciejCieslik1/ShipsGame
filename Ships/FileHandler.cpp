@@ -74,8 +74,9 @@ std::vector<std::unique_ptr<Ship>> FileHandler::loadShipInfo(void) {
 
 		int movement = std::stoi(argv[0]);
         int hitPoints = std::stoi(argv[1]);
-        int coordsSize = std::stoi(argv[2]);
-        int missileIDSize = std::stoi(argv[3]);
+		char name = argv[2][0];
+        int coordsSize = std::stoi(argv[3]);
+        int missileIDSize = std::stoi(argv[4]);
 
         std::vector<Coords> coords;
         coords.reserve(coordsSize);
@@ -91,7 +92,7 @@ std::vector<std::unique_ptr<Ship>> FileHandler::loadShipInfo(void) {
             missileIDs.push_back(std::stoi(argv[i]));
         }
 
-        std::unique_ptr<Ship> ship = std::make_unique<Ship>(movement, hitPoints, coords);
+        std::unique_ptr<Ship> ship = std::make_unique<Ship>(movement, hitPoints, name, coords);
         ship->setMissileIDs(missileIDs);
         container.push_back(std::move(ship));
 	}

@@ -13,6 +13,7 @@ class Ship
 protected:
 	int movement;
 	int hitPoints;
+	char name;
     std::vector<Coords> coords;
 	std::vector<int> missileIDs;
 
@@ -21,15 +22,17 @@ protected:
 public:
 	Ship() = default;
 	~Ship();
-	Ship(const int& movement, const int& hitPoints, const std::vector<Coords>& coords);
+	Ship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
 
 	int getMovement() const;
 	int getHitPoints() const;
+	char getName() const;
 	std::vector<Coords> getCoords() const;
 	std::vector<int> getMissileIDs() const;
 
 	void setMovement(const int& newMovement);
 	void setHitPoints(const int& newHitPoints);
+	void setName(const char& newName);
 	void setCoords(const std::vector<Coords>& newCoords);
 	virtual void setMissileIDs(const std::vector<int>& newMissileIDs);
 

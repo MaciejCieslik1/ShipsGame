@@ -47,7 +47,7 @@ std::string Field::displayFieldCrate(void) const
         return "[ ]";
     }
     else {
-        std::string shipDisplay {this->getShipOnField()->displayOnBoard()};
+        std::string shipDisplay {this->getShipOnField()->getName()};
         return "[" + shipDisplay + "]";
     }
 }

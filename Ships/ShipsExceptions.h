@@ -86,6 +86,11 @@ class invalid_hit_point_value : public ShipsException {
 	using ShipsException::ShipsException;
 };
 
+class invalid_name : public ShipsException {
+	using ShipsException::ShipsException;
+};
+
+
 class improper_vector_size : public ShipsException {
 	using ShipsException::ShipsException;
 };

@@ -1,12 +1,14 @@
 #include "Ship.h"
 #include "FunctionsM.h"
 
-Ship::Ship(const int& newMovement, const int& newHitPoints, const std::vector<Coords>& newCoords)
+Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName, const std::vector<Coords>& newCoords)
 {
 	if (isCorrectInt(newMovement)) { movement = newMovement; }
 	else { throw invalid_movement_value("Movement must be positive integer"); }
 	if (isCorrectInt(newHitPoints)) { hitPoints = newHitPoints; }
 	else { throw invalid_hit_point_value("Hit points must be positive integer"); }
+	if (isCorrectChar(newName)) { name = newName; }
+	else { throw invalid_name("Invalid character for name"); }
 	coords = newCoords;
 	std::vector<int> missilies = { 0, 1, 2 };
 	missileIDs = missilies;
@@ -27,6 +29,10 @@ int Ship::getHitPoints() const
 	return hitPoints;
 }
 
+char Ship::getName() const
+{
+	return name;
+}
 
 std::vector<Coords> Ship::getCoords() const
 {
@@ -46,10 +52,18 @@ void Ship::setMovement(const int& newMovement)
 	else { throw invalid_movement_value("Movement must be positive integer"); }
 }
 
+
 void Ship::setHitPoints(const int& newHitPoints)
 {
 	if (isCorrectInt(newHitPoints)) { hitPoints = newHitPoints; }
 	else { throw invalid_hit_point_value("Hit points must be positive integer"); }
+}
+
+
+void Ship::setName(const char& newName)
+{
+	if (isCorrectChar(newName)) { name = newName; }
+	else { throw invalid_name("Invalid character for name"); }
 }
 
 

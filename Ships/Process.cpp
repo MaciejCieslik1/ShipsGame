@@ -86,14 +86,14 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames)
     Board* board = nullptr;
 
     std::vector<Ship*> shipsPlayer1;
-    shipsPlayer1.push_back(new Ship(20, 5, {Coords(1, 3), Coords(2, 3)}));
-    shipsPlayer1.push_back(new Ship(20, 5, {Coords(1, 1), Coords(2, 1), Coords(3, 1)}));
+    shipsPlayer1.push_back(new Ship(20, 5, 'A', {Coords(1, 3), Coords(2, 3)}));
+    shipsPlayer1.push_back(new Ship(20, 5, 'B', {Coords(1, 1), Coords(2, 1), Coords(3, 1)}));
     std::vector<CruiseMissile> missilesPlayer1 = {CruiseMissile(2, 3, 0), CruiseMissile(6, 2, 1)};
     player_1 = std::make_unique<Player>(playerNames[0], shipsPlayer1, 3, missilesPlayer1);
 
     std::vector<Ship*> shipsPlayer2;
-    shipsPlayer2.push_back(new Ship(20, 5, {Coords(5, 5), Coords(6, 5)}));
-    shipsPlayer2.push_back(new Ship(20, 5, {Coords(5, 7), Coords(6, 7), Coords(7, 7)}));
+    shipsPlayer2.push_back(new Ship(20, 5, 'a', {Coords(5, 5), Coords(6, 5)}));
+    shipsPlayer2.push_back(new Ship(20, 5, 'b', {Coords(5, 7), Coords(6, 7), Coords(7, 7)}));
     std::vector<CruiseMissile> missilesPlayer2 = {CruiseMissile(2, 3, 0), CruiseMissile(6, 2, 1)};
     player_2 = std::make_unique<Player>(playerNames[1], shipsPlayer2, 3, missilesPlayer2);
 
