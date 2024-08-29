@@ -43,6 +43,7 @@ public:
     bool fire(Ship* ship, Field& destination, const int& missileID);
     bool move(Ship* ship, Field& destination);
     void forgetShip(Ship* ship);
+    void shipsInfo() const;
 
     bool operator==(const Player& other) const;
     bool operator!=(const Player& other) const;

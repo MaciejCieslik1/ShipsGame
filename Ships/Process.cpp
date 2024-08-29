@@ -150,6 +150,10 @@ void Process::startGame(void)
 	int input;
     while (game->getIsOn()) {
         game->getBoard()->boardDisplay();
+        std::cout << "Your's ships: " << std::endl;
+        game->getPlayers()[game->getCurrentPlayerIndex()]->shipsInfo();
+        std::cout << "Opponent's ships: " << std::endl;
+        game->getPlayers()[(game->getCurrentPlayerIndex() + 1) % 2]->shipsInfo();
         std::cout << langOptions->getCommunicate("process_player_turn_first_half") << game->getCurrentPlayerIndex() + 1 << langOptions->getCommunicate("process_player_turn_second_half") << '\n';
 
         if (game->getTurnStage() == 0) {

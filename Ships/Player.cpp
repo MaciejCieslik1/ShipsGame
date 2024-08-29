@@ -158,6 +158,23 @@ void Player::forgetShip(Ship* ship)
 	ships = newShipsVector;
 }
 
+
+void Player::shipsInfo() const
+{
+	std::string info;
+	int i = 0;
+	for (Ship* currentShip : ships)
+	{
+		info += "Ship " + std::to_string(i) + ": ";
+		info += std::string (currentShip->getCoords().size(), currentShip->getName());
+		info += ", hit points: ";
+		info += std::to_string(currentShip->getHitPoints()) + "\n";
+		i++;
+	} 
+	std::cout << info;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const Player& player) {
 	os << player.name << ' ' << player.maxMoves << ' ' << player.moveCounter << '\n';
 	return os;
