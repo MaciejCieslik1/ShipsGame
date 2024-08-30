@@ -149,29 +149,29 @@ void Process::startGame(void)
 {
 	int input;
     while (game->getIsOn()) {
+        clearScreen();
         game->getBoard()->boardDisplay();
         std::cout << "Your's ships: " << std::endl;
         game->getPlayers()[game->getCurrentPlayerIndex()]->shipsInfo();
         std::cout << "Opponent's ships: " << std::endl;
         game->getPlayers()[(game->getCurrentPlayerIndex() + 1) % 2]->shipsInfo();
-        std::cout << langOptions->getCommunicate("process_player_turn_first_half") << game->getCurrentPlayerIndex() + 1 << langOptions->getCommunicate("process_player_turn_second_half") << '\n';
-
+        std::cout << "\nPlayer's " << game->getPlayers()[game->getCurrentPlayerIndex()]->getName() << " turn" << std::endl;
         if (game->getTurnStage() == 0) {
-            std::cout << langOptions->getCommunicate("process_player_enter_action_shoot_move");
+            std::cout << "Enter action (1: Move, 2: Fire): ";
             std::cin >> input; input -= 1;
         } else if (game->getTurnStage() == 1) {
-            std::cout << "I have soiled myself. How embarassing. Choose ship to do stuff with";
+            std::cout << "I have soiled myself. How embarassing. Choose ship to do stuff with: ";
             std::cin >> input;
         } else if (game->getTurnStage() == 2) {
             int x; int y;
-            std::cout << langOptions->getCommunicate("process_choose_destination");
+            std::cout << "Choose destination (x, y): ";
             std:: cin >> x >> y;
             input = x*100 + y;
         } else if (game->getTurnStage() == 3) {
-            std::cout << langOptions->getCommunicate("process_choose_missle_id");
+            std::cout << "Choose missile ID: ";
             std::cin >> input;
         } else {
-            std::cout << "Press 1 to confirm\n";
+            std::cout << "Press 1 to confirm: ";
             std::cin >> input;
         }
         game->mainGameProcess(input);

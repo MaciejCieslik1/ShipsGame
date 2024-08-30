@@ -168,7 +168,14 @@ void Player::shipsInfo() const
 		info += "Ship " + std::to_string(i) + ": ";
 		info += std::string (currentShip->getCoords().size(), currentShip->getName());
 		info += ", hit points: ";
-		info += std::to_string(currentShip->getHitPoints()) + "\n";
+		info += std::to_string(currentShip->getHitPoints());
+		info += " , missilies: ";
+		int numberOfMissilies = currentShip->getMissileIDs().size();
+		for (int j = 0; j<numberOfMissilies - 1; j++)
+		{
+			info += std::to_string(j) + ", ";
+		}
+		info += std::to_string(numberOfMissilies - 1) + '\n';
 		i++;
 	} 
 	std::cout << info;
