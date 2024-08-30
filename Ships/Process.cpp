@@ -151,11 +151,7 @@ void Process::startGame(void)
     while (game->getIsOn()) {
         clearScreen();
         game->getBoard()->boardDisplay();
-        std::cout << "Your's ships: " << std::endl;
-        game->getPlayers()[game->getCurrentPlayerIndex()]->shipsInfo();
-        std::cout << "Opponent's ships: " << std::endl;
-        game->getPlayers()[(game->getCurrentPlayerIndex() + 1) % 2]->shipsInfo();
-        std::cout << "\nPlayer's " << game->getPlayers()[game->getCurrentPlayerIndex()]->getName() << " turn" << std::endl;
+        game->displayInfo();
         if (game->getTurnStage() == 0) {
             std::cout << "Enter action (1: Move, 2: Fire): ";
             std::cin >> input; input -= 1;

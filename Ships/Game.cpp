@@ -161,6 +161,33 @@ void Game::generateBoard() {
     }
 }
 
+
+void Game::displayInfo() {
+    std::vector<CruiseMissile> allMissilies;
+    for (Player* player : players) 
+    {
+        for(CruiseMissile missile : player->getAllMissilies())
+        {
+            auto it = std::find(allMissilies.begin(), allMissilies.end(), missile);
+            if (it == allMissilies.end()) 
+            {
+                allMissilies.push_back(missile);
+            }
+        }
+    }
+    std::cout << "Missiles: " << std::endl;
+    for (CruiseMissile missile : allMissilies)
+    {
+        std::cout << "Missile ID: " << missile.getMissileID() << ", damage: " << missile.getDamage() << ", range: " << missile.getRange() << std::endl;
+    }
+    std::cout << "\nYour's ships: " << std::endl;
+    getPlayers()[getCurrentPlayerIndex()]->shipsInfo();
+    std::cout << "Opponent's ships: " << std::endl;
+    getPlayers()[(getCurrentPlayerIndex() + 1) % 2]->shipsInfo();
+    std::cout << "\nPlayer's " << getPlayers()[getCurrentPlayerIndex()]->getName() << " turn" << std::endl;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const Game& game)
 {
     // int	currentPlayer;

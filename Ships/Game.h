@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdexcept>
 #include <istream>
+#include <algorithm>
 #include "ShipsExceptions.h"
 #include "Field.h"
 #include "Board.h"
@@ -47,6 +48,7 @@ public:
 	void generateBoard();
 	void checkIfShipSunked();
 	void mainGameProcess(const int& input);
+	void displayInfo();
 
 private:
 	void pickAction(const int& input);
