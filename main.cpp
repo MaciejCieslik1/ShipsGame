@@ -19,16 +19,16 @@ int main()
     Process process(language);
 
     std::vector<std::string> playerNames;
-
-    std::pair<bool, bool> gameOpts = menu.generateMenu(playerNames);
+    int maxBoardSize;
+    std::pair<bool, bool> gameOpts = menu.generateMenu(playerNames, maxBoardSize);
+    std::cout << maxBoardSize << std::endl;
     if (gameOpts.first && !gameOpts.second) {
-        process.initializeNewGame(playerNames);
+        process.initializeNewGame(playerNames, maxBoardSize);
     }
     else if (gameOpts.first && gameOpts.second) {
         process.loadGameState();
     }
-
-    process.startGame();
+    process.startGame(maxBoardSize);
     }
 
     catch (const std::exception& e) {

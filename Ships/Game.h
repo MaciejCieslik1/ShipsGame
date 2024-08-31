@@ -26,7 +26,7 @@ protected:
 
 public:
 	Game();
-	Game(const std::vector<Player*>& players);
+	Game(const std::vector<Player*>& players, const int& maxBoardSize);
 	~Game();
 
 	Board* getBoard() const;
@@ -45,15 +45,15 @@ public:
 	void setTurnStage(const int& newStage);
 	void turnGameOn();
 	void turnGameOff();
-	void generateBoard();
+	void generateBoard(const int& maxBoardSize);
 	void checkIfShipSunked();
-	void mainGameProcess(const int& input);
+	void mainGameProcess(const int& input, const int& maxBoardSize);
 	void displayInfo();
 
 private:
 	void pickAction(const int& input);
 	void pickShip(const int& input);
-	void pickDestination(const int& input);
+	void pickDestination(const int& input, const int& maxBoardSize);
 	void pickMissile(const int& input);
 	void confirm(const int& input);
 

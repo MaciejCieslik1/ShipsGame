@@ -101,6 +101,19 @@ std::pair<std::string, std::string> Menu::createNameEntryBox() {
 	return std::make_pair(name1, name2);
 }
 
+
+int Menu::getMaxBoardSize(void) const
+{
+    int maxBoardSize = 0;
+    while (maxBoardSize < 10 || maxBoardSize > 30)
+    {
+        std::cout << "Enter board size from range [10, 30]: " << std::endl;
+        std::cin >> maxBoardSize;
+    }
+    return maxBoardSize;
+}
+
+
 void Menu::handleStartSelection(int idx) {
     switch (idx) {
         case StartOptions::NewGame:
@@ -177,7 +190,7 @@ std::string Menu::determineLangFile(int input) const {
     }
 }
 
-std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames) {
+std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, int& maxBoardSize) {
 	bool createGame = false;
     bool createGameFromFile = false;
 
@@ -213,6 +226,7 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames) 
                         createGameFromFile = false;
 
 						std::pair<std::string, std::string> nameBox = this->createNameEntryBox();
+                        maxBoardSize = this->getMaxBoardSize();
 						playerNames.push_back(nameBox.first);
 						playerNames.push_back(nameBox.second);
 

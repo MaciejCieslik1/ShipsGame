@@ -17,6 +17,7 @@ class Menu
 	CurrentMenuState getCurrentState(void) const;
 
 	std::pair<std::string, std::string> createNameEntryBox(void);
+	int getMaxBoardSize(void) const;
 	void handleStartSelection(int idx);
 	void handleMainSelection(int idx);
 	void handleOptionsSelection(int idx);
@@ -36,5 +37,5 @@ class Menu
 
 public:
 	Menu(std::shared_ptr<LanguageManager> langOptions);
-	std::pair<bool, bool> generateMenu(std::vector<std::string>& playerNames);
+	std::pair<bool, bool> generateMenu(std::vector<std::string>& playerNames, int& maxBoardSize);
 };

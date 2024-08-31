@@ -68,16 +68,17 @@ void Process::loadGameState(void)
         missleVec.push_back(*mis);
     }
     playerContainer[1]->setAllMissiles(missleVec);
-
-    game = std::make_unique<Game>(playerVec);
+    int maxBoardSize = 10;
+    game = std::make_unique<Game>(playerVec, maxBoardSize);
     game->turnGameOn();
-    game->generateBoard();
+    
+    game->generateBoard(maxBoardSize);
 
     playerVec[0]->setBoard(game->getBoard());
     playerVec[1]->setBoard(game->getBoard());
 }
 
-void Process::initializeNewGame(std::vector<std::string>& playerNames)
+void Process::initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize)
 {
 	if (playerNames.size() < 2) {
         throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
@@ -99,10 +100,10 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames)
 
     std::vector<Player*> players = {player_1.get(), player_2.get()};
 
-    game = std::make_unique<Game>(players);
+    game = std::make_unique<Game>(players, maxBoardSize);
 
     game->turnGameOn();
-    game->generateBoard();
+    game->generateBoard(maxBoardSize);
 
 
     game->getPlayers()[0]->setBoard(game->getBoard());
@@ -145,7 +146,7 @@ void Process::saveGameState(void)
     }
 }
 
-void Process::startGame(void)
+void Process::startGame(const int& maxBoardSize)
 {
 	int input;
     while (game->getIsOn()) {
@@ -170,7 +171,7 @@ void Process::startGame(void)
             std::cout << "Press 1 to confirm: ";
             std::cin >> input;
         }
-        game->mainGameProcess(input);
+        game->mainGameProcess(input, maxBoardSize);
     }
     std::cout << "end" << std::endl;
 }

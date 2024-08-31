@@ -6,16 +6,17 @@ Game::Game() {
     currentPlayer = 0;
     numberOfTurns = 1;
     winner = nullptr;
+    int maxBoardSize = 10;
     turnGameOn();
-    generateBoard();
+    generateBoard(maxBoardSize);
 }
-Game::Game(const std::vector<Player*>& newPlayers) {
+Game::Game(const std::vector<Player*>& newPlayers, const int& maxBoardSize) {
     players = newPlayers;
     currentPlayer = 0;
     numberOfTurns = 1;
     winner = nullptr;
     turnGameOn();
-    generateBoard();
+    generateBoard(maxBoardSize);
 }
 Game::~Game() {
     for (Player* player : players) { delete player; }
@@ -76,11 +77,11 @@ void Game::turnGameOff() {
     isOn = false;
 }
 
-void Game::mainGameProcess(const int& input) {
+void Game::mainGameProcess(const int& input, const int& maxBoardSize) {
     switch (turnStage) {
         case 0: pickAction(input); break;
         case 1: pickShip(input); break;
-        case 2: pickDestination(input); break;
+        case 2: pickDestination(input, maxBoardSize); break;
         case 3: pickMissile(input); break;
         case 4: confirm(input); break;
     }
@@ -98,9 +99,9 @@ void Game::pickShip(const int& input) {
         turnStage = 2;
     }
 }
-void Game::pickDestination(const int& input) {
+void Game::pickDestination(const int& input, const int& maxBoardSize) {
     int x = input/100; int y = input%100;
-    if (x >= 1 && x <= 16 && y >= 1 && y <= 16) {
+    if (x >= 1 && x <= maxBoardSize && y >= 1 && y <= maxBoardSize) {
         destination = board->findField(Coords(x, y));
         switch (action) {
             case 0: turnStage = 4; break;
@@ -152,8 +153,8 @@ void Game::newTurn() {
     } else setCurrentPlayerIndex(currentPlayer + 1);
 }
 
-void Game::generateBoard() {
-    board = new Board(10);
+void Game::generateBoard(const int& maxBoardSize) {
+    board = new Board(maxBoardSize);
     for (Player* player : players) {
         for (Ship* ship : player->getShips()) {
             board->putShip(ship, ship->getCoords());

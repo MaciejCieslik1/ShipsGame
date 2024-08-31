@@ -29,7 +29,7 @@ public:
 	static void clearScreen(void);
 
 	void loadGameState(void);
-	void initializeNewGame(std::vector<std::string>& playerNames);
+	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void saveGameState(void);
-	void startGame(void);
+	void startGame(const int& maxBoardSize);
 };
