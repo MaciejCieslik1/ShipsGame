@@ -107,7 +107,7 @@ int Menu::getMaxBoardSize(void) const
     int maxBoardSize = 0;
     while (maxBoardSize < 10 || maxBoardSize > 30)
     {
-        std::cout << "Enter board size from range [10, 30]: " << std::endl;
+        std::cout << "Enter board size from range [10, 30]: ";
         std::cin >> maxBoardSize;
     }
     return maxBoardSize;

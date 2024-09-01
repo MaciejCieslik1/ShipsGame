@@ -98,8 +98,16 @@ Field Board::findField(const Coords& fieldCoords)
 
 void Board::boardDisplay(void)
 {
-
+	std::string firstLine = "   ";
+	for (int i = 1; i <= this->boardSize; ++i)
+	{
+		if (i < 10) firstLine += " " + std::to_string(i) + " ";
+		else firstLine += " " + std::to_string(i);
+	}
+	std::cout << firstLine << std::endl;
 	for (int i = 0; i < this->boardSize; ++i) {
+		if (i < 9) std::cout << std::to_string(i + 1) << "  ";
+		else std::cout << std::to_string(i + 1) + " ";
 		for (int j = 0; j < this->boardSize; ++j) {
 			const Field& field = this->getFields()[i * boardSize + j];
 			std::cout << field.displayFieldCrate();
