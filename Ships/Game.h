@@ -47,7 +47,7 @@ public:
 	void turnGameOff();
 	void generateBoard(const int& maxBoardSize);
 	void checkIfShipSunked();
-	void mainGameProcess(const int& input, const int& maxBoardSize);
+	void mainGameProcess(const int& input, const int& maxBoardSize, bool& correctMoveFlag);
 	void displayInfo();
 
 private:
@@ -55,7 +55,7 @@ private:
 	void pickShip(const int& input);
 	void pickDestination(const int& input, const int& maxBoardSize);
 	void pickMissile(const int& input);
-	void confirm(const int& input);
+	void confirm(const int& input, bool& correctMoveFlag);
 
 	void newTurn();
 };

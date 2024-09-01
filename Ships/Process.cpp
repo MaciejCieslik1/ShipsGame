@@ -149,11 +149,13 @@ void Process::saveGameState(void)
 void Process::startGame(const int& maxBoardSize)
 {
 	int input;
+    bool correctMoveFlag = true;
     while (game->getIsOn()) {
         clearScreen();
         game->getBoard()->boardDisplay();
         game->displayInfo();
         if (game->getTurnStage() == 0) {
+            if (!correctMoveFlag) std::cout << "Invalid action!" << std::endl;
             std::cout << "Enter action (1: Move, 2: Fire): ";
             std::cin >> input; input -= 1;
         } else if (game->getTurnStage() == 1) {
@@ -171,7 +173,7 @@ void Process::startGame(const int& maxBoardSize)
             std::cout << "Press 1 to confirm: ";
             std::cin >> input;
         }
-        game->mainGameProcess(input, maxBoardSize);
+        game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
     }
     std::cout << "end" << std::endl;
 }

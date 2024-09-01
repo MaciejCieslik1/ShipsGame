@@ -77,13 +77,13 @@ void Game::turnGameOff() {
     isOn = false;
 }
 
-void Game::mainGameProcess(const int& input, const int& maxBoardSize) {
+void Game::mainGameProcess(const int& input, const int& maxBoardSize, bool& correctMoveFlag) {
     switch (turnStage) {
         case 0: pickAction(input); break;
         case 1: pickShip(input); break;
         case 2: pickDestination(input, maxBoardSize); break;
         case 3: pickMissile(input); break;
-        case 4: confirm(input); break;
+        case 4: confirm(input, correctMoveFlag); break;
     }
 }
 
@@ -115,14 +115,15 @@ void Game::pickMissile(const int& input) {
         turnStage = 4;
     }
 }
-void Game::confirm(const int& input) {
+void Game::confirm(const int& input, bool& correctMoveFlag) {
     if (input == 1) {
         switch (action) {
-            case 0: players[currentPlayer]->move(ship, destination); break;
-            case 1: players[currentPlayer]->fire(ship, destination, missile); checkIfShipSunked();  break;
+            case 0: correctMoveFlag = players[currentPlayer]->move(ship, destination); break;
+            case 1: correctMoveFlag = players[currentPlayer]->fire(ship, destination, missile); checkIfShipSunked();  break;
         }
         turnStage = 0;
-        newTurn();
+        if (correctMoveFlag) newTurn();
+        else std::cout << "Incorrect action!" << std::endl;
     }
 }
 
