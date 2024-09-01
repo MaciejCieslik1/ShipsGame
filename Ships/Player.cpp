@@ -175,7 +175,9 @@ void Player::shipsInfo() const
 		{
 			info += std::to_string(j) + ", ";
 		}
-		info += std::to_string(numberOfMissilies - 1) + '\n';
+		info += std::to_string(numberOfMissilies - 1);
+		info += " , movement: ";
+		info += std::to_string(currentShip->getMovement()) + "\n";
 		i++;
 	} 
 	std::cout << info;
