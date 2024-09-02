@@ -146,6 +146,15 @@ void Game::newTurn() {
             if (i == players.size()-1) {
                 setWinner(players[0]);
             } else setWinner(players[i+1]);
+            #ifdef _WIN32
+            // Windows
+                Sleep(milliseconds);
+                std::system("cls");
+             #else
+            // Unix-like system
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                std::system ("clear");
+            #endif
             std::cout << "Winner: " << getWinner()->getName() << std::endl;
             turnGameOff();
         }

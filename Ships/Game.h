@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <istream>
 #include <algorithm>
+#include <thread>
+#include <chrono>
 #include "ShipsExceptions.h"
 #include "Field.h"
 #include "Board.h"
