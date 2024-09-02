@@ -125,6 +125,7 @@ void Game::confirm(const int& input, bool& correctMoveFlag) {
         if (correctMoveFlag) newTurn();
         else std::cout << "Incorrect action!" << std::endl;
     }
+    else if (input==0) turnStage = 0;
 }
 
 void Game::checkIfShipSunked() {

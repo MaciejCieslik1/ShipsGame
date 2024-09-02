@@ -170,7 +170,7 @@ void Process::startGame(const int& maxBoardSize)
             std::cout << "Choose missile ID: ";
             std::cin >> input;
         } else {
-            std::cout << "Press 1 to confirm: ";
+            std::cout << "Press 1 to confirm or 0 to cancel: ";
             std::cin >> input;
         }
         game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
