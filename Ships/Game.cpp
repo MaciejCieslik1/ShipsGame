@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
-    std::vector<Player*> newPlayers;
+    std::vector<std::shared_ptr<Player>> newPlayers;
     players = newPlayers;
     currentPlayer = 0;
     numberOfTurns = 1;
@@ -10,7 +10,7 @@ Game::Game() {
     turnGameOn();
     generateBoard(maxBoardSize);
 }
-Game::Game(const std::vector<Player*>& newPlayers, const int& maxBoardSize) {
+Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& maxBoardSize) {
     players = newPlayers;
     currentPlayer = 0;
     numberOfTurns = 1;
@@ -18,15 +18,12 @@ Game::Game(const std::vector<Player*>& newPlayers, const int& maxBoardSize) {
     turnGameOn();
     generateBoard(maxBoardSize);
 }
-Game::~Game() {
-    for (Player* player : players) { delete player; }
-    delete board;
-}
+Game::~Game() {}
 
-Board* Game::getBoard() const {
+std::shared_ptr<Board> Game::getBoard() const {
     return board;
 }
-const std::vector<Player*>& Game::getPlayers() const {
+const std::vector<std::shared_ptr<Player>>& Game::getPlayers() const {
     return players;
 }
 int	Game::getCurrentPlayerIndex() const {
@@ -35,7 +32,7 @@ int	Game::getCurrentPlayerIndex() const {
 int Game::getNumberOfTurns() const {
     return numberOfTurns;
 }
-Player* Game::getWinner() const {
+std::shared_ptr<Player> Game::getWinner() const {
     return winner;
 }
 int Game::getTurnStage() const {
@@ -45,10 +42,10 @@ bool Game::getIsOn() const {
     return isOn;
 }
 
-void Game::setBoard(Board* new_board) {
+void Game::setBoard(std::shared_ptr<Board> new_board) {
     board = new_board;
 }
-void Game::setPlayers(const std::vector<Player*>& new_players) {
+void Game::setPlayers(const std::vector<std::shared_ptr<Player>>& new_players) {
     players = new_players;
 }
 void Game::setCurrentPlayerIndex(const int& new_player) {
@@ -59,8 +56,8 @@ void Game::setCurrentPlayerIndex(const int& new_player) {
 void Game::setNumberOfTurns(const int& new_number_of_turns) {
     numberOfTurns = new_number_of_turns;
 }
-void Game::setWinner(Player* new_winner) {
-    for (Player* player : players) {
+void Game::setWinner(std::shared_ptr<Player> new_winner) {
+    for (std::shared_ptr<Player> player : players) {
         if (player == new_winner) {
             winner = new_winner; return;
         }
@@ -129,9 +126,9 @@ void Game::confirm(const int& input, bool& correctMoveFlag) {
 }
 
 void Game::checkIfShipSunked() {
-    for (Player* player : players) {   
-        std::vector<Ship*> ships = player->getShips();
-        for (Ship* ship : ships) {
+    for (std::shared_ptr<Player> player : players) {   
+        std::vector<std::shared_ptr<Ship>> ships = player->getShips();
+        for (std::shared_ptr<Ship> ship : ships) {
             if (!ship->isAlive()) {
                 player->forgetShip(ship);
                 board->removeShip(ship, ship->getCoords());
@@ -165,9 +162,9 @@ void Game::newTurn() {
 }
 
 void Game::generateBoard(const int& maxBoardSize) {
-    board = new Board(maxBoardSize);
-    for (Player* player : players) {
-        for (Ship* ship : player->getShips()) {
+    board = std::make_shared<Board>(maxBoardSize);
+    for (std::shared_ptr<Player> player : players) {
+        for (std::shared_ptr<Ship> ship : player->getShips()) {
             board->putShip(ship, ship->getCoords());
         }
     }
@@ -176,7 +173,7 @@ void Game::generateBoard(const int& maxBoardSize) {
 
 void Game::displayInfo() {
     std::vector<CruiseMissile> allMissilies;
-    for (Player* player : players) 
+    for (std::shared_ptr<Player> player : players) 
     {
         for(CruiseMissile missile : player->getAllMissilies())
         {

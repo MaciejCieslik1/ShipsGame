@@ -23,7 +23,7 @@ class Process
 public:
 	Process() = default;
 	Process(std::shared_ptr<LanguageManager> language);
-	~Process() = default;
+	~Process();
 
 	static void sleep(unsigned int milliseconds);
 	static void clearScreen(void);

@@ -13,37 +13,37 @@
 class Game
 {
 protected:
-	Board* board;
-	std::vector<Player*> players;
+	std::shared_ptr<Board> board;
+	std::vector<std::shared_ptr<Player>> players;
 	int	currentPlayer;
 	int numberOfTurns;
-	Player* winner;
+	std::shared_ptr<Player> winner;
 	int turnStage;
 	bool isOn;
 
-	int action; Ship* ship; Field destination; int missile;
+	int action; std::shared_ptr<Ship> ship; Field destination; int missile;
 
 	friend std::ostream& operator<<(std::ostream& os, const Game& game);
 	friend std::istream& operator>>(std::istream& is, Game& game);
 
 public:
 	Game();
-	Game(const std::vector<Player*>& players, const int& maxBoardSize);
+	Game(const std::vector<std::shared_ptr<Player>>& players, const int& maxBoardSize);
 	~Game();
 
-	Board* getBoard() const;
-	const std::vector<Player*>& getPlayers() const;
+	std::shared_ptr<Board> getBoard() const;
+	const std::vector<std::shared_ptr<Player>>& getPlayers() const;
 	int	getCurrentPlayerIndex() const;
 	int getNumberOfTurns() const;
-	Player* getWinner() const;
+	std::shared_ptr<Player> getWinner() const;
 	int getTurnStage() const;
 	bool getIsOn() const;
 
-	void setBoard(Board* new_board);
-	void setPlayers(const std::vector<Player*>& new_players);
+	void setBoard(std::shared_ptr<Board> new_board);
+	void setPlayers(const std::vector<std::shared_ptr<Player>>& new_players);
 	void setCurrentPlayerIndex(const int& new_player);
 	void setNumberOfTurns(const int& new_number_of_turns);
-	void setWinner(Player* new_winner);
+	void setWinner(std::shared_ptr<Player> new_winner);
 	void setTurnStage(const int& newStage);
 	void turnGameOn();
 	void turnGameOff();

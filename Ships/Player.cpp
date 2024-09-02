@@ -4,14 +4,14 @@ Player::Player(const std::string& name, const int& maxMoves, const int& moveCoun
 	: name(name), maxMoves(maxMoves), moveCounter(moveCounter), boardPtr(nullptr)
 	{ }
 
-Player::Player(const std::string &name, const std::vector<Ship *> &newShips, const int &newMaxMoves, const std::vector<CruiseMissile> &newAllMissiles)
+Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const int &newMaxMoves, const std::vector<CruiseMissile> &newAllMissiles)
 	: name(name), ships(newShips), maxMoves(newMaxMoves), allMissiles(newAllMissiles)
 {
 	this->boardPtr = nullptr;
 	if (!isCorrectInt) throw invalid_max_moves_value("Max moves number must be a positive integer");
 }
 
-Player::Player(const std::vector<Ship*>& newShips, Board*& newBoardPtr, const int& newMaxMoves, const std::vector<CruiseMissile>& newAllMissiles)
+Player::Player(const std::vector<std::shared_ptr<Ship>>& newShips, std::shared_ptr<Board>& newBoardPtr, const int& newMaxMoves, const std::vector<CruiseMissile>& newAllMissiles)
 {
 	ships = newShips;
 	boardPtr = newBoardPtr;
@@ -23,20 +23,16 @@ Player::Player(const std::vector<Ship*>& newShips, Board*& newBoardPtr, const in
 }
 
 
-Player::~Player() {
-	for (Ship* ship : ships) {
-		delete ship;
-	}
-}
+Player::~Player() {}
 
 
-std::vector<Ship*> Player::getShips() const
+std::vector<std::shared_ptr<Ship>> Player::getShips() const
 {
 	return ships;
 }
 
 
-Board* Player::getBoardPtr() const
+std::shared_ptr<Board> Player::getBoardPtr() const
 {
 	return boardPtr;
 }
@@ -72,13 +68,13 @@ void Player::setName(const std::string newName)
 	name = newName;
 }
 
-void Player::setShips(const std::vector<Ship *> &newShips)
+void Player::setShips(const std::vector<std::shared_ptr<Ship>> &newShips)
 {
 	ships = newShips;
 }
 
 
-void Player::setBoard(Board* newBoard)
+void Player::setBoard(std::shared_ptr<Board> newBoard)
 {
 	boardPtr = newBoard;
 }
@@ -113,7 +109,7 @@ bool Player::decrementMoves(const int& n)
 }
 
 
-bool Player::fire(Ship* shipPtr, Field& destination, const int& missileID)
+bool Player::fire(std::shared_ptr<Ship> shipPtr, Field& destination, const int& missileID)
 {
 	std::vector<Coords> shipCoords = shipPtr->getCoords();
 	Coords destinationCoords = destination.getCoords();
@@ -136,7 +132,7 @@ bool Player::fire(Ship* shipPtr, Field& destination, const int& missileID)
 }
 
 
-bool Player::move(Ship* shipPtr, Field& destination)
+bool Player::move(std::shared_ptr<Ship> shipPtr, Field& destination)
 {
 	Coords choosenCoords = shipPtr->getCoords()[0];
 	Coords destinationCoords = destination.getCoords();
@@ -145,10 +141,10 @@ bool Player::move(Ship* shipPtr, Field& destination)
 }
 
 
-void Player::forgetShip(Ship* ship)
+void Player::forgetShip(std::shared_ptr<Ship> ship)
 {
-	std::vector<Ship*> newShipsVector;
-	for (Ship* currentPtr : ships)
+	std::vector<std::shared_ptr<Ship>> newShipsVector;
+	for (std::shared_ptr<Ship> currentPtr : ships)
 	{
 		if (currentPtr != ship)
 		{
@@ -163,7 +159,7 @@ void Player::shipsInfo() const
 {
 	std::string info;
 	int i = 0;
-	for (Ship* currentShip : ships)
+	for (std::shared_ptr<Ship> currentShip : ships)
 	{
 		info += "Ship " + std::to_string(i) + ": ";
 		info += std::string (currentShip->getCoords().size(), currentShip->getName());

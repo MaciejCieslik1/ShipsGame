@@ -58,7 +58,7 @@ void Board::generateBoard(const int& boardSize)
 	fields = allFields;
 }
 
-void Board::putShip(Ship* newShip, std::vector<Coords> shipCoords)
+void Board::putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords)
 {
 	std::vector<Field>& currentFields = fields;
 	for (Coords shipSectorCoords : shipCoords)
@@ -72,7 +72,7 @@ void Board::putShip(Ship* newShip, std::vector<Coords> shipCoords)
 }
 
 
-void Board::removeShip(Ship* newShip, std::vector<Coords> shipCoords)
+void Board::removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords)
 {
 	std::vector<Field>& currentFields = fields;
 	for (Coords shipSectorCoords : shipCoords)
@@ -270,7 +270,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 
 bool Board::moveShipToField(const Field& beginningField, const int& destinationX, const int& destinationY)
 {
-	Ship* ship = beginningField.getShipOnField();
+	std::shared_ptr<Ship> ship = beginningField.getShipOnField();
 	std::vector<Coords> shipCoords = ship->getCoords();
 	std::vector<Coords> extremeCoords = ship->extremeCoords();
 	Coords extremeBig = extremeCoords[0];

@@ -22,8 +22,8 @@ public:
 	void setFields(const std::vector<Field>& new_fields);
 
 	void generateBoard(const int& boardSize);
-	void putShip(Ship* newShip, std::vector<Coords> shipCoords);
-	void removeShip(Ship* newShip, std::vector<Coords> shipCoords);
+	void putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
+	void removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
 	bool moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);
 	bool moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);
 	bool moveShipToField(const Field& beginningField, const int& destinationX, const int& destinationY);

@@ -3,14 +3,14 @@
 
 Field::Field() {
     Coords newCoords;
-    std::vector<Field*> newAdjacent;
+    std::vector<std::shared_ptr<Field>> newAdjacent;
     coords = newCoords;
     adjacentFields = newAdjacent;
     shipOnField = nullptr;
 }
 Field::Field(const Coords& newCoords) {
     coords = newCoords;
-    std::vector<Field*> newAdjacent;
+    std::vector<std::shared_ptr<Field>> newAdjacent;
     adjacentFields = newAdjacent;
     shipOnField = nullptr;
 }
@@ -19,23 +19,23 @@ Field::~Field() {}
 Coords Field::getCoords() const {
     return coords;
 }
-std::vector<Field*> Field::getAdjacentFields() const {
+std::vector<std::shared_ptr<Field>> Field::getAdjacentFields() const {
     return adjacentFields;
 }
-Ship* Field::getShipOnField() const {
+std::shared_ptr<Ship> Field::getShipOnField() const {
     return shipOnField;
 }
 
 void Field::setCoords(const Coords& newCoords) {
     coords = newCoords;
 }
-void Field::setAdjacentFields(const std::vector<Field*>& newAdjacentFields) {
+void Field::setAdjacentFields(const std::vector<std::shared_ptr<Field>>& newAdjacentFields) {
     adjacentFields = newAdjacentFields;
 }
-void Field::setShipOnField(Ship* newShipOnField) {
+void Field::setShipOnField(std::shared_ptr<Ship> newShipOnField) {
     shipOnField = newShipOnField;
 }
-void Field::addAdjacentField(Field* field) {
+void Field::addAdjacentField(std::shared_ptr<Field> field) {
     if (field && areAdjacent(coords, field->getCoords())) {
         adjacentFields.push_back(field);
     }
@@ -80,7 +80,7 @@ std::istream& operator>>(std::istream& is, Field& field) {
         field.shipOnField = nullptr;
     } else {
         // Wczytaj dane statku, jeśli nie jest puste
-        Ship* ship = new Ship();
+        std::shared_ptr<Ship> ship = std::make_shared<Ship>();
         is >> *ship;
         field.shipOnField = ship;
     }
