@@ -121,7 +121,7 @@ bool Player::fire(Ship* shipPtr, Field& destination, const int& missileID)
 	int distance = abs(destinationCoords.getX() - closestCoords.getX()) + abs(destinationCoords.getY() - closestCoords.getY());
 	for (Coords currentCords : shipCoords)
 	{
-		int newDistance = abs(destinationCoords.getX() - currentCords.getX()) + abs(destinationCoords.getY() - currentCords.getY()) < distance;
+		int newDistance = abs(destinationCoords.getX() - currentCords.getX()) + abs(destinationCoords.getY() - currentCords.getY());
 		if (newDistance < distance)
 		{
 			distance = newDistance;

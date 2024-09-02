@@ -55,9 +55,6 @@ void CruiseMissile::effect(Field& destination) {
 }
 
 bool CruiseMissile::operator==(const CruiseMissile& other) const {
-	// int range;
-    // int damage;
-    // int missileID;
 	return (range == other.range && damage == other.damage && missileID == other.missileID);
 }
 
