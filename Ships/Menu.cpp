@@ -110,7 +110,7 @@ int Menu::getMaxBoardSize(void) const
         std::cout << "Enter board size from range [10, 30]: ";
         std::cin >> maxBoardSize;
     }
-    Process::sleep(2000);
+    Process::sleep(1000);
     Process::clearScreen();
     return maxBoardSize;
 }
