@@ -159,7 +159,7 @@ void Process::startGame(const int& maxBoardSize)
             std::cout << "Enter action (1: Move, 2: Fire): ";
             std::cin >> input; input -= 1;
         } else if (game->getTurnStage() == 1) {
-            std::cout << "I have soiled myself. How embarassing. Choose ship to do stuff with: ";
+            std::cout << "Choose ship: ";
             std::cin >> input;
         } else if (game->getTurnStage() == 2) {
             int x; int y;
