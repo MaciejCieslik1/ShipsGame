@@ -191,6 +191,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 			}
 		}
 	}
+	else return false;
 	return true;
 }
 
@@ -262,6 +263,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			}
 		}
 	}
+	else return false;
 	return true;
 }
 
