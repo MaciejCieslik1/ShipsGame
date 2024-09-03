@@ -6,7 +6,6 @@
 #include "CruiseMissile.h"
 #include "Ship.h"
 #include "LanguageManager.h"
-#include "FileHandler.h"
 #include "Player.h"
 #include "Game.h"
 #include "Field.h"

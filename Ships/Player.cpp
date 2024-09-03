@@ -1,24 +1,12 @@
 #include "Player.h"
 
-Player::Player(const std::string& name, const int& maxMoves, const int& moveCounter)
-	: name(name), maxMoves(maxMoves), moveCounter(moveCounter), boardPtr(nullptr) { }
+Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles)
+	: name(name), ships(newShips), allMissiles(newAllMissiles) {}
 
-Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const int &newMaxMoves, const std::vector<CruiseMissile> &newAllMissiles)
-	: name(name), ships(newShips), maxMoves(newMaxMoves), allMissiles(newAllMissiles)
+Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>& newShips)
+	: name(name), ships(newShips)
 {
-	this->boardPtr = nullptr;
-	if (!isCorrectInt) throw invalid_max_moves_value("Max moves number must be a positive integer");
-}
-
-Player::Player(const std::vector<std::shared_ptr<Ship>>& newShips, std::shared_ptr<Board>& newBoardPtr, const int& newMaxMoves, const std::vector<CruiseMissile>& newAllMissiles)
-{
-	ships = newShips;
-	boardPtr = newBoardPtr;
-	allMissiles = newAllMissiles;
-	if (isCorrectInt(newMaxMoves)) { maxMoves = newMaxMoves; }
-	else { throw invalid_max_moves_value("Max moves number must be a positive integer"); }
-	moveCounter = maxMoves;
-
+	allMissiles = std::vector<CruiseMissile>({CruiseMissile(2, 5, 0), CruiseMissile(4, 4, 1), CruiseMissile(6, 3, 2), CruiseMissile(8, 2, 3)}); 
 }
 
 
@@ -40,18 +28,6 @@ std::shared_ptr<Board> Player::getBoardPtr() const
 std::vector <CruiseMissile> Player::getAllMissilies() const
 {
 	return allMissiles;
-}
-
-
-int Player::getMaxMoves() const
-{
-	return maxMoves;
-}
-
-
-int Player::getMoveCounter() const
-{
-	return moveCounter;
 }
 
 
@@ -84,29 +60,6 @@ void Player::setBoard(std::shared_ptr<Board> newBoard)
 void Player::setAllMissiles(const std::vector<CruiseMissile>& newAllMissiles)
 {
 	allMissiles = newAllMissiles;
-}
-
-
-void Player::setMaxMoves(const int& newMaxMoves)
-{
-	maxMoves = newMaxMoves;
-}
-
-
-void Player::setMoveCounter(const int& newMoveCunter)
-{
-	moveCounter = newMoveCunter;
-}
-
-
-bool Player::decrementMoves(const int& n)
-{
-	if (isCorrectInt(n) && n <= moveCounter && n <= maxMoves)
-	{
-		moveCounter -= n;
-		return true;
-	}
-	else { return false; }
 }
 
 
@@ -183,7 +136,7 @@ void Player::shipsInfo() const
 
 std::ostream& operator<<(std::ostream& os, const Player& player) 
 {
-	os << player.name << ' ' << player.maxMoves << ' ' << player.moveCounter << '\n';
+	os << player.name << '\n';
 	return os;
 }
 
@@ -194,13 +147,8 @@ std::istream& operator>>(std::istream& is, Player& player)
     int maxMoves;
     int moveCounter;
 
-	if (is >> name >> maxMoves >> moveCounter) {
-        player.name = name;
-        player.maxMoves = maxMoves;
-        player.moveCounter = moveCounter;
-    } else {
-        is.setstate(std::ios::failbit);
-    }
+	if (is >> name >> maxMoves >> moveCounter) player.name = name;
+	else is.setstate(std::ios::failbit);
 
     return is;
 }
@@ -216,8 +164,6 @@ bool Player::operator==(const Player& other) const
 
     if (boardPtr != other.boardPtr) return false;
     if (allMissiles != other.allMissiles) return false;
-    if (maxMoves != other.maxMoves) return false;
-    if (moveCounter != other.moveCounter) return false;
 
     return true;
 }
