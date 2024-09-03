@@ -5,7 +5,6 @@ SOURCES = main.cpp \
           Ships/Field.cpp \
           Ships/FunctionsM.cpp \
           Ships/Game.cpp \
-          Ships/FileHandler.cpp \
           Ships/LanguageManager.cpp \
           Ships/Player.cpp \
           Ships/Ship.cpp \
