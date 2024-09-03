@@ -1,38 +1,45 @@
 #include "Menu.h"
 #include "ShipsExceptions.h"
 
-Menu::Menu(std::shared_ptr<LanguageManager> langOptions) :
-	langOptions(langOptions){
 
+Menu::Menu(std::shared_ptr<LanguageManager> langOptions) :
+	langOptions(langOptions)
+{
 	currentState = CurrentMenuState::MainMenu;
     this->generateCommunicationKeys();
 }
 
+
 void Menu::display(void) const
 {
-	switch (currentState) {
+	switch (currentState) 
+    {
 		case CurrentMenuState::MainMenu:
-			for (int i = 0; i < 4; ++i) {
+			for (int i = 0; i < 4; ++i) 
+            {
 				std::cout << i +1 << ". ";
 				std::cout << optionTable[i] << '\n';
 			}
 			break;
 		case CurrentMenuState::StartMenu:
-			for (int i = 0; i < 3; ++i) {
+			for (int i = 0; i < 3; ++i) 
+            {
 				std::cout << i + 1 << ". ";
 				std::cout << optionTable[i + 4] << '\n';
 			}
 			break;
 		case CurrentMenuState::ShowCredits:
             std::cout << langOptions->getCommunicate("menu_credits") << ":\n";
-			for (int i = 0; i < 3; ++i) {
+			for (int i = 0; i < 3; ++i) 
+            {
 				std::cout << optionTable[i + 7] << '\n';
 			}
 			break;
 		case CurrentMenuState::ShowOptions:
             std::cout << '\t' <<optionTable[1] << '\n';
             std::cout << langOptions->getCommunicate("menu_options_choose_language") << "\n";
-            for (int i = 0; i < 10; ++i) {
+            for (int i = 0; i < 10; ++i) 
+            {
                 std::cout << i + 1 << ". ";
                 std::cout << optionTable[i + 10] << '\n';
             }
@@ -41,9 +48,12 @@ void Menu::display(void) const
 	}
 }
 
-void Menu::generateCommunicationKeys(void) {
+
+void Menu::generateCommunicationKeys(void) 
+{
     this->optionTable.clear();
-    std::vector<std::string> communicateKeys = {
+    std::vector<std::string> communicateKeys = 
+        {
             "menu_start",
             "menu_options",
             "menu_credits",
@@ -65,21 +75,27 @@ void Menu::generateCommunicationKeys(void) {
             "menu_language_korean",
             "menu_language_chinese",
         };
-        for (const std::string& v : communicateKeys) {
+        for (const std::string& v : communicateKeys) 
+        {
             this->optionTable.push_back(langOptions->getCommunicate(v));
         }
 }
+
 
 Menu::CurrentMenuState Menu::getCurrentState(void) const
 {
 	return currentState;
 }
 
-void Menu::changeState(Menu::CurrentMenuState newState) {
+
+void Menu::changeState(Menu::CurrentMenuState newState) 
+{
 	currentState = newState;
 }
 
-std::pair<std::string, std::string> Menu::createNameEntryBox() {
+
+std::pair<std::string, std::string> Menu::createNameEntryBox() 
+{
 	std::string name1, name2;
 	std::cout << langOptions->getCommunicate("menu_choose_player_one") << ' ';
 	std::cin >> name1;
@@ -87,9 +103,7 @@ std::pair<std::string, std::string> Menu::createNameEntryBox() {
 	std::cout << langOptions->getCommunicate("menu_choose_player_two") << ' ';
 	std::cin >> name2;
 
-	if (name1 == name2) {
-		name2 += "(0)";
-	}
+	if (name1 == name2) name2 += "(0)";
 
 	Process::clearScreen();
 	std::cout << langOptions->getCommunicate("menu_welcome")<< ' '<< name1 <<
@@ -116,8 +130,10 @@ int Menu::getMaxBoardSize(void) const
 }
 
 
-void Menu::handleStartSelection(int idx) {
-    switch (idx) {
+void Menu::handleStartSelection(int idx) 
+{
+    switch (idx) 
+    {
         case StartOptions::NewGame:
 			this->changeState(CreateNewGame);
         break;
@@ -130,8 +146,10 @@ void Menu::handleStartSelection(int idx) {
     }
 }
 
-void Menu::handleMainSelection(int idx) {
-    switch (idx) {
+void Menu::handleMainSelection(int idx) 
+{
+    switch (idx) 
+    {
         case MenuOptions::Start:
             this->changeState(StartMenu);
             break;
@@ -147,26 +165,34 @@ void Menu::handleMainSelection(int idx) {
     }
 }
 
-void Menu::handleOptionsSelection(int idx) {
+void Menu::handleOptionsSelection(int idx) 
+{
 
 }
 
-void Menu::handleCreditsSelection(char quit) {
+
+void Menu::handleCreditsSelection(char quit) 
+{
 	if (quit == 'Q' || quit == 'q')
 		this->changeState(MainMenu);
 }
 
+
 template <typename T>
-T Menu::choiceInput(void) {
+T Menu::choiceInput(void) 
+{
 	T input;
     std::cout << langOptions->getCommunicate("menu_choice_input") << ' ';
     std::cin >> input;
 	return input;
 }
 
-std::string Menu::determineLangFile(int input) const {
+
+std::string Menu::determineLangFile(int input) const 
+{
     enum language { english, spanish, german, polish, ukrainian, russian, french, japanese, chinese, korean};
-    switch(input) {
+    switch(input) 
+    {
         case english:
             return "languages/en.txt";
         case german:
@@ -192,8 +218,10 @@ std::string Menu::determineLangFile(int input) const {
     }
 }
 
-std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, int& maxBoardSize) {
+std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, int& maxBoardSize) 
+{
 	bool createGame = false;
+
     bool createGameFromFile = false;
 
 	bool decisionMade=false;
@@ -207,22 +235,27 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
         int input = choiceInput<int>();
 		if (!(0 <= input && input <= 4)) continue;
 
-        switch (input) {
+        switch (input) 
+        {
             case 1:
                 this->handleMainSelection(Menu::Start);
 
-                if (this->getCurrentState() == Menu::CurrentMenuState::StartMenu) {
+                if (this->getCurrentState() == Menu::CurrentMenuState::StartMenu) 
+                {
 					int startInputInt;
-                    do {
+                    do 
+                    {
                         Process::clearScreen();
                         this->display();
                         startInputInt = choiceInput<int>();
-                    } while (startInputInt < 1 || startInputInt > 3);
+                    } 
+                    while (startInputInt < 1 || startInputInt > 3);
 
 					StartOptions startInput = static_cast<StartOptions>(startInputInt - 1);
                 	this->handleStartSelection(startInput);
 
-                    if (this->getCurrentState() == Menu::CurrentMenuState::CreateNewGame) {
+                    if (this->getCurrentState() == Menu::CurrentMenuState::CreateNewGame) 
+                    {
 						Process::clearScreen();
                         createGame = true;
                         createGameFromFile = false;
@@ -236,7 +269,8 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
 						break;
                     }
 
-                    else if (this->getCurrentState() == Menu::CurrentMenuState::CreateGameFromFile) {
+                    else if (this->getCurrentState() == Menu::CurrentMenuState::CreateGameFromFile) 
+                    {
 						Process::clearScreen();
                         createGame = true;
                         createGameFromFile = true;
@@ -244,7 +278,8 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
 						break;
                     }
 
-					else if (this->getCurrentState() == Menu::CurrentMenuState::MainMenu) {
+					else if (this->getCurrentState() == Menu::CurrentMenuState::MainMenu) 
+                    {
 						continueFlag = true;
 						break;
 					}
@@ -252,13 +287,16 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
                 break;
             case 2:
                 this->handleMainSelection(Menu::Options);
-				if (this->getCurrentState() == Menu::CurrentMenuState::ShowOptions) {
+				if (this->getCurrentState() == Menu::CurrentMenuState::ShowOptions) 
+                {
                     int optionInput;
-                    do {
+                    do 
+                    {
                         Process::clearScreen();
                         this->display();
                         optionInput = choiceInput<int>();
-                    } while (optionInput < 0 || optionInput > 10);
+                    } 
+                    while (optionInput < 0 || optionInput > 10);
 
                     if (optionInput == 0) { continueFlag = true; break; }
 
@@ -273,16 +311,19 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
                 break;
             case 3:
                 this->handleMainSelection(Menu::Credits);
-                if (this->getCurrentState() == Menu::CurrentMenuState::ShowCredits) {
-
-                char quit;
-                do {
+                if (this->getCurrentState() == Menu::CurrentMenuState::ShowCredits) 
+                {
+                    char quit;
+                    do 
+                    {
                         Process::clearScreen();
                         this->display();
                         std::cout << '\n' << langOptions->getCommunicate("menu_type_to_quit") << ' ';
                         std::cin >> quit;
                         this->handleCreditsSelection(quit);
-                    } while (quit != 'Q' && quit != 'q');
+                    
+                    } 
+                    while (quit != 'Q' && quit != 'q');
                 }
 				continueFlag = true;
                 break;

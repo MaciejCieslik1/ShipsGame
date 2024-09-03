@@ -3,13 +3,15 @@
 #include <cmath>
 
 
-bool isCorrectInt(const int& number) {
+bool isCorrectInt(const int& number) 
+{
 	if (number > 0) { return true; }
 	return false;
 }
 
 
-bool isCorrectIntVector(const std::vector<int>& numbers) {
+bool isCorrectIntVector(const std::vector<int>& numbers) 
+{
 	for (int number : numbers)
 	{
 		if (!isCorrectInt(number)) { return false; }
@@ -18,12 +20,14 @@ bool isCorrectIntVector(const std::vector<int>& numbers) {
 }
 
 
-bool isCorrectChar(const char& character) {
+bool isCorrectChar(const char& character) 
+{
 	if (character != ' ') { return true; }
 	return false;
 }
 
 
-bool areAdjacent(const Coords& coords1, const Coords& coords2) {
+bool areAdjacent(const Coords& coords1, const Coords& coords2) 
+{
 	return (abs(coords1.getX() - coords2.getX())<=1) && (abs(coords1.getY() - coords2.getY())<=1);
 }

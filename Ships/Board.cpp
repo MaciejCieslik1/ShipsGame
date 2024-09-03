@@ -2,6 +2,7 @@
 #include "FunctionsM.h"
 #include "ShipsExceptions.h"
 
+
 Board::Board(const int& newBoardSize)
 {
 	if (isCorrectInt(newBoardSize))
@@ -58,6 +59,7 @@ void Board::generateBoard(const int& boardSize)
 	fields = allFields;
 }
 
+
 void Board::putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords)
 {
 	std::vector<Field>& currentFields = fields;
@@ -96,6 +98,7 @@ Field Board::findField(const Coords& fieldCoords)
 	return Field();
 }
 
+
 void Board::boardDisplay(void)
 {
 	std::string firstLine = "   ";
@@ -115,6 +118,7 @@ void Board::boardDisplay(void)
 		std::cout << '\n';
 	}
 }
+
 
 bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY)
 {
