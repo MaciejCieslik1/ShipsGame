@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "FunctionsM.h"
 
+
 Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName, const std::vector<Coords>& newCoords)
 {
 	if (isCorrectInt(newMovement)) { movement = newMovement; }
@@ -29,10 +30,12 @@ int Ship::getHitPoints() const
 	return hitPoints;
 }
 
+
 char Ship::getName() const
 {
 	return name;
 }
+
 
 std::vector<Coords> Ship::getCoords() const
 {
@@ -153,15 +156,18 @@ std::vector<Coords> Ship::extremeCoords() const
 	}
 }
 
+
 char Ship::displayOnBoard() const
 {
 	return 'S';
 }
 
+
 char Ship::displayOnBoard(bool isActive) const
 {
 	return isActive ? 'S' : 's';
 }
+
 
 bool Ship::operator==(const Ship &other) const
 {
@@ -184,48 +190,66 @@ bool Ship::operator!=(const Ship& other) const
 	return !(*this == other);
 }
 
+
 // Carrier4________________________________________________________________________________________
-Carrier4::Carrier4(const std::vector<Coords>& newCoords) {
+Carrier4::Carrier4(const std::vector<Coords>& newCoords) 
+{
 	if (coords.size()!=4) { throw invalid_movement_value("Carrier must take exactly 4 fields"); }
 	coords = newCoords; movement = 5; hitPoints = 20;
 	std::vector<int> missilies = { 0, 1, 2 };
 	missileIDs = missilies;
 }
-char Carrier4::displayOnBoard(bool isActive) const {
+
+
+char Carrier4::displayOnBoard(bool isActive) const 
+{
 	return isActive ? 'C' : 'c';
 }
 
+
 // Battleship2_____________________________________________________________________________________
-Battleship2::Battleship2(const std::vector<Coords>& newCoords) {
+Battleship2::Battleship2(const std::vector<Coords>& newCoords)
+{
 	if (coords.size()!=2) { throw invalid_movement_value("Battleship must take exactly 2 fields"); }
 	coords = newCoords; movement = 10; hitPoints = 10;
 	std::vector<int> missilies = { 0, 1 };
 	missileIDs = missilies;
 }
-char Battleship2::displayOnBoard(bool isActive) const {
+
+
+char Battleship2::displayOnBoard(bool isActive) const 
+{
 	return isActive ? 'B' : 'b';
 }
 
+
 // Destroyer1______________________________________________________________________________________
-Destroyer1::Destroyer1(const std::vector<Coords>& newCoords) {
+Destroyer1::Destroyer1(const std::vector<Coords>& newCoords) 
+{
 	if (coords.size()!=1) { throw invalid_movement_value("Destroyer must take exactly 1 fields"); }
 	coords = newCoords; movement = 20; hitPoints = 5;
 	std::vector<int> missilies = { 0 };
 	missileIDs = missilies;
 }
-char Destroyer1::displayOnBoard(bool isActive) const {
+
+
+char Destroyer1::displayOnBoard(bool isActive) const 
+{
 	return isActive ? 'D' : 'd';
 }
+
 
 // File handling___________________________________________________________________________________
 
 std::ostream& operator<<(std::ostream& os, const Ship& ship)
 {
 	os << ship.movement << ' ' << ship.hitPoints << ' ' <<  ship.coords.size() << ' ' << ship.missileIDs.size() << ' ';
-	for (const auto& v : ship.coords) {
+	for (const auto& v : ship.coords) 
+	{
 		os << v << ' ';
 	}
-	for (const auto& v : ship.missileIDs) {
+	for (const auto& v : ship.missileIDs) 
+	{
 		os << v << ' ';
 	}
 	return os << '\n';
@@ -238,12 +262,11 @@ std::istream& operator>>(std::istream& is, Ship& ship)
     std::vector<int> missileIDs;
     int numCoords, numMissiles;
 
-    if (!(is >> movement >> hitPoints >> numCoords)) {
-        throw std::runtime_error("Error while loading ship data");
-    }
+    if (!(is >> movement >> hitPoints >> numCoords)) throw std::runtime_error("Error while loading ship data");
 
     coords.reserve(numCoords);
-    for (int i = 0; i < numCoords; ++i) {
+    for (int i = 0; i < numCoords; ++i) 
+	{
         Coords coord;
         if (!(is >> coord)) {
             throw std::runtime_error("Error while loading ship coordinates");
@@ -252,19 +275,15 @@ std::istream& operator>>(std::istream& is, Ship& ship)
     }
 
     char separator;
-    if (!(is >> separator) || separator != ';') {
-        throw std::runtime_error("Error while loading delimiter");
-    }
+    if (!(is >> separator) || separator != ';') throw std::runtime_error("Error while loading delimiter");
 
-    if (!(is >> numMissiles)) {
-        throw std::runtime_error("Error while loading missile Id's");
-    }
+    if (!(is >> numMissiles)) throw std::runtime_error("Error while loading missile Id's");
+
     missileIDs.reserve(numMissiles);
-    for (int i = 0; i < numMissiles; ++i) {
+    for (int i = 0; i < numMissiles; ++i) 
+	{
         int missileID;
-        if (!(is >> missileID)) {
-            throw std::runtime_error("Error while loading missile Id's");
-        }
+        if (!(is >> missileID)) throw std::runtime_error("Error while loading missile Id's");
         missileIDs.push_back(missileID);
     }
 

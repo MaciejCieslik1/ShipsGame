@@ -3,6 +3,7 @@
     #include <windows.h>
 #endif
 
+
 Process::Process(std::shared_ptr<LanguageManager> language) 
     : langOptions(language) { }
 
@@ -19,7 +20,9 @@ void Process::clearScreen(void)
     #endif
 }
 
-void Process::sleep(unsigned int milliseconds) {
+
+void Process::sleep(unsigned int milliseconds) 
+{
     #ifdef _WIN32
         // Windows
         Sleep(milliseconds);
@@ -28,6 +31,7 @@ void Process::sleep(unsigned int milliseconds) {
         std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
     #endif
 }
+
 
 void Process::loadGameState(void)
 {
@@ -48,14 +52,16 @@ void Process::loadGameState(void)
     std::vector<std::shared_ptr<Player>> playerVec;
 
     // Add ships
-    for (auto& ship : player1ShipContainer) {
+    for (auto& ship : player1ShipContainer) 
+    {
         std::shared_ptr<Ship> shipPtr = std::make_shared<Ship>();
         shipVec.push_back(shipPtr);
     }
     playerContainer[0]->setShips(shipVec);
     shipVec.clear();
 
-    for (auto& ship : player2ShipContainer) {
+    for (auto& ship : player2ShipContainer) 
+    {
         std::shared_ptr<Ship> shipPtr = std::make_shared<Ship>();
         shipVec.push_back(shipPtr);
     }
@@ -63,12 +69,14 @@ void Process::loadGameState(void)
     playerContainer[1]->setShips(shipVec);
 
     // Add missiles
-    for (const auto& mis : player1missleContainer) {
+    for (const auto& mis : player1missleContainer) 
+    {
         missleVec.push_back(*mis);
     }
     playerContainer[0]->setAllMissiles(missleVec);
     missleVec.clear();
-    for (const auto& mis : player2missleContainer) {
+    for (const auto& mis : player2missleContainer) 
+    {
         missleVec.push_back(*mis);
     }
     playerContainer[1]->setAllMissiles(missleVec);
@@ -82,11 +90,10 @@ void Process::loadGameState(void)
     playerVec[1]->setBoard(game->getBoard());
 }
 
+
 void Process::initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize)
 {
-	if (playerNames.size() < 2) {
-        throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
-    }
+	if (playerNames.size() < 2) throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer1;
     shipsPlayer1.push_back(std::make_shared<Ship>(20, 5, 'A', std::vector<Coords>({Coords(6, 6), Coords(7, 6)})));
@@ -112,6 +119,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
     game->getPlayers()[1]->setBoard(game->getBoard());
 }
 
+
 void Process::saveGameState(void)
 {
     std::vector<std::unique_ptr<Player>> playerContainer;
@@ -121,12 +129,14 @@ void Process::saveGameState(void)
 
     size_t num = 0;
     std::string filenameSave;
-    for (auto& player : this->game->getPlayers()) {
+    for (auto& player : this->game->getPlayers()) 
+    {
         playerContainer.emplace_back(std::make_unique<Player>(*player));
         ++num;
 
         shipContainer.clear();
-        for (auto& ship : player->getShips()) {
+        for (auto& ship : player->getShips()) 
+        {
             shipContainer.emplace_back(std::make_unique<Ship>(*ship));
         }
 
@@ -135,7 +145,8 @@ void Process::saveGameState(void)
         handler.saveInfo<Ship>(shipContainer);
 
         missleContainer.clear();
-        for (auto& missle : player->getAllMissilies()) {
+        for (auto& missle : player->getAllMissilies()) 
+        {
             missleContainer.emplace_back(std::make_unique<CruiseMissile>(missle));
         }
         filenameSave = "saved/player_" + std::to_string(num) + "_missiles.txt";
@@ -148,30 +159,41 @@ void Process::saveGameState(void)
     }
 }
 
+
 void Process::startGame(const int& maxBoardSize)
 {
 	int input;
     bool correctMoveFlag = true;
-    while (game->getIsOn()) {
+    while (game->getIsOn()) 
+    {
         clearScreen();
         game->getBoard()->boardDisplay();
         game->displayInfo();
-        if (game->getTurnStage() == 0) {
+        if (game->getTurnStage() == 0) 
+        {
             if (!correctMoveFlag) std::cout << "Invalid action!" << std::endl;
             std::cout << "Enter action (1: Move, 2: Fire): ";
             std::cin >> input; input -= 1;
-        } else if (game->getTurnStage() == 1) {
+        } 
+        else if (game->getTurnStage() == 1) 
+        {
             std::cout << "Choose ship: ";
             std::cin >> input;
-        } else if (game->getTurnStage() == 2) {
+        } 
+        else if (game->getTurnStage() == 2) 
+        {
             int x; int y;
             std::cout << "Choose destination (x, y): ";
             std:: cin >> x >> y;
             input = x*100 + y;
-        } else if (game->getTurnStage() == 3) {
+        } 
+        else if (game->getTurnStage() == 3) 
+        {
             std::cout << "Choose missile ID: ";
             std::cin >> input;
-        } else {
+        } 
+        else 
+        {
             std::cout << "Press 1 to confirm or 0 to cancel: ";
             std::cin >> input;
         }

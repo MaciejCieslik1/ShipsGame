@@ -1,8 +1,7 @@
 #include "Player.h"
 
 Player::Player(const std::string& name, const int& maxMoves, const int& moveCounter)
-	: name(name), maxMoves(maxMoves), moveCounter(moveCounter), boardPtr(nullptr)
-	{ }
+	: name(name), maxMoves(maxMoves), moveCounter(moveCounter), boardPtr(nullptr) { }
 
 Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const int &newMaxMoves, const std::vector<CruiseMissile> &newAllMissiles)
 	: name(name), ships(newShips), maxMoves(newMaxMoves), allMissiles(newAllMissiles)
@@ -55,6 +54,7 @@ int Player::getMoveCounter() const
 	return moveCounter;
 }
 
+
 std::string Player::getName() const
 {
     return name;
@@ -67,6 +67,7 @@ void Player::setName(const std::string newName)
 	}
 	name = newName;
 }
+
 
 void Player::setShips(const std::vector<std::shared_ptr<Ship>> &newShips)
 {
@@ -180,12 +181,15 @@ void Player::shipsInfo() const
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Player& player) {
+std::ostream& operator<<(std::ostream& os, const Player& player) 
+{
 	os << player.name << ' ' << player.maxMoves << ' ' << player.moveCounter << '\n';
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, Player& player) {
+
+std::istream& operator>>(std::istream& is, Player& player) 
+{
 	std::string name;
     int maxMoves;
     int moveCounter;
@@ -201,13 +205,9 @@ std::istream& operator>>(std::istream& is, Player& player) {
     return is;
 }
 
-bool Player::operator==(const Player& other) const {
-	// std::string name;
-    // std::vector<Ship*> ships;
-    // Board* boardPtr;
-    // std::vector<CruiseMissile> allMissiles;
-    // int maxMoves;
-    // int moveCounter;
+
+bool Player::operator==(const Player& other) const 
+{
 	if (name != other.name) return false;
     if (ships.size() != other.ships.size()) return false;
     for (size_t i = 0; i < ships.size(); ++i) {
@@ -222,6 +222,8 @@ bool Player::operator==(const Player& other) const {
     return true;
 }
 
-bool Player::operator!=(const Player& other) const {
+
+bool Player::operator!=(const Player& other) const 
+{
 	return !(*this == other);
 }
