@@ -4,7 +4,7 @@
 #endif
 
 Process::Process(std::shared_ptr<LanguageManager> language)
-	: langOptions(language) , game(std::make_unique<Game>()) { }
+	: langOptions(language), game(std::make_unique<Game>()) { }
 
 
 Process::~Process() {}
@@ -49,15 +49,15 @@ void Process::loadGameState(void)
 
     // Add ships
     for (auto& ship : player1ShipContainer) {
-        //std::shared_ptr<Ship> shipPtr = ship.get();
-        //shipVec.push_back(shipPtr);
+        std::shared_ptr<Ship> shipPtr = std::make_shared<Ship>();
+        shipVec.push_back(shipPtr);
     }
     playerContainer[0]->setShips(shipVec);
     shipVec.clear();
 
     for (auto& ship : player2ShipContainer) {
-        //std::shared_ptr<Ship> shipPtr = ship.get();
-        //shipVec.push_back(shipPtr);
+        std::shared_ptr<Ship> shipPtr = std::make_shared<Ship>();
+        shipVec.push_back(shipPtr);
     }
 
     playerContainer[1]->setShips(shipVec);
