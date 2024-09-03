@@ -8,30 +8,36 @@
 
 int main()
 {
-    try {
-    std::shared_ptr<LanguageManager> language = std::make_shared<LanguageManager>("languages/en.txt");
-    language->loadCommunicates();
-    Process::clearScreen();
-    std::cout << language->getCommunicate("program_name_start") <<'\n';
-    Process::sleep(1000);
+    try 
+    {
+        std::shared_ptr<LanguageManager> language = std::make_shared<LanguageManager>("languages/en.txt");
+        language->loadCommunicates();
+        Process::clearScreen();
+        std::cout << language->getCommunicate("program_name_start") <<'\n';
+        Process::sleep(1000);
 
-    Menu menu(language);
-    Process process(language);
+        Menu menu(language);
+        Process process(language);
 
-    std::vector<std::string> playerNames;
-    int maxBoardSize;
-    std::pair<bool, bool> gameOpts = menu.generateMenu(playerNames, maxBoardSize);
-    std::cout << maxBoardSize << std::endl;
-    if (gameOpts.first && !gameOpts.second) {
-        process.initializeNewGame(playerNames, maxBoardSize);
-    }
-    else if (gameOpts.first && gameOpts.second) {
-        process.loadGameState();
-    }
-    process.startGame(maxBoardSize);
+        std::vector<std::string> playerNames;
+        int maxBoardSize;
+        while (true)
+        {
+            std::pair<bool, bool> gameOpts = menu.generateMenu(playerNames, maxBoardSize);
+            if (gameOpts.first && !gameOpts.second) {
+                process.initializeNewGame(playerNames, maxBoardSize);
+            }
+            else if (gameOpts.first && gameOpts.second) {
+                process.loadGameState();
+            }
+            process.startGame(maxBoardSize);
+            Process::sleep(2000);
+            Process::clearScreen();
+        }
     }
 
-    catch (const std::exception& e) {
+    catch (const std::exception& e) 
+    {
         std::cerr << "An error occured: " << e.what() << '\n';
         return -1;
     }
