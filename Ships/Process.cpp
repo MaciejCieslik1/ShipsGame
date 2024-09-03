@@ -88,21 +88,15 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
         throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
     }
 
-    std::unique_ptr<Board> board = nullptr;
-
     std::vector<std::shared_ptr<Ship>> shipsPlayer1;
-    std::vector<Coords> ship1Coords = {Coords(6, 6), Coords(7, 6)};
-    std::vector<Coords> ship2Coords = {Coords(5, 3), Coords(6, 3), Coords(7, 3)};
-    shipsPlayer1.push_back(std::make_shared<Ship>(20, 5, 'A', ship1Coords));
-    shipsPlayer1.push_back(std::make_shared<Ship>(20, 5, 'B', ship2Coords));
+    shipsPlayer1.push_back(std::make_shared<Ship>(20, 5, 'A', std::vector<Coords>({Coords(6, 6), Coords(7, 6)})));
+    shipsPlayer1.push_back(std::make_shared<Ship>(20, 5, 'B', std::vector<Coords>({Coords(5, 3), Coords(6, 3), Coords(7, 3)})));
     std::vector<CruiseMissile> missilesPlayer1 = {CruiseMissile(2, 3, 0), CruiseMissile(6, 2, 1)};
     std::shared_ptr<Player> player_1 = std::make_shared<Player>(playerNames[0], shipsPlayer1, 3, missilesPlayer1);
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer2;
-    std::vector<Coords> ship3Coords = {Coords(3, 6), Coords(4, 6)};
-    std::vector<Coords> ship4Coords = {Coords(5, 8), Coords(6, 8), Coords(7, 8)};
-    shipsPlayer2.push_back(std::make_shared<Ship>(20, 5, 'a', ship3Coords));
-    shipsPlayer2.push_back(std::make_shared<Ship>(20, 5, 'b', ship4Coords));
+    shipsPlayer2.push_back(std::make_shared<Ship>(20, 5, 'a', std::vector<Coords>({Coords(3, 6), Coords(4, 6)})));
+    shipsPlayer2.push_back(std::make_shared<Ship>(20, 5, 'b', std::vector<Coords>({Coords(5, 8), Coords(6, 8), Coords(7, 8)})));
     std::vector<CruiseMissile> missilesPlayer2 = {CruiseMissile(2, 3, 0), CruiseMissile(6, 2, 1)};
     std::shared_ptr<Player> player_2 = std::make_shared<Player>(playerNames[1], shipsPlayer2, 3, missilesPlayer2);
 
