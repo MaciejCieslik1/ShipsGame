@@ -28,7 +28,7 @@ int main()
                 process.initializeNewGame(playerNames, maxBoardSize);
             }
             else if (gameOpts.first && gameOpts.second) {
-                process.loadGameState();
+                //process.loadGameState();
             }
             process.startGame(maxBoardSize);
             Process::sleep(2000);
