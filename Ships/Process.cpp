@@ -3,8 +3,8 @@
     #include <windows.h>
 #endif
 
-Process::Process(std::shared_ptr<LanguageManager> language)
-	: langOptions(language), game(std::make_unique<Game>()) { }
+Process::Process(std::shared_ptr<LanguageManager> language) 
+    : langOptions(language) { }
 
 
 Process::~Process() {}
@@ -88,7 +88,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
         throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
     }
 
-    std::shared_ptr<Board> board = nullptr;
+    std::unique_ptr<Board> board = nullptr;
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer1;
     std::vector<Coords> ship1Coords = {Coords(6, 6), Coords(7, 6)};
