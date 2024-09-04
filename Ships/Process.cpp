@@ -96,5 +96,5 @@ void Process::startGame(const int& maxBoardSize)
         }
         game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
     }
-    std::cout << "End" << std::endl;
+    std::cout << "Congratulations!" << std::endl;
 }
