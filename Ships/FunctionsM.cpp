@@ -31,6 +31,7 @@ bool isCorrectChar(const char& character)
 bool isCorrectCoordsVector(std::vector<Coords> shipCoords, const int& maxBoardSize)
 {
 	int coordsY = shipCoords[0].getY();
+	if (coordsY < 1 || coordsY > maxBoardSize) return false;
 	int coordsX[shipCoords.size()];
 	for (Coords coords : shipCoords)
 	{
