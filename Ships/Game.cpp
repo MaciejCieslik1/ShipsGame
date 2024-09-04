@@ -25,9 +25,6 @@ Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& ma
 }
 
 
-Game::~Game() {}
-
-
 std::shared_ptr<Board> Game::getBoard() const 
 {
     return board;

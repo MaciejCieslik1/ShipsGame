@@ -21,9 +21,6 @@ Field::Field(const Coords& newCoords)
 }
 
 
-Field::~Field() {}
-
-
 Coords Field::getCoords() const 
 {
     return coords;

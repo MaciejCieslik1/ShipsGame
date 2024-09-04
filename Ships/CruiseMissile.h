@@ -17,7 +17,6 @@ protected:
     friend std::istream& operator>>(std::istream& is, CruiseMissile& missle);
 public:
     CruiseMissile() = default;
-    ~CruiseMissile();
     CruiseMissile(const int& range, const int& damage, const int& missileID);
     int getRange() const;
     int getDamage() const;

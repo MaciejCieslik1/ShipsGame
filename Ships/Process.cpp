@@ -5,10 +5,7 @@
 
 
 Process::Process(std::shared_ptr<LanguageManager> language) 
-    : langOptions(language) { }
-
-
-Process::~Process() {}
+    : langOptions(language) {}
 
 
 void Process::clearScreen(void)

@@ -19,7 +19,6 @@ protected:
     friend std::istream& operator>>(std::istream& is, Player& player);
 public:
 	Player() = default;
-    ~Player();
     Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles);
     Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips);
     std::vector<std::shared_ptr<Ship>> getShips() const;

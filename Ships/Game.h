@@ -29,7 +29,6 @@ protected:
 public:
 	Game();
 	Game(const std::vector<std::shared_ptr<Player>>& players, const int& maxBoardSize);
-	~Game();
 
 	std::shared_ptr<Board> getBoard() const;
 	const std::vector<std::shared_ptr<Player>>& getPlayers() const;

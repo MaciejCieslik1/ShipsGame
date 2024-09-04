@@ -10,9 +10,6 @@ Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>
 }
 
 
-Player::~Player() {}
-
-
 std::vector<std::shared_ptr<Ship>> Player::getShips() const
 {
 	return ships;

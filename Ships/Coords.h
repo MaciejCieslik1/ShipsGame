@@ -14,7 +14,6 @@ private:
 public:
     Coords();
     Coords(const int& newX, const int& newY);
-    ~Coords();
     int getX() const;
     int getY() const;
     void setX(const int& newX);

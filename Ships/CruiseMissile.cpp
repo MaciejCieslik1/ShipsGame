@@ -12,9 +12,6 @@ CruiseMissile::CruiseMissile(const int& newRange, const int& newDamage, const in
 }
 
 
-CruiseMissile::~CruiseMissile() {}
-
-
 int CruiseMissile::getRange() const
 {
 	return range;

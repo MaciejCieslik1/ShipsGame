@@ -19,7 +19,6 @@ protected:
 public:
 	Field();
 	Field(const Coords& newCoords);
-	~Field();
 
 	Coords getCoords() const;
 	std::vector<std::shared_ptr<Field>> getAdjacentFields() const;
