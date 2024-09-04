@@ -21,7 +21,7 @@ protected:
 	friend std::istream& operator>>(std::istream& is, Ship& ship);
 public:
 	Ship() = default;
-	Ship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	Ship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
 	virtual ~Ship();
 
 	int getMovement() const;
@@ -50,27 +50,27 @@ public:
 class Battleship : public Ship 
 {
 public:
-	Battleship(const char& name, const std::vector<Coords>& newCoords);
-	Battleship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	Battleship(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
+	Battleship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
 };
 
 class Cruiser : public Ship 
 {
 public:
-	Cruiser(const char& name, const std::vector<Coords>& newCoords);
-	Cruiser(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	Cruiser(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
+	Cruiser(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
 };
 
 class Destroyer : public Ship 
 {
 public:
-	Destroyer(const char& name, const std::vector<Coords>& newCoords);
-	Destroyer(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	Destroyer(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
+	Destroyer(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
 };
 
 class Submarine : public Ship 
 {
 public:
-	Submarine(const char& name, const std::vector<Coords>& newCoords);
-	Submarine(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	Submarine(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
+	Submarine(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
 };

@@ -2,15 +2,19 @@
 #include "FunctionsM.h"
 
 
-Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName, const std::vector<Coords>& newCoords)
+Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardsize)
 {
-	if (isCorrectInt(newMovement)) { movement = newMovement; }
-	else { throw invalid_movement_value("Movement must be positive integer"); }
-	if (isCorrectInt(newHitPoints)) { hitPoints = newHitPoints; }
-	else { throw invalid_hit_point_value("Hit points must be positive integer"); }
-	if (isCorrectChar(newName)) { name = newName; }
-	else { throw invalid_name("Invalid character for name"); }
-	coords = newCoords;
+	if (isCorrectInt(newMovement)) movement = newMovement;
+	else throw invalid_movement_value("Movement must be positive integer");
+	if (isCorrectInt(newHitPoints)) hitPoints = newHitPoints;
+	else throw invalid_hit_point_value("Hit points must be positive integer");
+	if (isCorrectChar(newName)) name = newName;
+	else throw invalid_name("Invalid character for name"); 
+	if (isCorrectCoordsVector(newCoords, maxBoardsize)) 
+	{
+		coords = newCoords; 
+	}
+	else throw invalid_coordinate("Invalid ship's coordinates");
 	std::vector<int> missilies = { 0, 1, 2 };
 	missileIDs = missilies;
 }
@@ -192,16 +196,16 @@ bool Ship::operator!=(const Ship& other) const
 
 
 // Battleship________________________________________________________________________________________
-Battleship::Battleship(const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(4, 10, newName, newCoords)
+Battleship::Battleship(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(4, 10, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
 		missileIDs = { 0, 1, 2, 3 };
 	}
 
 
-Battleship::Battleship(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(movement, hitPoints, newName, newCoords)
+Battleship::Battleship(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
 		missileIDs = { 0, 1, 2, 3 };
@@ -209,16 +213,16 @@ Battleship::Battleship(const int& movement, const int& hitPoints, const char& ne
 
 
 // Cruiser____________________________________________________________________________________
-Cruiser::Cruiser(const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(6, 8, newName, newCoords)
+Cruiser::Cruiser(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(6, 8, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
 		missileIDs = { 0, 1, 2 };
 	}
 
 
-Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(movement, hitPoints, newName, newCoords)
+Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
 		missileIDs = { 0, 1, 2 };
@@ -227,16 +231,16 @@ Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName,
 
 
 // Destroyer______________________________________________________________________________________
-Destroyer::Destroyer(const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(8, 6, newName, newCoords)
+Destroyer::Destroyer(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(8, 6, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
 		missileIDs = { 0, 1 };
 	}
 
 
-Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(movement, hitPoints, newName, newCoords)
+Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
 		missileIDs = { 0, 1 };
@@ -244,16 +248,16 @@ Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newN
 
 
 // Submarine______________________________________________________________________________________
-Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(10, 4, newName, newCoords)
+Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(10, 4, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
 		missileIDs = { 0 };
 	}
 
 
-Submarine::Submarine(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
-    : Ship(movement, hitPoints, newName, newCoords)
+Submarine::Submarine(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
+    : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
 		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
 		missileIDs = { 0 };

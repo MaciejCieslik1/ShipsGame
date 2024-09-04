@@ -35,13 +35,13 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 	if (playerNames.size() < 2) throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer1;
-    shipsPlayer1.push_back(std::make_shared<Destroyer>('A', std::vector<Coords>({Coords(6, 6), Coords(7, 6)})));
-    shipsPlayer1.push_back(std::make_shared<Cruiser>('B', std::vector<Coords>({Coords(5, 3), Coords(6, 3), Coords(7, 3)})));
+    shipsPlayer1.push_back(std::make_shared<Destroyer>('A', std::vector<Coords>({Coords(6, 6), Coords(7, 6)}), maxBoardSize));
+    shipsPlayer1.push_back(std::make_shared<Cruiser>('B', std::vector<Coords>({Coords(15, 3), Coords(16, 3), Coords(17, 3)}), maxBoardSize));
     std::shared_ptr<Player> player_1 = std::make_shared<Player>(playerNames[0], shipsPlayer1);
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer2;
-    shipsPlayer2.push_back(std::make_shared<Destroyer>('a', std::vector<Coords>({Coords(3, 6), Coords(4, 6)})));
-    shipsPlayer2.push_back(std::make_shared<Cruiser>('b', std::vector<Coords>({Coords(5, 8), Coords(6, 8), Coords(7, 8)})));
+    shipsPlayer2.push_back(std::make_shared<Destroyer>('a', std::vector<Coords>({Coords(3, 6), Coords(4, 6)}), maxBoardSize));
+    shipsPlayer2.push_back(std::make_shared<Cruiser>('b', std::vector<Coords>({Coords(5, 8), Coords(6, 8), Coords(7, 8)}), maxBoardSize));
     std::shared_ptr<Player> player_2 = std::make_shared<Player>(playerNames[1], shipsPlayer2);
 
     std::vector<std::shared_ptr<Player>> players = {player_1, player_2};
