@@ -36,7 +36,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer1;
     shipsPlayer1.push_back(std::make_shared<Destroyer>('A', std::vector<Coords>({Coords(6, 6), Coords(7, 6)}), maxBoardSize));
-    shipsPlayer1.push_back(std::make_shared<Cruiser>('B', std::vector<Coords>({Coords(15, 3), Coords(16, 3), Coords(17, 3)}), maxBoardSize));
+    shipsPlayer1.push_back(std::make_shared<Cruiser>('B', std::vector<Coords>({Coords(5, 3), Coords(6, 3), Coords(7, 3)}), maxBoardSize));
     std::shared_ptr<Player> player_1 = std::make_shared<Player>(playerNames[0], shipsPlayer1);
 
     std::vector<std::shared_ptr<Ship>> shipsPlayer2;
