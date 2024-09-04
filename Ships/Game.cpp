@@ -232,6 +232,7 @@ void Game::newTurn()
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 std::system ("clear");
             #endif
+            this->getBoard()->boardDisplay();
             std::cout << "Winner: " << getWinner()->getName() << std::endl;
             turnGameOff();
         }
