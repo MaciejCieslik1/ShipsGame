@@ -191,52 +191,74 @@ bool Ship::operator!=(const Ship& other) const
 }
 
 
-// Carrier4________________________________________________________________________________________
-Carrier4::Carrier4(const std::vector<Coords>& newCoords) 
-{
-	if (coords.size()!=4) { throw invalid_movement_value("Carrier must take exactly 4 fields"); }
-	coords = newCoords; movement = 5; hitPoints = 20;
-	std::vector<int> missilies = { 0, 1, 2 };
-	missileIDs = missilies;
-}
+// Battleship________________________________________________________________________________________
+Battleship::Battleship(const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(4, 10, newName, newCoords)
+	{
+		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
+		missileIDs = { 0, 1, 2, 3 };
+	}
 
 
-char Carrier4::displayOnBoard(bool isActive) const 
-{
-	return isActive ? 'C' : 'c';
-}
+Battleship::Battleship(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(movement, hitPoints, newName, newCoords)
+	{
+		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
+		missileIDs = { 0, 1, 2, 3 };
+	}
 
 
-// Battleship2_____________________________________________________________________________________
-Battleship2::Battleship2(const std::vector<Coords>& newCoords)
-{
-	if (coords.size()!=2) { throw invalid_movement_value("Battleship must take exactly 2 fields"); }
-	coords = newCoords; movement = 10; hitPoints = 10;
-	std::vector<int> missilies = { 0, 1 };
-	missileIDs = missilies;
-}
+// Cruiser____________________________________________________________________________________
+Cruiser::Cruiser(const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(6, 8, newName, newCoords)
+	{
+		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
+		missileIDs = { 0, 1, 2 };
+	}
 
 
-char Battleship2::displayOnBoard(bool isActive) const 
-{
-	return isActive ? 'B' : 'b';
-}
+Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(movement, hitPoints, newName, newCoords)
+	{
+		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
+		missileIDs = { 0, 1, 2 };
+	}
 
 
-// Destroyer1______________________________________________________________________________________
-Destroyer1::Destroyer1(const std::vector<Coords>& newCoords) 
-{
-	if (coords.size()!=1) { throw invalid_movement_value("Destroyer must take exactly 1 fields"); }
-	coords = newCoords; movement = 20; hitPoints = 5;
-	std::vector<int> missilies = { 0 };
-	missileIDs = missilies;
-}
+
+// Destroyer______________________________________________________________________________________
+Destroyer::Destroyer(const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(8, 6, newName, newCoords)
+	{
+		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
+		missileIDs = { 0, 1 };
+	}
 
 
-char Destroyer1::displayOnBoard(bool isActive) const 
-{
-	return isActive ? 'D' : 'd';
-}
+Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(movement, hitPoints, newName, newCoords)
+	{
+		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
+		missileIDs = { 0, 1 };
+	}
+
+
+// Submarine______________________________________________________________________________________
+Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(10, 4, newName, newCoords)
+	{
+		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		missileIDs = { 0 };
+	}
+
+
+Submarine::Submarine(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords)
+    : Ship(movement, hitPoints, newName, newCoords)
+	{
+		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		missileIDs = { 0 };
+	}
+
 
 
 // File handling___________________________________________________________________________________

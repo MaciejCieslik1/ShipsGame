@@ -21,8 +21,8 @@ protected:
 	friend std::istream& operator>>(std::istream& is, Ship& ship);
 public:
 	Ship() = default;
-	~Ship();
 	Ship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+	virtual ~Ship();
 
 	int getMovement() const;
 	int getHitPoints() const;
@@ -34,7 +34,7 @@ public:
 	void setHitPoints(const int& newHitPoints);
 	void setName(const char& newName);
 	void setCoords(const std::vector<Coords>& newCoords);
-	virtual void setMissileIDs(const std::vector<int>& newMissileIDs);
+	void setMissileIDs(const std::vector<int>& newMissileIDs);
 
 	void takeDamage(const int& damage);
 	bool isAlive() const;
@@ -42,23 +42,35 @@ public:
 	std::vector<Coords> extremeCoords() const;
 
 	char displayOnBoard() const;
-	virtual char displayOnBoard(bool isActive) const;
+	char displayOnBoard(bool isActive) const;
 	bool operator==(const Ship& other) const;
 	bool operator!=(const Ship& other) const;
 };
 
-class Carrier4 : public Ship {
+class Battleship : public Ship 
+{
 public:
-	Carrier4(const std::vector<Coords>& newCoords);
-	char displayOnBoard(bool isActive) const override;
+	Battleship(const char& name, const std::vector<Coords>& newCoords);
+	Battleship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
 };
 
-class Battleship2 : public Ship {
-	Battleship2(const std::vector<Coords>& newCoords);
-	char displayOnBoard(bool isActive) const override;
+class Cruiser : public Ship 
+{
+public:
+	Cruiser(const char& name, const std::vector<Coords>& newCoords);
+	Cruiser(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
 };
 
-class Destroyer1 : public Ship {
-	Destroyer1(const std::vector<Coords>& newCoords);
-	char displayOnBoard(bool isActive) const override;
+class Destroyer : public Ship 
+{
+public:
+	Destroyer(const char& name, const std::vector<Coords>& newCoords);
+	Destroyer(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
+};
+
+class Submarine : public Ship 
+{
+public:
+	Submarine(const char& name, const std::vector<Coords>& newCoords);
+	Submarine(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords);
 };
