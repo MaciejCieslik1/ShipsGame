@@ -31,7 +31,7 @@ int main()
                 //process.loadGameState();
             }
             process.startGame(maxBoardSize);
-            Process::sleep(2000);
+            Process::sleep(3000);
             Process::clearScreen();
         }
     }
