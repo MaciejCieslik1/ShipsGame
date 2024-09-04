@@ -14,9 +14,6 @@ Board::Board(const int& newBoardSize)
 }
 
 
-Board::~Board() {}
-
-
 int Board::getBoardSize() const
 {
 	return boardSize;

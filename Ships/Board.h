@@ -11,8 +11,6 @@ protected:
 	std::vector<Field> fields;
 
 public:
-	Board() = default;
-	~Board();
 	Board(const int& boardSize);
 
 	int getBoardSize() const;
