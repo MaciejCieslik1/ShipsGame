@@ -8,7 +8,6 @@ SOURCES = main.cpp \
           Ships/LanguageManager.cpp \
           Ships/Player.cpp \
           Ships/Ship.cpp \
-          Ships/Bot.cpp \
           Ships/CruiseMissile.cpp \
           Ships/Menu.cpp \
           Ships/Process.cpp \
