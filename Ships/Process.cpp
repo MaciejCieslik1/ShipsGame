@@ -46,7 +46,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 
     std::vector<std::shared_ptr<Player>> players = {player_1, player_2};
 
-    game = std::make_unique<Game>(players, maxBoardSize);
+    game = std::make_unique<Game>(players, maxBoardSize, langOptions);
 
     game->turnGameOn();
     game->generateBoard(maxBoardSize);
@@ -68,33 +68,33 @@ void Process::startGame(const int& maxBoardSize)
         game->displayInfo();
         if (game->getTurnStage() == 0) 
         {
-            if (!correctMoveFlag) std::cout << "Invalid action!" << std::endl;
-            std::cout << "Enter action (1: Move, 2: Fire): ";
+            if (!correctMoveFlag) std::cout << langOptions->getCommunicate("process_invalid_action") << std::endl;
+            std::cout << langOptions->getCommunicate("process_player_enter_action_shoot_move");
             std::cin >> input; input -= 1;
         } 
         else if (game->getTurnStage() == 1) 
         {
-            std::cout << "Choose ship: ";
+            std::cout << langOptions->getCommunicate("process_choose_ship");
             std::cin >> input;
         } 
         else if (game->getTurnStage() == 2) 
         {
             int x; int y;
-            std::cout << "Choose destination (x, y): ";
+            std::cout << langOptions->getCommunicate("process_choose_destination");
             std:: cin >> x >> y;
             input = x*100 + y;
         } 
         else if (game->getTurnStage() == 3) 
         {
-            std::cout << "Choose missile ID: ";
+            std::cout << langOptions->getCommunicate("process_choose_missle_id");
             std::cin >> input;
         } 
         else 
         {
-            std::cout << "Press 1 to confirm or 0 to cancel: ";
+            std::cout << langOptions->getCommunicate("process_press_1");
             std::cin >> input;
         }
         game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
     }
-    std::cout << "Congratulations!" << std::endl;
+    std::cout << langOptions->getCommunicate("process_congratulations") << std::endl;
 }

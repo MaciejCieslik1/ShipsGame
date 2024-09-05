@@ -55,7 +55,7 @@ void Menu::generateCommunicationKeys(void)
     std::vector<std::string> communicateKeys = 
         {
             "menu_start",
-            "menu_options",
+            "menu_languages",
             "menu_credits",
             "menu_exit",
             "menu_new_game",
@@ -97,17 +97,17 @@ void Menu::changeState(Menu::CurrentMenuState newState)
 std::pair<std::string, std::string> Menu::createNameEntryBox() 
 {
 	std::string name1, name2;
-	std::cout << langOptions->getCommunicate("menu_choose_player_one") << ' ';
+	std::cout << langOptions->getCommunicate("menu_choose_player_one");
 	std::cin >> name1;
 	Process::clearScreen();
-	std::cout << langOptions->getCommunicate("menu_choose_player_two") << ' ';
+	std::cout << langOptions->getCommunicate("menu_choose_player_two");
 	std::cin >> name2;
 
 	if (name1 == name2) name2 += "(0)";
 
 	Process::clearScreen();
-	std::cout << langOptions->getCommunicate("menu_welcome")<< ' '<< name1 <<
-        langOptions->getCommunicate("menu_and") << ' '<< name2 << '\n' <<
+	std::cout << langOptions->getCommunicate("menu_welcome") << name1 <<
+        langOptions->getCommunicate("menu_and") << name2 << '\n' <<
         langOptions->getCommunicate("menu_lets_start_the_game") << '\n';
 
     Process::sleep(2000);
@@ -121,7 +121,7 @@ int Menu::getMaxBoardSize(void) const
     int maxBoardSize = 0;
     while (maxBoardSize < 10 || maxBoardSize > 30)
     {
-        std::cout << "Enter board size from range [10, 30]: ";
+        std::cout << langOptions->getCommunicate("menu_enter_board_size");
         std::cin >> maxBoardSize;
     }
     Process::sleep(1000);
@@ -182,7 +182,7 @@ template <typename T>
 T Menu::choiceInput(void) 
 {
 	T input;
-    std::cout << langOptions->getCommunicate("menu_choice_input") << ' ';
+    std::cout << langOptions->getCommunicate("menu_choice_input");
     std::cin >> input;
 	return input;
 }
@@ -318,7 +318,7 @@ std::pair<bool, bool> Menu::generateMenu(std::vector<std::string>& playerNames, 
                     {
                         Process::clearScreen();
                         this->display();
-                        std::cout << '\n' << langOptions->getCommunicate("menu_type_to_quit") << ' ';
+                        std::cout << '\n' << langOptions->getCommunicate("menu_type_to_quit");
                         std::cin >> quit;
                         this->handleCreditsSelection(quit);
                     

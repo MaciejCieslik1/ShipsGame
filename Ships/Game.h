@@ -9,6 +9,8 @@
 #include "Field.h"
 #include "Board.h"
 #include "Player.h"
+#include "LanguageManager.h"
+
 
 class Game
 {
@@ -20,6 +22,7 @@ protected:
 	std::shared_ptr<Player> winner;
 	int turnStage;
 	bool isOn;
+	std::shared_ptr<LanguageManager> langOptions;
 
 	int action; std::shared_ptr<Ship> ship; Field destination; int missile;
 
@@ -27,8 +30,8 @@ protected:
 	friend std::istream& operator>>(std::istream& is, Game& game);
 
 public:
-	Game();
-	Game(const std::vector<std::shared_ptr<Player>>& players, const int& maxBoardSize);
+	Game(std::shared_ptr<LanguageManager> langOptions);
+	Game(const std::vector<std::shared_ptr<Player>>& players, const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
 
 	std::shared_ptr<Board> getBoard() const;
 	const std::vector<std::shared_ptr<Player>>& getPlayers() const;

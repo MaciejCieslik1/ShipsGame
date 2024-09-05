@@ -1,8 +1,9 @@
 #include "Game.h"
 
 
-Game::Game() 
+Game::Game(std::shared_ptr<LanguageManager> language) 
 {
+    langOptions = language;
     std::vector<std::shared_ptr<Player>> newPlayers;
     players = newPlayers;
     currentPlayer = 0;
@@ -14,8 +15,9 @@ Game::Game()
 }
 
 
-Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& maxBoardSize) 
+Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
 {
+    langOptions = language;
     players = newPlayers;
     currentPlayer = 0;
     numberOfTurns = 1;
@@ -193,7 +195,7 @@ void Game::confirm(const int& input, bool& correctMoveFlag)
         }
         turnStage = 0;
         if (correctMoveFlag) newTurn();
-        else std::cout << "Incorrect action!" << std::endl;
+        else std::cout << langOptions->getCommunicate("game_incorrect_action") << std::endl;
     }
     else if (input==0) turnStage = 0;
 }
@@ -233,7 +235,7 @@ void Game::newTurn()
                 std::system ("clear");
             #endif
             this->getBoard()->boardDisplay();
-            std::cout << "Winner: " << getWinner()->getName() << std::endl;
+            std::cout << langOptions->getCommunicate("game_winner") << getWinner()->getName() << std::endl;
             turnGameOff();
         }
     }
@@ -266,16 +268,18 @@ void Game::displayInfo()
             if (it == allMissilies.end()) allMissilies.push_back(missile);
         }
     }
-    std::cout << "Missiles: " << std::endl;
+    std::cout << langOptions->getCommunicate("game_missiles") << std::endl;
     for (CruiseMissile missile : allMissilies)
     {
-        std::cout << "Missile ID: " << missile.getMissileID() << ", damage: " << missile.getDamage() << ", range: " << missile.getRange() << std::endl;
+        std::cout << langOptions->getCommunicate("game_missile_id") << missile.getMissileID() << langOptions->getCommunicate("game_damage") 
+        << missile.getDamage() << langOptions->getCommunicate("game_range") << missile.getRange() << std::endl;
     }
-    std::cout << "\nYour's ships: " << std::endl;
+    std::cout << "\n" << langOptions->getCommunicate("game_your_ships") << std::endl;
     getPlayers()[getCurrentPlayerIndex()]->shipsInfo();
-    std::cout << "Opponent's ships: " << std::endl;
+    std::cout << "\n" << langOptions->getCommunicate("game_opponent's_ships") << std::endl;
     getPlayers()[(getCurrentPlayerIndex() + 1) % 2]->shipsInfo();
-    std::cout << "\nPlayer's " << getPlayers()[getCurrentPlayerIndex()]->getName() << " turn" << std::endl;
+    std::cout << "\n" << langOptions->getCommunicate("game_player's_ships") << getPlayers()[getCurrentPlayerIndex()]->getName() 
+    << langOptions->getCommunicate("game_turn") << std::endl;
 }
 
 
