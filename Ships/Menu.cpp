@@ -36,14 +36,14 @@ void Menu::display(void) const
 			}
 			break;
 		case CurrentMenuState::ShowOptions:
-            std::cout << '\t' <<optionTable[1] << '\n';
+            std::cout << optionTable[1] << std::endl;
             std::cout << langOptions->getCommunicate("menu_options_choose_language") << "\n";
             for (int i = 0; i < 10; ++i) 
             {
                 std::cout << i + 1 << ". ";
                 std::cout << optionTable[i + 10] << '\n';
             }
-            std::cout << "0. Go Back\n";
+            std::cout << "0. "<< langOptions->getCommunicate("menu_go_back") << std::endl;
 			break;
 	}
 }
