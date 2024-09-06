@@ -51,3 +51,7 @@ game_your_ships=Tus barcos:
 game_opponent's_ships=Barcos del oponente: 
 game_player's_ships=Barcos del jugador 
 game_turn= turno
+player_ship = Nave 
+player_hit_points=, puntos de vida: 
+player_missiles=, misiles: 
+player_movement=, movimiento: 

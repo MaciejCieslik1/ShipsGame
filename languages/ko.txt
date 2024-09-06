@@ -51,3 +51,7 @@ game_your_ships=당신의 배:
 game_opponent's_ships=상대방의 배: 
 game_player's_ships=플레이어의 배 
 game_turn= 의 차례
+player_ship = 배 
+player_hit_points=, 체력: 
+player_missiles=, 미사일: 
+player_movement=, 이동: 

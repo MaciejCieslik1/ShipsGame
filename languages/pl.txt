@@ -51,3 +51,7 @@ game_your_ships=Twoje statki:
 game_opponent's_ships=Statki przeciwnika: 
 game_player's_ships=Statki gracza 
 game_turn= ruch
+player_ship=Statek 
+player_hit_points=, punkty życia: 
+player_missiles=, rakiety: 
+player_movement=, ruch: 

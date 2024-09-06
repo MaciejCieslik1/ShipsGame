@@ -51,3 +51,7 @@ game_your_ships=你的船只：
 game_opponent's_ships=对手的船只： 
 game_player's_ships=玩家的船只 
 game_turn= 回合
+player_ship= 船 
+player_hit_points=, 生命值: 
+player_missiles=, 导弹: 
+player_movement=, 移动: 

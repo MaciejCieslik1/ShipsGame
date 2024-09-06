@@ -1,10 +1,11 @@
 #include "Player.h"
 
-Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles)
-	: name(name), ships(newShips), allMissiles(newAllMissiles) {}
+Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles,
+	const std::shared_ptr<LanguageManager>& langOptions)
+	: name(name), ships(newShips), allMissiles(newAllMissiles), langOptions(langOptions){}
 
-Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>& newShips)
-	: name(name), ships(newShips)
+Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>& newShips, const std::shared_ptr<LanguageManager>& langOptions)
+	: name(name), ships(newShips), langOptions(langOptions)
 {
 	allMissiles = std::vector<CruiseMissile>({CruiseMissile(2, 5, 0), CruiseMissile(4, 4, 1), CruiseMissile(6, 3, 2), CruiseMissile(8, 2, 3)}); 
 }
@@ -112,18 +113,18 @@ void Player::shipsInfo() const
 	int i = 0;
 	for (std::shared_ptr<Ship> currentShip : ships)
 	{
-		info += "Ship " + std::to_string(i) + ": ";
+		info += langOptions->getCommunicate("player_ship") + std::to_string(i) + ": ";
 		info += std::string (currentShip->getCoords().size(), currentShip->getName());
-		info += ", hit points: ";
+		info += langOptions->getCommunicate("player_hit_points");
 		info += std::to_string(currentShip->getHitPoints());
-		info += " , missilies: ";
+		info += langOptions->getCommunicate("player_missiles");
 		int numberOfMissilies = currentShip->getMissileIDs().size();
 		for (int j = 0; j<numberOfMissilies - 1; j++)
 		{
 			info += std::to_string(j) + ", ";
 		}
 		info += std::to_string(numberOfMissilies - 1);
-		info += " , movement: ";
+		info += langOptions->getCommunicate("player_movement");
 		info += std::to_string(currentShip->getMovement()) + "\n";
 		i++;
 	} 

@@ -51,3 +51,7 @@ game_your_ships=あなたの船:
 game_opponent's_ships=相手の船: 
 game_player's_ships=プレイヤーの船 
 game_turn= ターン
+player_ship = 船 
+player_hit_points=, ヒットポイント: 
+player_missiles=, ミサイル: 
+player_movement=, 移動: 

@@ -51,3 +51,7 @@ game_your_ships=Deine Schiffe:
 game_opponent's_ships=Gegnerische Schiffe: 
 game_player's_ships=Spielerschiffe 
 game_turn= ist am Zug
+player_ship=Schiff 
+player_hit_points=, Trefferpunkte: 
+player_missiles=, Raketen: 
+player_movement=, Bewegung: 

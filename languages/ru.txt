@@ -51,3 +51,7 @@ game_your_ships=Ваши корабли:
 game_opponent's_ships=Корабли противника: 
 game_player's_ships=Корабли игрока 
 game_turn= ход
+player_ship=Корабль 
+player_hit_points=, очки жизни: 
+player_missiles=, ракеты: 
+player_movement=, движение: 
