@@ -1,9 +1,8 @@
 #include "Game.h"
 
 
-Game::Game(std::shared_ptr<LanguageManager> language) 
+Game::Game(std::shared_ptr<LanguageManager> language) : langOptions(language)
 {
-    langOptions = language;
     std::vector<std::shared_ptr<Player>> newPlayers;
     players = newPlayers;
     currentPlayer = 0;
@@ -16,6 +15,7 @@ Game::Game(std::shared_ptr<LanguageManager> language)
 
 
 Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
+    : langOptions(language), players(newPlayers)
 {
     langOptions = language;
     players = newPlayers;
