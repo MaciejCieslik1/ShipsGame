@@ -2,7 +2,7 @@
 #include "Field.h"
 
 
-Field::Field() 
+Field::Field()
 {
     Coords newCoords;
     std::vector<std::shared_ptr<Field>> newAdjacent;
@@ -12,9 +12,8 @@ Field::Field()
 }
 
 
-Field::Field(const Coords& newCoords) 
+Field::Field(const Coords& newCoords) : coords(newCoords)
 {
-    coords = newCoords;
     std::vector<std::shared_ptr<Field>> newAdjacent;
     adjacentFields = newAdjacent;
     shipOnField = nullptr;
