@@ -17,7 +17,7 @@ Coords::Coords(const int& newX, const int& newY)
 	else 
 	{
 		x = 0;
-		 y = 0;
+		y = 0;
 	}
 }
 
