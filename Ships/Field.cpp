@@ -38,6 +38,12 @@ std::shared_ptr<Ship> Field::getShipOnField() const
 }
 
 
+std::shared_ptr<Shoal> Field::getShoalOnField() const 
+{
+    return shoalOnField;
+}
+
+
 void Field::setCoords(const Coords& newCoords) 
 {
     coords = newCoords;
@@ -56,6 +62,13 @@ void Field::setShipOnField(std::shared_ptr<Ship> newShipOnField)
 }
 
 
+void Field::setShoalOnField(const std::shared_ptr<Shoal>& newShoalOnField) 
+{
+    shoalOnField = newShoalOnField;
+}
+
+
+
 void Field::addAdjacentField(std::shared_ptr<Field> field) 
 {
     if (field && areAdjacent(coords, field->getCoords())) adjacentFields.push_back(field);
@@ -64,12 +77,17 @@ void Field::addAdjacentField(std::shared_ptr<Field> field)
 
 std::string Field::displayFieldCrate(void) const
 {
-    if (this->getShipOnField() == nullptr) return "[ ]";
-    else 
+    if (this->getShipOnField() != nullptr)
     {
         std::string shipDisplay {this->getShipOnField()->getName()};
         return "[" + shipDisplay + "]";
     }
+    else if (this->getShoalOnField() != nullptr)
+    {
+        std::string shoalDisplay {this->getShoalOnField()->getName()};
+        return "[" + shoalDisplay + "]";
+    }
+    else return "[ ]";
 }
 
 
