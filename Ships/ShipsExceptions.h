@@ -42,6 +42,10 @@ class field_not_found : public ShipsException {
 	using ShipsException::ShipsException;
 };
 
+class field_not_empty : public ShipsException {
+	using ShipsException::ShipsException;
+};
+
 class invalid_coordinate : public ShipsException {
 	using ShipsException::ShipsException;
 };
