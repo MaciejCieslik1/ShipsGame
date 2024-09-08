@@ -264,6 +264,7 @@ void Game::generateBoard(const int& maxBoardSize)
             board->putShip(ship, ship->getCoords());
         }
     }
+    board->putShoal(shoal);
 }
 
 
