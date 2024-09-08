@@ -5,6 +5,7 @@
 #include <memory>
 #include "Coords.h"
 #include "Ship.h"
+#include "Shoal.h"
 
 class Field
 {
