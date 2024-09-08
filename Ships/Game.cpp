@@ -14,11 +14,9 @@ Game::Game(std::shared_ptr<LanguageManager> language) : langOptions(language)
 }
 
 
-Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
-    : langOptions(language), players(newPlayers)
+Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const std::shared_ptr<Shoal>& shoal, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
+    : langOptions(language), players(newPlayers), shoal(shoal)
 {
-    langOptions = language;
-    players = newPlayers;
     currentPlayer = 0;
     numberOfTurns = 1;
     winner = nullptr;
@@ -36,6 +34,12 @@ std::shared_ptr<Board> Game::getBoard() const
 const std::vector<std::shared_ptr<Player>>& Game::getPlayers() const 
 {
     return players;
+}
+
+
+std::shared_ptr<Shoal> Game::getShoal() const
+{
+    return shoal;
 }
 
 
@@ -78,6 +82,12 @@ void Game::setBoard(std::shared_ptr<Board> new_board)
 void Game::setPlayers(const std::vector<std::shared_ptr<Player>>& new_players) 
 {
     players = new_players;
+}
+
+
+void Game::setShoal(const std::shared_ptr<Shoal>& newShoal)
+{
+    shoal = newShoal;
 }
 
 

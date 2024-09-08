@@ -17,6 +17,7 @@ class Game
 protected:
 	std::shared_ptr<Board> board;
 	std::vector<std::shared_ptr<Player>> players;
+	std::shared_ptr<Shoal> shoal;
 	int	currentPlayer;
 	int numberOfTurns;
 	std::shared_ptr<Player> winner;
@@ -31,10 +32,11 @@ protected:
 
 public:
 	Game(std::shared_ptr<LanguageManager> langOptions);
-	Game(const std::vector<std::shared_ptr<Player>>& players, const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
+	Game(const std::vector<std::shared_ptr<Player>>& players, const std::shared_ptr<Shoal>& shoal, const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
 
 	std::shared_ptr<Board> getBoard() const;
 	const std::vector<std::shared_ptr<Player>>& getPlayers() const;
+	std::shared_ptr<Shoal> getShoal() const;
 	int	getCurrentPlayerIndex() const;
 	int getNumberOfTurns() const;
 	std::shared_ptr<Player> getWinner() const;
@@ -43,6 +45,7 @@ public:
 
 	void setBoard(std::shared_ptr<Board> new_board);
 	void setPlayers(const std::vector<std::shared_ptr<Player>>& new_players);
+	void setShoal(const std::shared_ptr<Shoal>& newShoal);
 	void setCurrentPlayerIndex(const int& new_player);
 	void setNumberOfTurns(const int& new_number_of_turns);
 	void setWinner(std::shared_ptr<Player> new_winner);
