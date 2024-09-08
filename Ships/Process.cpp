@@ -49,8 +49,6 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
     game = std::make_unique<Game>(players, maxBoardSize, langOptions);
 
     game->turnGameOn();
-    game->generateBoard(maxBoardSize);
-
 
     game->getPlayers()[0]->setBoard(game->getBoard());
     game->getPlayers()[1]->setBoard(game->getBoard());
