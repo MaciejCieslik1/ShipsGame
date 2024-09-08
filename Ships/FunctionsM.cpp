@@ -49,6 +49,17 @@ bool isCorrectCoordsVector(std::vector<Coords> shipCoords, const int& maxBoardSi
 }
 
 
+bool isCorrectCoordsVectorLimits(std::vector<Coords> ObjectCoords, const int& maxBoardSize)
+{
+	for (Coords coords : ObjectCoords)
+	{
+		if (coords.getY() < 1 || coords.getY() > maxBoardSize) return false;
+		if (coords.getX() < 1 || coords.getX() > maxBoardSize) return false;
+	}
+	return true;
+}
+
+
 bool areAdjacent(const Coords& coords1, const Coords& coords2) 
 {
 	return (abs(coords1.getX() - coords2.getX())<=1) && (abs(coords1.getY() - coords2.getY())<=1);
