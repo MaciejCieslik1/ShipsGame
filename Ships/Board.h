@@ -21,6 +21,7 @@ public:
 
 	void generateBoard(const int& boardSize);
 	void putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
+	void putShoal(const std::shared_ptr<Shoal>& newShoal);
 	void removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
 	bool moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);
 	bool moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);

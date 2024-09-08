@@ -71,6 +71,21 @@ void Board::putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoord
 }
 
 
+void Board::putShoal(const std::shared_ptr<Shoal>& newShoal)
+{
+	std::vector<Coords> ShoalCoords = newShoal->getCoords();
+	std::vector<Field>& currentFields = fields;
+	for (Coords shoalSectorCoords : ShoalCoords)
+	{
+		int correctIndex = (shoalSectorCoords.getY() - 1) * boardSize + shoalSectorCoords.getX() - 1;
+		if (correctIndex > boardSize * boardSize - 1) { throw field_out_of_range("Field is out of range"); }
+		Field newField{shoalSectorCoords};
+		newField.setShoalOnField(newShoal);
+		currentFields[correctIndex] = newField;
+	}
+}
+
+
 void Board::removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords)
 {
 	std::vector<Field>& currentFields = fields;
@@ -128,7 +143,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 		{
 			Coords currentFieldCoords = Coords(x, y);
 			Field currentField = findField(currentFieldCoords);
-			if (currentField.getShipOnField() != nullptr) { return false; }
+			if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 		}
 		if (closestCoord.getY() < destinationY)
 		{
@@ -138,7 +153,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 				{
 					Coords currentFieldCoords = Coords(x, y);
 					Field currentField = findField(currentFieldCoords);
-					if (currentField.getShipOnField() != nullptr) { return false; }
+					if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 				}
 			}
 		}
@@ -150,7 +165,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 				{
 					Coords currentFieldCoords = Coords(x, y);
 					Field currentField = findField(currentFieldCoords);
-					if (currentField.getShipOnField() != nullptr) { return false; }
+					if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 				}
 
 			}
@@ -163,7 +178,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 		{
 			Coords currentFieldCoords = Coords(x, y);
 			Field currentField = findField(currentFieldCoords);
-			if (currentField.getShipOnField() != nullptr) { return false; }
+			if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 		}
 		if (closestCoord.getY() < destinationY)
 		{
@@ -173,7 +188,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 				{
 					Coords currentFieldCoords = Coords(x, y);
 					Field currentField = findField(currentFieldCoords);
-					if (currentField.getShipOnField() != nullptr) { return false; }
+					if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 				}
 
 			}
@@ -186,7 +201,7 @@ bool Board::moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<
 				{
 					Coords currentFieldCoords = Coords(x, y);
 					Field currentField = findField(currentFieldCoords);
-					if (currentField.getShipOnField() != nullptr) { return false; }
+					if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 				}
 
 			}
@@ -208,7 +223,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(currentShipCoord.getX(), y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 
 		}
@@ -219,7 +234,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(x, y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 		}
 		else if (closestCoord.getX() > destinationX)
@@ -228,7 +243,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(x, y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 		}
 	}
@@ -240,7 +255,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(currentShipCoord.getX(), y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 
 		}
@@ -251,7 +266,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(x, y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 		}
 		else if (closestCoord.getX() > destinationX)
@@ -260,7 +275,7 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 			{
 				Coords currentFieldCoords = Coords(x, y);
 				Field currentField = findField(currentFieldCoords);
-				if (currentField.getShipOnField() != nullptr) { return false; }
+				if (currentField.getShipOnField() != nullptr || currentField.getShoalOnField() != nullptr) { return false; }
 			}
 		}
 	}
