@@ -7,7 +7,7 @@ Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>>
 Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>& newShips, const std::shared_ptr<LanguageManager>& langOptions)
 	: name(name), ships(newShips), langOptions(langOptions)
 {
-	allMissiles = std::vector<CruiseMissile>({CruiseMissile(2, 5, 0), CruiseMissile(4, 4, 1), CruiseMissile(6, 3, 2), CruiseMissile(8, 2, 3)}); 
+	allMissiles = std::vector<CruiseMissile>({CruiseMissile(2, 5, 0, 1), CruiseMissile(4, 4, 1, 2), CruiseMissile(6, 3, 2, 3), CruiseMissile(8, 2, 3, 4)}); 
 }
 
 

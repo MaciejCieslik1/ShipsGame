@@ -283,7 +283,8 @@ void Game::displayInfo()
     for (CruiseMissile missile : allMissilies)
     {
         std::cout << langOptions->getCommunicate("game_missile_id") << missile.getMissileID() << langOptions->getCommunicate("game_damage") 
-        << missile.getDamage() << langOptions->getCommunicate("game_range") << missile.getRange() << std::endl;
+        << missile.getDamage() << langOptions->getCommunicate("game_range") << missile.getRange() << langOptions->getCommunicate("game_altitude") 
+        << missile.getAltitude()<< std::endl;
     }
     std::cout << "\n" << langOptions->getCommunicate("game_your_ships") << std::endl;
     getPlayers()[getCurrentPlayerIndex()]->shipsInfo();
