@@ -47,6 +47,7 @@ game_missiles=Pociski:
 game_missile_id=ID pocisku: 
 game_damage=, obrażenia: 
 game_range=, zasięg: 
+game_altitude=, pułap: 
 game_your_ships=Twoje statki: 
 game_opponent's_ships=Statki przeciwnika: 
 game_player's_ships=Statki gracza 

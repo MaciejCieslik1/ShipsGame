@@ -47,6 +47,7 @@ game_missiles=미사일:
 game_missile_id=미사일 ID: 
 game_damage=, 피해: 
 game_range=, 사거리: 
+game_altitude=, 고도: 
 game_your_ships=당신의 배: 
 game_opponent's_ships=상대방의 배: 
 game_player's_ships=플레이어의 배 

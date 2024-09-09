@@ -47,6 +47,7 @@ game_missiles=Ракеты:
 game_missile_id=ID ракеты: 
 game_damage=, урон: 
 game_range=, дальность: 
+game_altitude=, высота:
 game_your_ships=Ваши корабли: 
 game_opponent's_ships=Корабли противника: 
 game_player's_ships=Корабли игрока 

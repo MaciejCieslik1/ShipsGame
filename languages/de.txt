@@ -47,6 +47,7 @@ game_missiles=Raketen:
 game_missile_id=Raketen-ID: 
 game_damage=, Schaden: 
 game_range=, Reichweite: 
+game_altitude=, Höhe: 
 game_your_ships=Deine Schiffe: 
 game_opponent's_ships=Gegnerische Schiffe: 
 game_player's_ships=Spielerschiffe 

@@ -47,6 +47,7 @@ game_missiles=ミサイル:
 game_missile_id=ミサイルID: 
 game_damage=、ダメージ: 
 game_range=、射程: 
+game_altitude=, 高度:
 game_your_ships=あなたの船: 
 game_opponent's_ships=相手の船: 
 game_player's_ships=プレイヤーの船 

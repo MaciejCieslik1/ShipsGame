@@ -47,6 +47,7 @@ game_missiles=导弹：
 game_missile_id=导弹ID： 
 game_damage=，伤害： 
 game_range=，范围： 
+game_altitude=, 高度:
 game_your_ships=你的船只： 
 game_opponent's_ships=对手的船只： 
 game_player's_ships=玩家的船只 

@@ -47,6 +47,7 @@ game_missiles=Missiles :
 game_missile_id=ID du missile : 
 game_damage=, dégâts : 
 game_range=, portée : 
+game_altitude=, altitude: 
 game_your_ships=Vos bateaux : 
 game_opponent's_ships=Bateaux de l’adversaire : 
 game_player's_ships=Bateaux du joueur 
