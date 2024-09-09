@@ -102,3 +102,7 @@ class improper_vector_size : public ShipsException {
 class space_in_name_error : public ShipsException {
 	using ShipsException::ShipsException;
 };
+
+class invalid_height : public ShipsException {
+	using ShipsException::ShipsException;
+};
