@@ -9,6 +9,8 @@ Field::Field()
     coords = newCoords;
     adjacentFields = newAdjacent;
     shipOnField = nullptr;
+    shoalOnField = nullptr;
+
 }
 
 
@@ -17,6 +19,7 @@ Field::Field(const Coords& newCoords) : coords(newCoords)
     std::vector<std::shared_ptr<Field>> newAdjacent;
     adjacentFields = newAdjacent;
     shipOnField = nullptr;
+    shoalOnField = nullptr;
 }
 
 
@@ -94,6 +97,7 @@ std::string Field::displayFieldCrate(void) const
 void Field::setFieldEmpty(void)
 {
     shipOnField = nullptr;
+    shoalOnField = nullptr;
 }
 
 
