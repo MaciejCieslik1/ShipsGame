@@ -8,7 +8,7 @@ SOURCES = main.cpp \
           Ships/LanguageManager.cpp \
           Ships/Player.cpp \
           Ships/Ship.cpp \
-          Ships/Shoal.cpp\
+          Ships/Island.cpp\
           Ships/CruiseMissile.cpp \
           Ships/Menu.cpp \
           Ships/Process.cpp \
