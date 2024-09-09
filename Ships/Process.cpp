@@ -46,9 +46,9 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 
     std::vector<std::shared_ptr<Player>> players = {player_1, player_2};
 
-    std::shared_ptr<Shoal> shoal = std::make_shared<Shoal>(std::vector<Coords>({Coords(5, 5), Coords(6, 5), Coords(10, 5)}), maxBoardSize); 
+    std::shared_ptr<Island> island = std::make_shared<Island>(std::vector<Coords>({Coords(5, 5), Coords(6, 5), Coords(10, 5)}), 2, maxBoardSize); 
 
-    game = std::make_unique<Game>(players, shoal, maxBoardSize, langOptions);
+    game = std::make_unique<Game>(players, island, maxBoardSize, langOptions);
 
     game->turnGameOn();
 

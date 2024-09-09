@@ -14,8 +14,8 @@ Game::Game(std::shared_ptr<LanguageManager> language) : langOptions(language)
 }
 
 
-Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const std::shared_ptr<Shoal>& shoal, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
-    : langOptions(language), players(newPlayers), shoal(shoal)
+Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const std::shared_ptr<Island>& island, const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
+    : langOptions(language), players(newPlayers), island(island)
 {
     currentPlayer = 0;
     numberOfTurns = 1;
@@ -37,9 +37,9 @@ const std::vector<std::shared_ptr<Player>>& Game::getPlayers() const
 }
 
 
-std::shared_ptr<Shoal> Game::getShoal() const
+std::shared_ptr<Island> Game::getIsland() const
 {
-    return shoal;
+    return island;
 }
 
 
@@ -85,9 +85,9 @@ void Game::setPlayers(const std::vector<std::shared_ptr<Player>>& new_players)
 }
 
 
-void Game::setShoal(const std::shared_ptr<Shoal>& newShoal)
+void Game::setIsland(const std::shared_ptr<Island>& newIsland)
 {
-    shoal = newShoal;
+    island = newIsland;
 }
 
 
@@ -264,7 +264,7 @@ void Game::generateBoard(const int& maxBoardSize)
             board->putShip(ship, ship->getCoords());
         }
     }
-    board->putShoal(shoal);
+    board->putIsland(island);
 }
 
 
