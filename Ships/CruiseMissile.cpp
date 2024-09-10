@@ -59,15 +59,6 @@ void CruiseMissile::setAltitude(const int& newAltitude)
 }
 
 
-bool CruiseMissile::fire(const Coords& coords, Field& destination) {
-	Coords coords1 = destination.getCoords();
-	if ((pow(coords.getX() - coords1.getX(), 2) + pow(coords.getY() - coords1.getY(), 2)) <= pow(range, 2)) {
-		effect(destination);
-		return true;
-	} else return false;
-}
-
-
 void CruiseMissile::effect(Field& destination) {
 	destination.shipHit(damage);
 }

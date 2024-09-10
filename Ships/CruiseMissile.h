@@ -28,7 +28,6 @@ public:
     void setDamage(const int& newDamage);
     void setAltitude(const int& newAltitude);
 
-    bool fire(const Coords& coords, Field& destination);
     void effect(Field& destination);
 
     bool operator==(const CruiseMissile& other) const;
