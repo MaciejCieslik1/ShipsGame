@@ -78,9 +78,82 @@ bool Player::fire(std::shared_ptr<Ship> shipPtr, Field& destination, const int& 
 	}
 	if (shipPtr->hasMissile(missileID))
 	{
-		return allMissiles[missileID].fire(closestCoords, destination);
+		CruiseMissile& rocket = allMissiles[missileID];
+		for (Coords beginningCoords : shipPtr->getCoords())
+		{
+			if (checkRocketPath(rocket.getAltitude(), rocket.getRange(), beginningCoords, destination.getCoords()))
+			{
+				rocket.effect(destination);
+				return true;
+			}
+		}
+		return false;
 	}
-	else { return false; }
+	else return false;
+}
+
+
+bool Player::checkRocketPath(const int& altitude, const int& range, const Coords& beginningCoords, const Coords& endingCoords)
+{
+	if ((pow(beginningCoords.getX() - endingCoords.getX(), 2) + pow(beginningCoords.getY() - endingCoords.getY(), 2)) <= pow(range, 2)) 
+	{
+		// count linear function(y = ax + b) parameters, created by beginning an destination coordinates
+		int Xbeginning = beginningCoords.getX();
+		int Xending = endingCoords.getX();
+		int Ybeginning = beginningCoords.getY();
+		int Yending = endingCoords.getY();
+		if (Xending - Xbeginning != 0)
+		{
+			float a = float (Yending - Ybeginning) / float(Xending - Xbeginning);
+			float b = Ybeginning - a * Xbeginning;
+			// calculate the rocket path by dividing each field to 10 parts to find out if the rocket goes through an island
+			if (Xbeginning < Xending)
+			{
+				for (float x = Xbeginning; int(x) < Xending; x = x + 0.1)
+				{
+					float y = a * x + b;
+					Coords currentCoords = Coords(int(x), int(y));
+					std::shared_ptr<Island> islandPtr = boardPtr->findField(currentCoords).getIslandOnField();
+					if (islandPtr != nullptr && islandPtr->getHeight() >= altitude) return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (float x = Xbeginning; int(x) >= Xending; x = x - 0.1)
+				{
+					float y = a * x + b;
+					Coords currentCoords = Coords(int(x), int(y));
+					std::shared_ptr<Island> islandPtr = boardPtr->findField(currentCoords).getIslandOnField();
+					if (islandPtr != nullptr && islandPtr->getHeight() >= altitude) return false;
+				}
+				return true;
+			}
+		}
+		else
+		{
+			if (Yending > Ybeginning)
+			{
+				for (int y = Ybeginning; y <= Yending; y++)
+				{
+					Coords currentCoords = Coords(int(Xbeginning), int(y));
+					std::shared_ptr<Island> islandPtr = boardPtr->findField(currentCoords).getIslandOnField();
+					if (islandPtr != nullptr && islandPtr->getHeight() >= altitude) return false;
+				}
+			}
+			else
+			{
+				for (int y = Ybeginning; y >= Yending; y--)
+				{
+					Coords currentCoords = Coords(int(Xbeginning), int(y));
+					std::shared_ptr<Island> islandPtr = boardPtr->findField(currentCoords).getIslandOnField();
+					if (islandPtr != nullptr && islandPtr->getHeight() >= altitude) return false;
+				}
+			}
+			return true;
+		}
+	} 
+	else return false;
 }
 
 

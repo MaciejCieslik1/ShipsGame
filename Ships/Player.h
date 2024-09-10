@@ -35,6 +35,7 @@ public:
     void setAllMissiles(const std::vector<CruiseMissile>& newAllMissiles);
 
     bool fire(std::shared_ptr<Ship> ship, Field& destination, const int& missileID);
+    bool checkRocketPath(const int& altitude, const int& range, const Coords& beginningCoords, const Coords& endingCoords);
     bool move(std::shared_ptr<Ship> ship, Field& destination);
     void forgetShip(std::shared_ptr<Ship> ship);
     void shipsInfo() const;
