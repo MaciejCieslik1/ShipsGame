@@ -1,11 +1,6 @@
 #pragma once
-#include <vector>
-#include <stdexcept>
-#include "Ship.h"
-#include "Field.h"
 #include "Board.h"
 #include "CruiseMissile.h"
-#include "FunctionsM.h"
 #include "LanguageManager.h"
 
 class Player

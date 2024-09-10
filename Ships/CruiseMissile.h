@@ -1,11 +1,5 @@
 #pragma once
-#include <vector>
-#include <stdexcept>
-#include <istream>
-#include <cmath>
 #include "Field.h"
-#include "Coords.h"
-#include "ShipsExceptions.h"
 
 class CruiseMissile {
 protected:

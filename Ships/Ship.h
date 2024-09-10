@@ -1,12 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <istream>
-#include <algorithm>
-#include <stdexcept>
-#include "Coords.h"
 #include "FunctionsM.h"
-#include "ShipsExceptions.h"
 
 class Ship
 {

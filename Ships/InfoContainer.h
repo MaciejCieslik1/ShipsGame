@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <iostream>
-#include <string>
 #include <algorithm>
 #include <vector>
 #include "ShipsExceptions.h"

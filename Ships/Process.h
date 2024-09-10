@@ -1,16 +1,6 @@
 #pragma once
-#include <memory>
-#include <iostream>
 #include <cstdlib>
-#include <thread>
-#include "CruiseMissile.h"
-#include "Ship.h"
-#include "LanguageManager.h"
-#include "Player.h"
 #include "Game.h"
-#include "Field.h"
-#include "Coords.h"
-#include "Board.h"
 
 class Process
 {

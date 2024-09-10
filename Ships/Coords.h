@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include <stdexcept>
 #include <istream>
 #include "ShipsExceptions.h"

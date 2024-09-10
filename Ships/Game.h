@@ -1,15 +1,7 @@
 #pragma once
-#include <vector>
-#include <stdexcept>
-#include <istream>
-#include <algorithm>
 #include <thread>
 #include <chrono>
-#include "ShipsExceptions.h"
-#include "Field.h"
-#include "Board.h"
 #include "Player.h"
-#include "LanguageManager.h"
 
 
 class Game

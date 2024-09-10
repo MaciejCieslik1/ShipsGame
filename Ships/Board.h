@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <stdexcept>
 #include "Field.h"
 
 class Board
