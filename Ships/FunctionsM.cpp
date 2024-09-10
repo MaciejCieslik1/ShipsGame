@@ -1,7 +1,4 @@
 #include "FunctionsM.h"
-#include "Coords.h"
-#include <cmath>
-#include <algorithm>
 
 
 bool isCorrectInt(const int& number) 

@@ -1,5 +1,4 @@
 #include "Ship.h"
-#include "FunctionsM.h"
 
 
 Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardsize)

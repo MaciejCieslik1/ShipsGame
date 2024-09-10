@@ -1,6 +1,4 @@
 #include "Board.h"
-#include "FunctionsM.h"
-#include "ShipsExceptions.h"
 
 
 Board::Board(const int& newBoardSize)

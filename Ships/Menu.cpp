@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "ShipsExceptions.h"
 
 
 Menu::Menu(std::shared_ptr<LanguageManager> langOptions) :
