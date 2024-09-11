@@ -61,10 +61,18 @@ void Board::putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoord
 	for (Coords shipSectorCoords : shipCoords)
 	{
 		int correctIndex = (shipSectorCoords.getY() - 1) * boardSize + shipSectorCoords.getX() - 1;
-		if (correctIndex > boardSize * boardSize - 1) { throw field_out_of_range("Field is out of range"); }
-		Field newField{shipSectorCoords};
-		newField.setShipOnField(newShip);
-		currentFields[correctIndex] = newField;
+		if (correctIndex > boardSize * boardSize - 1) throw field_out_of_range("Field is out of range");
+		if (currentFields[correctIndex].getShipOnField() == nullptr && currentFields[correctIndex].getIslandOnField() == nullptr)
+		{
+			Field newField{shipSectorCoords};
+			newField.setShipOnField(newShip);
+			currentFields[correctIndex] = newField;
+		}
+		else 
+		{
+			std::string info = "Field (" + std::to_string(shipSectorCoords.getX()) + ", " +  std::to_string(shipSectorCoords.getY()) + ") is already occupied";
+			throw field_occupied(info);
+		}
 	}
 }
 
@@ -77,9 +85,17 @@ void Board::putIsland(const std::shared_ptr<Island>& newIsland)
 	{
 		int correctIndex = (islandSectorCoords.getY() - 1) * boardSize + islandSectorCoords.getX() - 1;
 		if (correctIndex > boardSize * boardSize - 1) { throw field_out_of_range("Field is out of range"); }
-		Field newField{islandSectorCoords};
-		newField.setIslandOnField(newIsland);
-		currentFields[correctIndex] = newField;
+		if (currentFields[correctIndex].getShipOnField() == nullptr && currentFields[correctIndex].getIslandOnField() == nullptr)
+		{
+			Field newField{islandSectorCoords};
+			newField.setIslandOnField(newIsland);
+			currentFields[correctIndex] = newField;
+		}
+		else 
+		{
+			std::string info = "Field (" + std::to_string(islandSectorCoords.getX()) + ", " +  std::to_string(islandSectorCoords.getY()) + ") is already occupied";
+			throw field_occupied(info);
+		}
 	}
 }
 
