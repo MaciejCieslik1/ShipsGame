@@ -160,18 +160,6 @@ std::vector<Coords> Ship::extremeCoords() const
 }
 
 
-char Ship::displayOnBoard() const
-{
-	return 'S';
-}
-
-
-char Ship::displayOnBoard(bool isActive) const
-{
-	return isActive ? 'S' : 's';
-}
-
-
 bool Ship::operator==(const Ship &other) const
 {
 	if (this->getHitPoints() != other.getHitPoints() || this->getMovement() != other.getMovement()) { return false; }

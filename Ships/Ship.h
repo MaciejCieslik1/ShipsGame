@@ -34,8 +34,6 @@ public:
 	bool hasMissile(const int& missileID) const;
 	std::vector<Coords> extremeCoords() const;
 
-	char displayOnBoard() const;
-	char displayOnBoard(bool isActive) const;
 	bool operator==(const Ship& other) const;
 	bool operator!=(const Ship& other) const;
 };
