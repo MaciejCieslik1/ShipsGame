@@ -106,3 +106,7 @@ class space_in_name_error : public ShipsException {
 class invalid_height : public ShipsException {
 	using ShipsException::ShipsException;
 };
+
+class field_occupied : public ShipsException {
+	using ShipsException::ShipsException;
+};
