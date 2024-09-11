@@ -262,7 +262,7 @@ void Game::generateBoard(const int& maxBoardSize)
     {
         for (std::shared_ptr<Ship> ship : player->getShips()) 
         {
-            board->putShip(ship, ship->getCoords());
+            board->putShip(ship);
         }
     }
     for (std::shared_ptr<Island> islandPtr : islands)

@@ -17,7 +17,7 @@ public:
 	void setFields(const std::vector<Field>& new_fields);
 
 	void generateBoard(const int& boardSize);
-	void putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
+	void putShip(std::shared_ptr<Ship> newShip);
 	void putIsland(const std::shared_ptr<Island>& newShoal);
 	void removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
 	bool moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);

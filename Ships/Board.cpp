@@ -55,8 +55,9 @@ void Board::generateBoard(const int& boardSize)
 }
 
 
-void Board::putShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords)
+void Board::putShip(std::shared_ptr<Ship> newShip)
 {
+	std::vector<Coords> shipCoords = newShip->getCoords();
 	std::vector<Field>& currentFields = fields;
 	for (Coords shipSectorCoords : shipCoords)
 	{
@@ -333,7 +334,7 @@ bool Board::moveShipToField(const Field& beginningField, const int& destinationX
 		}
 		ship->setCoords(finalShipCoords);
 		removeShip(ship, shipCoords);
-		putShip(ship, finalShipCoords);
+		putShip(ship);
 		return true;
 	}
 	else { return false; }
