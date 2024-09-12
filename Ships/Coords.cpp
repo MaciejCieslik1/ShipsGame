@@ -62,7 +62,7 @@ bool Coords::operator!=(const Coords& other)
 
 std::ostream& operator<<(std::ostream& os, const Coords& coords)
 {
-	os << coords.x << ';' << coords.y << ';';
+	os << coords.getX() << ';' << coords.getY() << ';';
 	return os;
 }
 
