@@ -62,19 +62,20 @@ bool Coords::operator!=(const Coords& other)
 
 std::ostream& operator<<(std::ostream& os, const Coords& coords)
 {
-	os << coords.x << ' ' << coords.y;
+	os << coords.x << ';' << coords.y << ';';
 	return os;
 }
 
 
 std::istream& operator>>(std::istream& is, Coords& coords)
 {
+	char separator = ';';
 	int x, y;
-	if (is >> x >> y) 
-	{
-		coords.x = x;
+    if (is >> x >> separator >> y >> separator) 
+    {
+        coords.x = x;
 		coords.y = y;
-	}
-	else is.setstate(std::ios::failbit);
-	return is;
+    }
+    else is.setstate(std::ios::failbit); 
+    return is;
 }
