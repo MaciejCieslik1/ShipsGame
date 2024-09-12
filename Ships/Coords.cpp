@@ -73,8 +73,8 @@ std::istream& operator>>(std::istream& is, Coords& coords)
 	int x, y;
     if (is >> x >> separator >> y >> separator) 
     {
-        coords.x = x;
-		coords.y = y;
+        coords.setX(x);
+		coords.setY(y);
     }
     else is.setstate(std::ios::failbit); 
     return is;
