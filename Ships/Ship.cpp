@@ -253,57 +253,34 @@ Submarine::Submarine(const int& movement, const int& hitPoints, const char& newN
 
 
 // File handling___________________________________________________________________________________
-
 std::ostream& operator<<(std::ostream& os, const Ship& ship)
 {
-	os << ship.movement << ' ' << ship.hitPoints << ' ' <<  ship.coords.size() << ' ' << ship.missileIDs.size() << ' ';
-	for (const auto& v : ship.coords) 
+	os << ship.getName() << ';' << ship.getCoords().size() << ';';
+	for (const Coords& coord : ship.coords) 
 	{
-		os << v << ' ';
+		os << coord << ';';
 	}
-	for (const auto& v : ship.missileIDs) 
-	{
-		os << v << ' ';
-	}
-	return os << '\n';
+	return os;
 }
+
 
 std::istream& operator>>(std::istream& is, Ship& ship)
 {
-    int movement, hitPoints;
+	char name;
     std::vector<Coords> coords;
-    std::vector<int> missileIDs;
-    int numCoords, numMissiles;
-
-    if (!(is >> movement >> hitPoints >> numCoords)) throw std::runtime_error("Error while loading ship data");
-
-    coords.reserve(numCoords);
-    for (int i = 0; i < numCoords; ++i) 
+	Coords coord;
+    int coordsNumber;
+    char separator = ';';
+    if (is >> name >> separator >> coordsNumber >> separator) 
+    {
+		ship.setName(name);
+	}
+    else is.setstate(std::ios::failbit); 
+	for (int i=0; i<coordsNumber; i++)
 	{
-        Coords coord;
-        if (!(is >> coord)) {
-            throw std::runtime_error("Error while loading ship coordinates");
-        }
-        coords.push_back(coord);
-    }
-
-    char separator;
-    if (!(is >> separator) || separator != ';') throw std::runtime_error("Error while loading delimiter");
-
-    if (!(is >> numMissiles)) throw std::runtime_error("Error while loading missile Id's");
-
-    missileIDs.reserve(numMissiles);
-    for (int i = 0; i < numMissiles; ++i) 
-	{
-        int missileID;
-        if (!(is >> missileID)) throw std::runtime_error("Error while loading missile Id's");
-        missileIDs.push_back(missileID);
-    }
-
-    ship.setMovement(movement);
-    ship.setHitPoints(hitPoints);
-    ship.setCoords(coords);
-    ship.setMissileIDs(missileIDs);
-
+		if (is >> coord) coords.push_back(coord);
+		else is.setstate(std::ios::failbit); 
+	}
+	ship.setCoords(coords);
     return is;
 }
