@@ -1,0 +1,13 @@
+Game;12;english;1
+Islands;
+3;5;5;6;5;10;5;3
+3;3;7;3;8;3;9;2
+4;2;7;2;8;4;11;5;11;0
+Ships1;
+Destroyer;A;2;9;10;10;11
+Cruiser;B;3;4;4;5;4;6;4
+Player1;1;
+Ships2;
+Destroyer;A;2;9;10;10;11
+Cruiser;B;3;4;4;5;4;6;4
+Player2;2;
