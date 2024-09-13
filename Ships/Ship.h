@@ -9,9 +9,6 @@ protected:
 	char name;
     std::vector<Coords> coords;
 	std::vector<int> missileIDs;
-
-	friend std::ostream& operator<<(std::ostream& os, const Ship& ship);
-	friend std::istream& operator>>(std::istream& is, Ship& ship);
 public:
 	Ship() = default;
 	Ship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
@@ -43,6 +40,9 @@ class Battleship : public Ship
 public:
 	Battleship(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
 	Battleship(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
+
+	friend std::ostream& operator<<(std::ostream& os, const Battleship& battleship);
+	friend std::istream& operator>>(std::istream& is, Battleship& battleship);
 };
 
 class Cruiser : public Ship 
@@ -50,6 +50,9 @@ class Cruiser : public Ship
 public:
 	Cruiser(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
 	Cruiser(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
+
+	friend std::ostream& operator<<(std::ostream& os, const Cruiser& cruiser);
+	friend std::istream& operator>>(std::istream& is, Cruiser& cruiser);
 };
 
 class Destroyer : public Ship 
@@ -57,6 +60,9 @@ class Destroyer : public Ship
 public:
 	Destroyer(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
 	Destroyer(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
+
+	friend std::ostream& operator<<(std::ostream& os, const Destroyer& destroyer);
+	friend std::istream& operator>>(std::istream& is, Destroyer& destroyer);
 };
 
 class Submarine : public Ship 
@@ -64,4 +70,7 @@ class Submarine : public Ship
 public:
 	Submarine(const char& name, const std::vector<Coords>& newCoords, const int& maxBoardSize);
 	Submarine(const int& movement, const int& hitPoints, const char& name, const std::vector<Coords>& coords, const int& maxBoardSize);
+
+	friend std::ostream& operator<<(std::ostream& os, const Submarine& submarine);
+	friend std::istream& operator>>(std::istream& is, Submarine& submarine);
 };

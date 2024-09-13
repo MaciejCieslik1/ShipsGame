@@ -199,6 +199,40 @@ Battleship::Battleship(const int& movement, const int& hitPoints, const char& ne
 	}
 
 
+std::ostream& operator<<(std::ostream& os, const Battleship& battleship)
+{
+	os << "Battleship;" << battleship.getName() << ';' << battleship.getCoords().size() << ';';
+	for (const Coords& coord : battleship.getCoords()) 
+	{
+		os << coord << ';';
+	}
+	return os;
+}
+
+
+std::istream& operator>>(std::istream& is, Battleship& battleship)
+{
+	char name;
+    std::vector<Coords> coords;
+	Coords coord;
+    int coordsNumber;
+    char separator = ';';
+	std::string shipType = "Battleship;";
+    if (is >> shipType >> name >> separator >> coordsNumber >> separator) 
+    {
+		battleship.setName(name);
+	}
+    else is.setstate(std::ios::failbit); 
+	for (int i=0; i<coordsNumber; i++)
+	{
+		if (is >> coord) coords.push_back(coord);
+		else is.setstate(std::ios::failbit); 
+	}
+	battleship.setCoords(coords);
+    return is;
+}
+
+
 // Cruiser____________________________________________________________________________________
 Cruiser::Cruiser(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(6, 8, newName, newCoords, maxBoardSize)
@@ -215,6 +249,39 @@ Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName,
 		missileIDs = { 0, 1, 2 };
 	}
 
+
+std::ostream& operator<<(std::ostream& os, const Cruiser& cruiser)
+{
+	os << "Cruiser;" << cruiser.getName() << ';' << cruiser.getCoords().size() << ';';
+	for (const Coords& coord : cruiser.getCoords()) 
+	{
+		os << coord << ';';
+	}
+	return os;
+}
+
+
+std::istream& operator>>(std::istream& is, Cruiser& cruiser)
+{
+	char name;
+    std::vector<Coords> coords;
+	Coords coord;
+    int coordsNumber;
+    char separator = ';';
+	std::string shipType = "Cruiser;";
+    if (is >> shipType >> name >> separator >> coordsNumber >> separator) 
+    {
+		cruiser.setName(name);
+	}
+    else is.setstate(std::ios::failbit); 
+	for (int i=0; i<coordsNumber; i++)
+	{
+		if (is >> coord) coords.push_back(coord);
+		else is.setstate(std::ios::failbit); 
+	}
+	cruiser.setCoords(coords);
+    return is;
+}
 
 
 // Destroyer______________________________________________________________________________________
@@ -234,6 +301,40 @@ Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newN
 	}
 
 
+std::ostream& operator<<(std::ostream& os, const Battleship& battleship)
+{
+	os << "Destroyer;" << battleship.getName() << ';' << battleship.getCoords().size() << ';';
+	for (const Coords& coord : battleship.getCoords()) 
+	{
+		os << coord << ';';
+	}
+	return os;
+}
+
+
+std::istream& operator>>(std::istream& is, Destroyer& destroyer)
+{
+	char name;
+    std::vector<Coords> coords;
+	Coords coord;
+    int coordsNumber;
+    char separator = ';';
+	std::string shipType = "Destroyer;";
+    if (is >> shipType >> name >> separator >> coordsNumber >> separator) 
+    {
+		destroyer.setName(name);
+	}
+    else is.setstate(std::ios::failbit); 
+	for (int i=0; i<coordsNumber; i++)
+	{
+		if (is >> coord) coords.push_back(coord);
+		else is.setstate(std::ios::failbit); 
+	}
+	destroyer.setCoords(coords);
+    return is;
+}
+
+
 // Submarine______________________________________________________________________________________
 Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(10, 4, newName, newCoords, maxBoardSize)
@@ -251,12 +352,10 @@ Submarine::Submarine(const int& movement, const int& hitPoints, const char& newN
 	}
 
 
-
-// File handling___________________________________________________________________________________
-std::ostream& operator<<(std::ostream& os, const Ship& ship)
+std::ostream& operator<<(std::ostream& os, const Submarine& submarine)
 {
-	os << ship.getName() << ';' << ship.getCoords().size() << ';';
-	for (const Coords& coord : ship.getCoords()) 
+	os << "Submarine;" << submarine.getName() << ';' << submarine.getCoords().size() << ';';
+	for (const Coords& coord : submarine.getCoords()) 
 	{
 		os << coord << ';';
 	}
@@ -264,16 +363,17 @@ std::ostream& operator<<(std::ostream& os, const Ship& ship)
 }
 
 
-std::istream& operator>>(std::istream& is, Ship& ship)
+std::istream& operator>>(std::istream& is, Battleship& submarine)
 {
 	char name;
     std::vector<Coords> coords;
 	Coords coord;
     int coordsNumber;
     char separator = ';';
-    if (is >> name >> separator >> coordsNumber >> separator) 
+	std::string shipType = "Submarine;";
+    if (is >> shipType >> name >> separator >> coordsNumber >> separator) 
     {
-		ship.setName(name);
+		submarine.setName(name);
 	}
     else is.setstate(std::ios::failbit); 
 	for (int i=0; i<coordsNumber; i++)
@@ -281,6 +381,6 @@ std::istream& operator>>(std::istream& is, Ship& ship)
 		if (is >> coord) coords.push_back(coord);
 		else is.setstate(std::ios::failbit); 
 	}
-	ship.setCoords(coords);
+	submarine.setCoords(coords);
     return is;
 }
