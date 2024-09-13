@@ -42,6 +42,7 @@ process_press_1=Presiona 1 para confirmar o 0 para cancelar:
 process_player_wins= ¡gana!
 process_congratulations=¡Felicidades!
 process_load_game=Introduzca el nombre del archivo donde se guardó el estado del juego en el directorio "saved": 
+process_file_error=No se puede abrir el archivo
 game_incorrect_action=¡Acción incorrecta!
 game_winner=Ganador: 
 game_missiles=Misiles: 
