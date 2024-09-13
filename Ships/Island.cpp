@@ -55,40 +55,34 @@ bool Island::operator!=(const Island& other) const
 
 
 // File handling___________________________________________________________________________________
-
-
-std::ostream& operator<<(std::ostream& os, const Island& shoal)
+std::ostream& operator<<(std::ostream& os, const Island& island)
 {
-	os << shoal.height << ' ' <<  shoal.coords.size() << ' ';
-	for (const auto& v : shoal.coords) 
+	os << island.getHeight() << ';' << island.getCoords().size() << ';';
+	for (const Coords& coord : island.getCoords()) 
 	{
-		os << v << ' ';
+		os << coord << ';';
 	}
-	return os << '\n';
+	return os;
 }
 
-std::istream& operator>>(std::istream& is, Island& ship)
+
+std::istream& operator>>(std::istream& is, Island& island)
 {
-    int height;
+	int height;
     std::vector<Coords> coords;
-    int numCoords;
-
-    if (!(is >> height >> numCoords)) throw std::runtime_error("Error while loading ship data");
-
-    coords.reserve(numCoords);
-    for (int i = 0; i < numCoords; ++i) 
+	Coords coord;
+    int coordsNumber;
+    char separator = ';';
+    if (is >> height >> separator >> coordsNumber >> separator) 
+    {
+		island.setHeight(height);
+	}
+    else is.setstate(std::ios::failbit); 
+	for (int i=0; i<coordsNumber; i++)
 	{
-        Coords coord;
-        if (!(is >> coord)) {
-            throw std::runtime_error("Error while loading ship coordinates");
-        }
-        coords.push_back(coord);
-    }
-
-    char separator;
-    if (!(is >> separator) || separator != ';') throw std::runtime_error("Error while loading delimiter");
-    ship.setHeight(height);
-    ship.setCoords(coords);
-
+		if (is >> coord) coords.push_back(coord);
+		else is.setstate(std::ios::failbit); 
+	}
+	island.setCoords(coords);
     return is;
 }
