@@ -256,7 +256,7 @@ Submarine::Submarine(const int& movement, const int& hitPoints, const char& newN
 std::ostream& operator<<(std::ostream& os, const Ship& ship)
 {
 	os << ship.getName() << ';' << ship.getCoords().size() << ';';
-	for (const Coords& coord : ship.coords) 
+	for (const Coords& coord : ship.getCoords()) 
 	{
 		os << coord << ';';
 	}
