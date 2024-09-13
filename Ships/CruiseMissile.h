@@ -7,9 +7,6 @@ protected:
     int damage;
     int missileID;
     int altitude;
-
-    friend std::ostream& operator<<(std::ostream& os, const CruiseMissile& missle);
-    friend std::istream& operator>>(std::istream& is, CruiseMissile& missle);
 public:
     CruiseMissile(const int& range, const int& damage, const int& missileID, const int& altitude);
 

@@ -72,26 +72,3 @@ bool CruiseMissile::operator==(const CruiseMissile& other) const {
 bool CruiseMissile::operator!=(const CruiseMissile& other) const {
 	return !(*this == other);
 }
-
-
-std::ostream& operator<<(std::ostream& os, const CruiseMissile& missle)
-{
-	os << missle.range << ' ' << missle.damage << ' ' << missle.missileID << '\n';
-	return os;
-}
-
-
-std::istream& operator>>(std::istream& is, CruiseMissile& missle)
-{
-	int range, damage, missleID;
-
-	if (is >> range >> damage >> missleID) {
-		missle.range = range;
-		missle.damage = damage;
-		missle.missileID = missleID;
-	}
-	else {
-		is.setstate(std::ios::failbit);
-	}
-	return is;
-}

@@ -103,26 +103,3 @@ void Field::shipHit(const int& damage)
 {
     if (damage > 0 && shipOnField) shipOnField->takeDamage(damage);
 }
-
-
-std::ostream& operator<<(std::ostream& os, const Field& field) {
-    os << field.coords << " ";
-    if (field.shipOnField) os << *field.shipOnField; 
-    else os << "empty";
-    return os;
-}
-
-std::istream& operator>>(std::istream& is, Field& field) {
-    is >> field.coords;
-    std::string shipStatus;
-    is >> shipStatus;
-    if (shipStatus == "empty") field.shipOnField = nullptr;
-    else 
-    {
-        // Wczytaj dane statku, jeśli nie jest puste
-        std::shared_ptr<Ship> ship = std::make_shared<Ship>();
-        is >> *ship;
-        field.shipOnField = ship;
-    }
-    return is;
-}

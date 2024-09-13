@@ -13,9 +13,6 @@ protected:
 	std::shared_ptr<Ship> shipOnField;
 	std::shared_ptr<Island> islandOnField;
 
-	friend std::ostream& operator<<(std::ostream& os, const Field& field);
-	friend std::istream& operator>>(std::istream& is, Field& field);
-
 public:
 	Field();
 	Field(const Coords& newCoords);
