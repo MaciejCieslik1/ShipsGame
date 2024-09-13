@@ -61,3 +61,16 @@ bool areAdjacent(const Coords& coords1, const Coords& coords2)
 {
 	return (abs(coords1.getX() - coords2.getX())<=1) && (abs(coords1.getY() - coords2.getY())<=1);
 }
+
+
+std::vector<std::string> splitLine(const std::string& line)
+{
+	std::vector<std::string> words;
+    std::stringstream ss(line);
+    std::string word;
+    while (std::getline(ss, word, ';')) 
+	{
+        if (!word.empty()) words.push_back(word);
+    }
+    return words;
+}
