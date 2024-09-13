@@ -301,10 +301,10 @@ Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newN
 	}
 
 
-std::ostream& operator<<(std::ostream& os, const Battleship& battleship)
+std::ostream& operator<<(std::ostream& os, const Destroyer& destroyer)
 {
-	os << "Destroyer;" << battleship.getName() << ';' << battleship.getCoords().size() << ';';
-	for (const Coords& coord : battleship.getCoords()) 
+	os << "Destroyer;" << destroyer.getName() << ';' << destroyer.getCoords().size() << ';';
+	for (const Coords& coord : destroyer.getCoords()) 
 	{
 		os << coord << ';';
 	}
@@ -363,7 +363,7 @@ std::ostream& operator<<(std::ostream& os, const Submarine& submarine)
 }
 
 
-std::istream& operator>>(std::istream& is, Battleship& submarine)
+std::istream& operator>>(std::istream& is, Submarine& submarine)
 {
 	char name;
     std::vector<Coords> coords;
