@@ -297,34 +297,3 @@ void Game::displayInfo()
     std::cout << "\n" << langOptions->getCommunicate("game_player's_ships") << getPlayers()[getCurrentPlayerIndex()]->getName() 
     << langOptions->getCommunicate("game_turn") << std::endl;
 }
-
-
-std::ostream& operator<<(std::ostream& os, const Game& game)
-{
-    os << game.currentPlayer << ' ' << game.numberOfTurns  << ' ' << game.turnStage  << ' ' <<
-    game.isOn  << ' ' << game.action  << ' ' << game.destination  << ' ' << game.missile  << '\n';
-
-    return os;
-}
-
-
-std::istream& operator>>(std::istream& is, Game& game)\
-{
-    int currentPlayer, numberOfTurns, turnStage, action, missle;
-    bool isOn;
-    Field destination;
-
-    if (is >> currentPlayer >> numberOfTurns >> turnStage >> isOn >> action >> destination >> missle)
-    {
-        game.currentPlayer = currentPlayer;
-        game.numberOfTurns = numberOfTurns;
-        game.turnStage = turnStage;
-        game.isOn = isOn;
-        game.action = action;
-        game.destination = destination;
-        game.missile = missle;
-    }
-    else is.setstate(std::ios::failbit);
-
-    return is;
-}

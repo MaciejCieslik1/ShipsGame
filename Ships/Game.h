@@ -19,12 +19,10 @@ protected:
 
 	int action; std::shared_ptr<Ship> ship; Field destination; int missile;
 
-	friend std::ostream& operator<<(std::ostream& os, const Game& game);
-	friend std::istream& operator>>(std::istream& is, Game& game);
-
 public:
 	Game(std::shared_ptr<LanguageManager> langOptions);
-	Game(const std::vector<std::shared_ptr<Player>>& players, const std::vector<std::shared_ptr<Island>>& islands, const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
+	Game(const std::vector<std::shared_ptr<Player>>& players, const std::vector<std::shared_ptr<Island>>& islands, 
+	const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
 
 	std::shared_ptr<Board> getBoard() const;
 	const std::vector<std::shared_ptr<Player>>& getPlayers() const;
