@@ -24,11 +24,14 @@ int main()
         while (true)
         {
             std::pair<bool, bool> gameOpts = menu.generateMenu(playerNames, maxBoardSize);
-            if (gameOpts.first && !gameOpts.second) {
-                process.initializeNewGame(playerNames, maxBoardSize);
-            }
-            else if (gameOpts.first && gameOpts.second) {
-                //process.loadGameState();
+            if (gameOpts.first && !gameOpts.second) process.initializeNewGame(playerNames, maxBoardSize);
+            else if (gameOpts.first && gameOpts.second) 
+            {
+                bool correctFileFlag = false;
+                while (!correctFileFlag)
+                {
+                    correctFileFlag = process.loadGameState();
+                }   
             }
             process.startGame(maxBoardSize);
             Process::sleep(3000);
