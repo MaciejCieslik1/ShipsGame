@@ -41,6 +41,7 @@ process_choose_missle_id=Choisissez l’ID du missile :
 process_press_1=Appuyez sur 1 pour confirmer ou sur 0 pour annuler : 
 process_player_wins= gagne !
 process_congratulations=Félicitations !
+process_load_game=Entrez le nom du fichier où l'état du jeu est enregistré dans le répertoire « saved » : 
 game_incorrect_action=Action incorrecte !
 game_winner=Vainqueur : 
 game_missiles=Missiles : 

@@ -41,6 +41,7 @@ process_choose_missle_id=Elige ID de misil:
 process_press_1=Presiona 1 para confirmar o 0 para cancelar: 
 process_player_wins= ¡gana!
 process_congratulations=¡Felicidades!
+process_load_game=Introduzca el nombre del archivo donde se guardó el estado del juego en el directorio "saved": 
 game_incorrect_action=¡Acción incorrecta!
 game_winner=Ganador: 
 game_missiles=Misiles: 

@@ -41,6 +41,7 @@ process_choose_missle_id=Выберите ID ракеты:
 process_press_1=Нажмите 1 для подтверждения или 0 для отмены: 
 process_player_wins= победил!
 process_congratulations=Поздравляем!
+process_load_game=Введите имя файла, в котором сохранено состояние игры в каталоге «saved»: 
 game_incorrect_action=Неверное действие!
 game_winner=Победитель: 
 game_missiles=Ракеты: 

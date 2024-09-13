@@ -41,6 +41,7 @@ process_choose_missle_id=ミサイルIDを選択してください:
 process_press_1=1を押して確認、0を押してキャンセル: 
 process_player_wins= が勝利！
 process_congratulations=おめでとうございます！
+process_load_game=ゲーム状態が「saved」ディレクトリに保存されているファイル名を入力してください: 
 game_incorrect_action=無効なアクションです！
 game_winner=勝者: 
 game_missiles=ミサイル: 

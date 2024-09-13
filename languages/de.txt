@@ -41,6 +41,7 @@ process_choose_missle_id=Wähle Raketen-ID:
 process_press_1=Drücke 1 zum Bestätigen oder 0 zum Abbrechen: 
 process_player_wins= gewinnt!
 process_congratulations=Herzlichen Glückwunsch!
+process_load_game=Geben Sie den Dateinamen ein, unter dem der Spielstand im Verzeichnis „saved“ gespeichert ist: 
 game_incorrect_action=Ungültige Aktion!
 game_winner=Sieger: 
 game_missiles=Raketen: 

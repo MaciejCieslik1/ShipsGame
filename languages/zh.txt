@@ -41,6 +41,7 @@ process_choose_missle_id=选择导弹ID：
 process_press_1=按1确认或按0取消： 
 process_player_wins= 赢得胜利！
 process_congratulations=恭喜！
+process_load_game=输入在 "saved" 目录中保存游戏状态的文件名： 
 game_incorrect_action=无效的动作！
 game_winner=赢家： 
 game_missiles=导弹： 
