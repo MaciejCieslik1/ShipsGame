@@ -207,7 +207,7 @@ void Player::shipsInfo() const
 
 std::ostream& operator<<(std::ostream& os, const Player& player) 
 {
-	os << player.name << '\n';
+	os << player.getName() << ';';
 	return os;
 }
 
@@ -215,10 +215,8 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 std::istream& operator>>(std::istream& is, Player& player) 
 {
 	std::string name;
-    int maxMoves;
-    int moveCounter;
-
-	if (is >> name >> maxMoves >> moveCounter) player.name = name;
+	char separator = ';';
+	if (is >> name >> separator) player.setName(name);
 	else is.setstate(std::ios::failbit);
 
     return is;
