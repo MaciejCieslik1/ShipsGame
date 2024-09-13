@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdlib>
+#include <fstream>
 #include "Game.h"
 
 class Process
@@ -16,7 +17,7 @@ public:
 	static void sleep(unsigned int milliseconds);
 	static void clearScreen(void);
 
-	void loadGameState(void);
+	bool loadGameState(void);
 	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void saveGameState(void);
 	void startGame(const int& maxBoardSize);

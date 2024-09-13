@@ -30,6 +30,28 @@ void Process::sleep(unsigned int milliseconds)
 }
 
 
+bool Process::loadGameState()
+{
+    std::string fileName;
+    std::cout << langOptions->getCommunicate("process_load_game");
+    std::cin >> fileName;
+    std::string filePath = "saved/" + fileName;
+    std::ifstream file(filePath);
+    if (!file) 
+    {
+        std::cerr << langOptions->getCommunicate("process_file_error") << std::endl;
+        return false;
+    }
+    std::string line;
+    if (std::getline(file, line))
+    {
+        std::vector<std::string> words = splitLine(line);
+    }
+    file.close();
+    return true;
+}
+
+
 void Process::initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize)
 {
 	if (playerNames.size() < 2) throw std::invalid_argument(langOptions->getCommunicate("process_invalid_player_number"));
