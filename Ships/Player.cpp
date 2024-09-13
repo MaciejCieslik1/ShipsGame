@@ -207,7 +207,7 @@ void Player::shipsInfo() const
 
 std::ostream& operator<<(std::ostream& os, const Player& player) 
 {
-	os << player.getName() << ';';
+	os << player.getName() << ";\n";
 	return os;
 }
 

@@ -62,6 +62,7 @@ std::ostream& operator<<(std::ostream& os, const Island& island)
 	{
 		os << coord << ';';
 	}
+	os << '\n';
 	return os;
 }
 
