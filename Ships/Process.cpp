@@ -55,39 +55,51 @@ bool Process::loadGameState(int& maxBoardSize)
     if (std::getline(file, line))
     {
         words = splitLine(line);
-        try
+        if (words[0] == "Game" && words.size() == 3)
         {
-            maxBoardSize = std::stoi(words[1]);
-            currentPlayerIndex = std::stoi(words[2]);
-        } 
-        catch (const std::invalid_argument& e) 
-        {
-            throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+            try
+            {
+                maxBoardSize = std::stoi(words[1]);
+                currentPlayerIndex = std::stoi(words[2]);
+            } 
+            catch (const std::invalid_argument& e) 
+            {
+                throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+            }
         }
+        else throw invalid_file_format("Invalid structure of data in game state file");
     }
-    else return false;
-    if (std::getline(file, line)) newPart = false;
-    else return false;
+    else return throwExceptionAndReturn();
+    if (std::getline(file, line) && line == "Islands;") newPart = false;
+    else return throwExceptionAndReturn();
     while (!newPart)
     {
         if(std::getline(file, line))
         {
             words = splitLine(line);
-            if (words[0] == "Ships1") newPart = true;
+            if (words.size() == 1) 
+                {
+                    if (words[0] == "Ships1") newPart = true;
+                    else return throwExceptionAndReturn();
+                }
             else 
             {   
                 try
                 {
-                    int height = std::stoi(words[0]);
-                    int coordsNumber = std::stoi(words[1]);
-                    std::vector<Coords> coords;
-                    for (int i=2; i<coordsNumber*2+1; i=i+2)
+                    if (words.size() == std::stoi(words[1]) * 2 + 2)
                     {
-                        Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
-                        coords.push_back(coord);
+                        int height = std::stoi(words[0]);
+                        int coordsNumber = std::stoi(words[1]);
+                        std::vector<Coords> coords;
+                        for (int i=2; i<coordsNumber*2+1; i=i+2)
+                        {
+                            Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
+                            coords.push_back(coord);
+                        }
+                        std::shared_ptr<Island> island = std::make_shared<Island>(coords, height, maxBoardSize);
+                        islands.push_back(island);
                     }
-                    std::shared_ptr<Island> island = std::make_shared<Island>(coords, height, maxBoardSize);
-                    islands.push_back(island);
+                    else throw invalid_file_format("Invalid structure of data in game state file");
                 } 
                 catch (const std::invalid_argument& e) 
                 {
@@ -96,9 +108,10 @@ bool Process::loadGameState(int& maxBoardSize)
                 
             }
         }
-        else return false;
+        else return throwExceptionAndReturn();
     }
-    newPart = false;
+    if (words[0] == "Ships1" && words.size() == 1) newPart = false;
+    else return throwExceptionAndReturn();
     while (!newPart)
     {
         if(std::getline(file, line))
@@ -107,51 +120,15 @@ bool Process::loadGameState(int& maxBoardSize)
             if (words[0] == "Player1") newPart = true;
             else 
             {   
-                try
-                {
-                    std::string shipType = words[0];
-                    char name = words[1][0];
-                    int coordsNumber = std::stoi(words[2]);
-                    std::vector<Coords> coords;
-                    for (int i=3; i<coordsNumber*2+2; i=i+2)
-                    {
-                        Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
-                        coords.push_back(coord);
-                    }
-                    std::shared_ptr<Ship> ship;
-                    if (shipType == "Battleship")
-                    {
-                        std::shared_ptr<Battleship> ship = std::make_shared<Battleship>(name, coords, maxBoardSize);
-                        ships1.push_back(ship);
-                    }
-                    else if (shipType == "Cruiser") 
-                    {
-                        std::shared_ptr<Cruiser> ship = std::make_shared<Cruiser>(name, coords, maxBoardSize);
-                        ships1.push_back(ship);
-                    }
-                    else if (shipType == "Destroyer")
-                    {
-                        std::shared_ptr<Destroyer> ship = std::make_shared<Destroyer>(name, coords, maxBoardSize);
-                        ships1.push_back(ship);
-                    }
-                    else 
-                    {
-                        std::shared_ptr<Submarine> ship = std::make_shared<Submarine>(name, coords, maxBoardSize);
-                        ships1.push_back(ship);
-                    }
-                } 
-                catch (const std::invalid_argument& e) 
-                {
-                    throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
-                }
-                
+                loadShip(words, ships1, maxBoardSize);
             }
         }
-        else return false;
+        else return throwExceptionAndReturn();
     }
     if (std::getline(file, line)) newPart = false;
-    else return false;
-    player1name = words[1];
+    else return throwExceptionAndReturn();
+    if (words[0] == "Player1" && words.size() == 2 && line == "Ships2;") player1name = words[1];
+    else return throwExceptionAndReturn();
     while (!newPart)
     {
         if(std::getline(file, line))
@@ -160,48 +137,13 @@ bool Process::loadGameState(int& maxBoardSize)
             if (words[0] == "Player2") newPart = true;
             else 
             {   
-                try
-                {
-                    std::string shipType = words[0];
-                    char name = words[1][0];
-                    int coordsNumber = std::stoi(words[2]);
-                    std::vector<Coords> coords;
-                    for (int i=3; i<=coordsNumber*2+1; i=i+2)
-                    {
-                        Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
-                        coords.push_back(coord);
-                    }
-                    if (shipType == "Battleship")
-                    {
-                        std::shared_ptr<Battleship> ship = std::make_shared<Battleship>(name, coords, maxBoardSize);
-                        ships2.push_back(ship);
-                    }
-                    else if (shipType == "Cruiser") 
-                    {
-                        std::shared_ptr<Cruiser> ship = std::make_shared<Cruiser>(name, coords, maxBoardSize);
-                        ships2.push_back(ship);
-                    }
-                    else if (shipType == "Destroyer")
-                    {
-                        std::shared_ptr<Destroyer> ship = std::make_shared<Destroyer>(name, coords, maxBoardSize);
-                        ships2.push_back(ship);
-                    }
-                    else 
-                    {
-                        std::shared_ptr<Submarine> ship = std::make_shared<Submarine>(name, coords, maxBoardSize);
-                        ships2.push_back(ship);
-                    }
-                } 
-                catch (const std::invalid_argument& e) 
-                {
-                    throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
-                }
-                
+                loadShip(words, ships2, maxBoardSize);
             }
         }
-        else return false;
+        else return throwExceptionAndReturn();
     }
-    player2name = words[1];
+    if (words[0] == "Player2" && words.size() == 2) player2name = words[1];
+    else return throwExceptionAndReturn();
     file.close();
     std::shared_ptr<Player> player1 = std::make_shared<Player>(player1name, ships1, langOptions);
     std::shared_ptr<Player> player2 = std::make_shared<Player>(player2name, ships2, langOptions);
@@ -210,6 +152,62 @@ bool Process::loadGameState(int& maxBoardSize)
     finishGamePreparation();
     game->setCurrentPlayerIndex(currentPlayerIndex);
     return true;
+}
+
+
+bool Process::throwExceptionAndReturn()
+{
+    throw invalid_file_format("Invalid structure of data in game state file");
+    return false;
+}
+
+
+void Process::loadShip(const std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, const int& maxBoardSize)
+{
+    try
+    {
+        if (words.size() == std::stoi(words[2]) * 2 + 3)
+        {
+            std::string shipType = words[0];
+            char name = words[1][0];
+            int coordsNumber = std::stoi(words[2]);
+            std::vector<Coords> coords;
+            for (int i=3; i<=coordsNumber*2+1; i=i+2)
+            {
+                Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
+                coords.push_back(coord);
+            }
+            if (shipType == "Battleship")
+            {
+                std::shared_ptr<Battleship> ship = std::make_shared<Battleship>(name, coords, maxBoardSize);
+                ships.push_back(ship);
+            }
+            else if (shipType == "Cruiser") 
+            {
+                std::shared_ptr<Cruiser> ship = std::make_shared<Cruiser>(name, coords, maxBoardSize);
+                ships.push_back(ship);
+            }
+            else if (shipType == "Destroyer")
+            {
+                std::shared_ptr<Destroyer> ship = std::make_shared<Destroyer>(name, coords, maxBoardSize);
+                ships.push_back(ship);
+            }
+            else if (shipType == "Submarine")
+            {
+                std::shared_ptr<Submarine> ship = std::make_shared<Submarine>(name, coords, maxBoardSize);
+                ships.push_back(ship);
+            }
+            else throw invalid_file_format("Invalid structure of data in game state file");
+        }
+        else 
+        {   
+            throw invalid_file_format("Invalid structure of data in game state file");
+        }
+    } 
+    catch (const std::invalid_argument& e) 
+    {
+       throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+    }
 }
 
 

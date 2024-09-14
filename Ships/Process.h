@@ -18,6 +18,8 @@ public:
 	static void clearScreen(void);
 
 	bool loadGameState(int& maxBoardSize);
+	bool throwExceptionAndReturn();
+	void loadShip(const std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, const int& maxBoardSize);
 	void finishGamePreparation(void);
 	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void saveGameState(void);
