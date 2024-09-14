@@ -113,3 +113,7 @@ class field_occupied : public ShipsException {
 class file_failed_string_to_int_convertion : public ShipsException {
 	using ShipsException::ShipsException;
 };
+
+class invalid_file_format : public ShipsException {
+	using ShipsException::ShipsException;
+};
