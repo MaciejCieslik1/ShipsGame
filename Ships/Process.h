@@ -17,7 +17,8 @@ public:
 	static void sleep(unsigned int milliseconds);
 	static void clearScreen(void);
 
-	bool loadGameState(void);
+	bool loadGameState(int& maxBoardSize);
+	void finishGamePreparation(void);
 	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void saveGameState(void);
 	void startGame(const int& maxBoardSize);
