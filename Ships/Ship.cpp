@@ -7,7 +7,7 @@ Ship::Ship(const int& newMovement, const int& newHitPoints, const char& newName,
 	else throw invalid_movement_value("Movement must be positive integer");
 	if (isCorrectInt(newHitPoints)) hitPoints = newHitPoints;
 	else throw invalid_hit_point_value("Hit points must be positive integer");
-	if (isCorrectChar(newName)) name = newName;
+	if (isLetter(newName)) name = newName;
 	else throw invalid_name("Invalid character for name"); 
 	if (isCorrectCoordsVector(newCoords, maxBoardsize)) 
 	{
@@ -68,7 +68,7 @@ void Ship::setHitPoints(const int& newHitPoints)
 
 void Ship::setName(const char& newName)
 {
-	if (isCorrectChar(newName)) { name = newName; }
+	if (isLetter(newName)) { name = newName; }
 	else { throw invalid_name("Invalid character for name"); }
 }
 
