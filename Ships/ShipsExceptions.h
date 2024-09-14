@@ -94,7 +94,6 @@ class invalid_name : public ShipsException {
 	using ShipsException::ShipsException;
 };
 
-
 class improper_vector_size : public ShipsException {
 	using ShipsException::ShipsException;
 };
@@ -108,5 +107,9 @@ class invalid_height : public ShipsException {
 };
 
 class field_occupied : public ShipsException {
+	using ShipsException::ShipsException;
+};
+
+class file_failed_string_to_int_convertion : public ShipsException {
 	using ShipsException::ShipsException;
 };
