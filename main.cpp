@@ -30,7 +30,7 @@ int main()
                 bool correctFileFlag = false;
                 while (!correctFileFlag)
                 {
-                    correctFileFlag = process.loadGameState();
+                    correctFileFlag = process.loadGameState(maxBoardSize);
                 }   
             }
             process.startGame(maxBoardSize);
