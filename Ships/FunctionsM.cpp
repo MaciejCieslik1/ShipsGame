@@ -18,10 +18,8 @@ bool isCorrectIntVector(const std::vector<int>& numbers)
 }
 
 
-bool isCorrectChar(const char& character) 
-{
-	if (character != ' ') { return true; }
-	return false;
+bool isLetter(char character) {
+    return std::isalpha(static_cast<unsigned char>(character));
 }
 
 
