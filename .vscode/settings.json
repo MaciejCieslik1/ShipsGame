@@ -84,6 +84,7 @@
         "numbers": "cpp",
         "semaphore": "cpp",
         "cinttypes": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "codecvt": "cpp"
     }
 }
