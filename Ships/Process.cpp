@@ -44,13 +44,14 @@ bool Process::loadGameState(int& maxBoardSize)
     }
     std::string line;
     int currentPlayerIndex;
+    int islandsNumber;
+    int shipsNumber;
     bool newPart;
     std::vector<std::string> words;
     std::vector<std::shared_ptr<Island>> islands;
     std::vector<std::shared_ptr<Ship>> ships1;
     std::vector<std::shared_ptr<Ship>> ships2;
-    std::string player1name;
-    std::string player2name;
+    std::vector<std::string> playerNames;
 
     if (std::getline(file, line))
     {
@@ -60,6 +61,7 @@ bool Process::loadGameState(int& maxBoardSize)
             try
             {
                 maxBoardSize = std::stoi(words[1]);
+                if (maxBoardSize < 10 || maxBoardSize > 30) throw invalid_board_size("Board size must be at least 10 and at most 30");
                 currentPlayerIndex = std::stoi(words[2]);
             } 
             catch (const std::invalid_argument& e) 
@@ -70,83 +72,56 @@ bool Process::loadGameState(int& maxBoardSize)
         else throw invalid_file_format("Invalid structure of data in game state file");
     }
     else return throwExceptionAndReturn();
-    if (std::getline(file, line) && line == "Islands;") newPart = false;
+
+    checkLineCorrectness(file, line, words);
+    if (words.size() == 2 && words[0] == "Islands")
+    {
+        try 
+        {
+            islandsNumber = std::stoi(words[1]);
+        }
+        catch (const std::invalid_argument& e) 
+        {
+            throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+        }
+    }
     else return throwExceptionAndReturn();
-    while (!newPart)
+    
+    for (int i=0; i<islandsNumber; i++)
     {
         if(std::getline(file, line))
         {
             words = splitLine(line);
-            if (words.size() == 1) 
+            try
+            {
+                if (words.size() == std::stoi(words[1]) * 2 + 2)
                 {
-                    if (words[0] == "Ships1") newPart = true;
-                    else return throwExceptionAndReturn();
-                }
-            else 
-            {   
-                try
-                {
-                    if (words.size() == std::stoi(words[1]) * 2 + 2)
+                    int height = std::stoi(words[0]);
+                    int coordsNumber = std::stoi(words[1]);
+                    std::vector<Coords> coords;
+                    for (int i=2; i<coordsNumber*2+1; i=i+2)
                     {
-                        int height = std::stoi(words[0]);
-                        int coordsNumber = std::stoi(words[1]);
-                        std::vector<Coords> coords;
-                        for (int i=2; i<coordsNumber*2+1; i=i+2)
-                        {
-                            Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
-                            coords.push_back(coord);
-                        }
-                        std::shared_ptr<Island> island = std::make_shared<Island>(coords, height, maxBoardSize);
-                        islands.push_back(island);
+                        Coords coord = Coords(std::stoi(words[i]), std::stoi(words[i+1]));
+                        coords.push_back(coord);
                     }
-                    else throw invalid_file_format("Invalid structure of data in game state file");
-                } 
-                catch (const std::invalid_argument& e) 
-                {
-                    throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+                    std::shared_ptr<Island> island = std::make_shared<Island>(coords, height, maxBoardSize);
+                    islands.push_back(island);
                 }
-                
+                else throw invalid_file_format("Invalid structure of data in game state file");
+            } 
+            catch (const std::invalid_argument& e) 
+            {
+                throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
             }
         }
         else return throwExceptionAndReturn();
     }
-    if (words[0] == "Ships1" && words.size() == 1) newPart = false;
-    else return throwExceptionAndReturn();
-    while (!newPart)
-    {
-        if(std::getline(file, line))
-        {
-            words = splitLine(line);
-            if (words[0] == "Player1") newPart = true;
-            else 
-            {   
-                loadShip(words, ships1, maxBoardSize);
-            }
-        }
-        else return throwExceptionAndReturn();
-    }
-    if (std::getline(file, line)) newPart = false;
-    else return throwExceptionAndReturn();
-    if (words[0] == "Player1" && words.size() == 2 && line == "Ships2;") player1name = words[1];
-    else return throwExceptionAndReturn();
-    while (!newPart)
-    {
-        if(std::getline(file, line))
-        {
-            words = splitLine(line);
-            if (words[0] == "Player2") newPart = true;
-            else 
-            {   
-                loadShip(words, ships2, maxBoardSize);
-            }
-        }
-        else return throwExceptionAndReturn();
-    }
-    if (words[0] == "Player2" && words.size() == 2) player2name = words[1];
-    else return throwExceptionAndReturn();
+    loadAllPlayerInfo(file, line, shipsNumber, words, ships1, "Ships1", "Player1", playerNames, maxBoardSize);
+    loadAllPlayerInfo(file, line, shipsNumber, words, ships2, "Ships2", "Player2", playerNames, maxBoardSize);
+
     file.close();
-    std::shared_ptr<Player> player1 = std::make_shared<Player>(player1name, ships1, langOptions);
-    std::shared_ptr<Player> player2 = std::make_shared<Player>(player2name, ships2, langOptions);
+    std::shared_ptr<Player> player1 = std::make_shared<Player>(playerNames[0], ships1, langOptions);
+    std::shared_ptr<Player> player2 = std::make_shared<Player>(playerNames[1], ships2, langOptions);
     std::vector<std::shared_ptr<Player>> players = {player1, player2};
     game = std::make_unique<Game>(players, islands, maxBoardSize, langOptions);
     finishGamePreparation();
@@ -166,7 +141,7 @@ void Process::loadShip(const std::vector<std::string>& words, std::vector<std::s
 {
     try
     {
-        if (words.size() == std::stoi(words[2]) * 2 + 3)
+        if (words.size() >= 3 && words.size() == std::stoi(words[2]) * 2 + 3)
         {
             std::string shipType = words[0];
             char name = words[1][0];
@@ -209,6 +184,66 @@ void Process::loadShip(const std::vector<std::string>& words, std::vector<std::s
        throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
     }
 }
+
+
+void Process::checkLineCorrectness(std::ifstream& file, std::string& line, std::vector<std::string>& words)
+{
+    if (std::getline(file, line)) words = splitLine(line);
+    else throwExceptionAndReturn();
+}
+
+
+void Process::checkShipTitleLine(std::ifstream& file, std::string& line, std::vector<std::string>& words, int& shipsNumber, const std::string& shipTitle)
+{
+    checkLineCorrectness(file, line, words);
+    if (words.size() == 2 && words[0] == shipTitle)
+    {
+        try 
+        {
+            shipsNumber = std::stoi(words[1]);
+        }
+        catch (const std::invalid_argument& e) 
+        {
+            throw file_failed_string_to_int_convertion("Failed to convert string to int while loading data from the file");
+        }
+    }
+}
+
+
+void Process::checkPlayerTitleLine(std::ifstream& file, std::string& line, std::vector<std::string>& words, std::vector<std::string>& playerNames, 
+    const std::string& playerTitle)
+{
+    checkLineCorrectness(file, line, words);
+    if (words.size() == 2 && words[0] == playerTitle)
+    {   
+        playerNames.push_back(words[1]);
+    }
+    else throwExceptionAndReturn();
+}
+
+
+void Process::loadShipsLoop(std::ifstream& file, std::string& line, const int& shipsNumber, std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, 
+    const int& maxBoardSize)
+{
+    for (int i=0; i<shipsNumber; i++)
+    {
+        if(std::getline(file, line))
+        {
+            words = splitLine(line);
+            loadShip(words, ships, maxBoardSize);
+        }
+        else throwExceptionAndReturn();
+    }
+}
+
+
+void Process::loadAllPlayerInfo(std::ifstream& file, std::string& line, int& shipsNumber, std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships,
+		const std::string& shipTitle, const std::string& playerTitle, std::vector<std::string>& playerNames, const int& maxBoardSize)
+    {
+        checkShipTitleLine(file, line, words, shipsNumber, shipTitle);
+        loadShipsLoop(file, line, shipsNumber, words, ships, maxBoardSize);
+        checkPlayerTitleLine(file, line, words, playerNames, playerTitle);
+    }
 
 
 void Process::initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize)

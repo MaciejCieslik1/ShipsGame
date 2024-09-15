@@ -20,6 +20,14 @@ public:
 	bool loadGameState(int& maxBoardSize);
 	bool throwExceptionAndReturn();
 	void loadShip(const std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, const int& maxBoardSize);
+	void checkLineCorrectness(std::ifstream& file, std::string& line, std::vector<std::string>& words);
+	void checkShipTitleLine(std::ifstream& file, std::string& line, std::vector<std::string>& words, int& shipsNumber, const std::string& shipTitle);
+	void checkPlayerTitleLine(std::ifstream& file, std::string& line, std::vector<std::string>& words, std::vector<std::string>& playerNames, 
+		const std::string& playerTitle);
+	void loadShipsLoop(std::ifstream& file, std::string& line,const int& shipsNumber, std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships,
+		const int& maxBoardSize);
+	void loadAllPlayerInfo(std::ifstream& file, std::string& line, int& shipsNumber, std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships,
+		const std::string& shipTitle, const std::string& playerTitle, std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void finishGamePreparation(void);
 	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void saveGameState(void);
