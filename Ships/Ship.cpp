@@ -206,6 +206,7 @@ std::ostream& operator<<(std::ostream& os, const Battleship& battleship)
 	{
 		os << coord;
 	}
+	os << '\n';
 	return os;
 }
 

@@ -57,11 +57,12 @@ bool Island::operator!=(const Island& other) const
 // File handling___________________________________________________________________________________
 std::ostream& operator<<(std::ostream& os, const Island& island)
 {
-	os << island.getHeight() << ';' << island.getCoords().size();
+	os << island.getHeight() << ';' << island.getCoords().size() << ";";
 	for (const Coords& coord : island.getCoords()) 
 	{
 		os << coord;
 	}
+	os << '\n';
 	return os;
 }
 
