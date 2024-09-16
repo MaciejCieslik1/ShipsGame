@@ -258,6 +258,7 @@ std::ostream& operator<<(std::ostream& os, const Cruiser& cruiser)
 	{
 		os << coord;
 	}
+	os << '\n';
 	return os;
 }
 
@@ -309,6 +310,7 @@ std::ostream& operator<<(std::ostream& os, const Destroyer& destroyer)
 	{
 		os << coord;
 	}
+	os << '\n';
 	return os;
 }
 
@@ -360,6 +362,7 @@ std::ostream& operator<<(std::ostream& os, const Submarine& submarine)
 	{
 		os << coord;
 	}
+	os << '\n';
 	return os;
 }
 
