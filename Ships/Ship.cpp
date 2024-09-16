@@ -340,7 +340,7 @@ std::istream& operator>>(std::istream& is, Destroyer& destroyer)
 Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(10, 4, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		if (coords.size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
 		missileIDs = { 0 };
 	}
 
@@ -348,7 +348,7 @@ Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords, 
 Submarine::Submarine(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 2) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		if (coords.size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
 		missileIDs = { 0 };
 	}
 
