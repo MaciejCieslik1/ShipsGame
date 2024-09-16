@@ -338,7 +338,8 @@ void Process::startGame(const int& maxBoardSize)
 {
 	int input;
     bool correctMoveFlag = true;
-    while (game->getIsOn()) 
+    bool gameSaved = false;
+    while (game->getIsOn() && !gameSaved) 
     {
         clearScreen();
         game->getBoard()->boardDisplay();
@@ -347,7 +348,13 @@ void Process::startGame(const int& maxBoardSize)
         {
             if (!correctMoveFlag) std::cout << langOptions->getCommunicate("process_invalid_action") << std::endl;
             std::cout << langOptions->getCommunicate("process_player_enter_action_shoot_move");
-            std::cin >> input; input -= 1;
+            std::cin >> input;
+            input -= 1;
+            if (input == 2)
+            {
+                saveGameState(maxBoardSize);
+                gameSaved = true;
+            }
         } 
         else if (game->getTurnStage() == 1) 
         {
@@ -371,7 +378,7 @@ void Process::startGame(const int& maxBoardSize)
             std::cout << langOptions->getCommunicate("process_press_1");
             std::cin >> input;
         }
-        game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
+        if (!gameSaved) game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
     }
-    std::cout << langOptions->getCommunicate("process_congratulations") << std::endl;
+    if (!gameSaved) std::cout << langOptions->getCommunicate("process_congratulations") << std::endl;
 }
