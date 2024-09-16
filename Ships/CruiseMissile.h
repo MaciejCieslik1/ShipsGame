@@ -2,7 +2,6 @@
 #include "Field.h"
 
 class CruiseMissile {
-protected:
     int range;
     int damage;
     int missileID;

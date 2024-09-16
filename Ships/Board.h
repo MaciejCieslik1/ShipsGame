@@ -3,7 +3,6 @@
 
 class Board
 {
-protected:
 	int	boardSize;
 	std::vector<Field> fields;
 

@@ -5,7 +5,6 @@
 
 class Player
 {
-protected:
     std::string name;
     std::vector<std::shared_ptr<Ship>> ships;
     std::shared_ptr<Board> boardPtr;

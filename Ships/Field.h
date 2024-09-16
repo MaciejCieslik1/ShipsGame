@@ -7,7 +7,6 @@
 
 class Field
 {
-protected:
     Coords coords;
 	std::vector<std::shared_ptr<Field>> adjacentFields;
 	std::shared_ptr<Ship> shipOnField;

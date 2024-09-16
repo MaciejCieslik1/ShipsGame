@@ -4,7 +4,6 @@
 
 class Island
 {
-protected:
     std::vector<Coords> coords;
 	int height;
 

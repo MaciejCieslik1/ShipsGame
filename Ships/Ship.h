@@ -3,7 +3,6 @@
 
 class Ship
 {
-protected:
 	int movement;
 	int hitPoints;
 	char name;

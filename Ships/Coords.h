@@ -4,7 +4,6 @@
 #include "ShipsExceptions.h"
 
 class Coords {
-private:
     int x;
     int y;
 

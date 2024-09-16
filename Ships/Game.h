@@ -6,7 +6,7 @@
 
 class Game
 {
-protected:
+private:
 	std::shared_ptr<Board> board;
 	std::vector<std::shared_ptr<Player>> players;
 	std::vector<std::shared_ptr<Island>> islands;
