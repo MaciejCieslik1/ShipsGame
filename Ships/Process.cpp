@@ -325,7 +325,7 @@ void Process::savePlayerInfo(std::ofstream& file, const int& playerIndex)
         playerTitle = "Player2;";
     }
     file << shipsTitle << game->getPlayers()[playerIndex]->getShips().size() << ";\n";
-    for (std::shared_ptr<Ship> ship : game->getPlayers()[0]->getShips())
+    for (std::shared_ptr<Ship> ship : game->getPlayers()[playerIndex]->getShips())
     {
         if (auto battleship = std::dynamic_pointer_cast<Battleship>(ship)) file << *battleship;
         else if (auto cruiser = std::dynamic_pointer_cast<Cruiser>(ship)) file << *cruiser;
