@@ -204,7 +204,7 @@ std::ostream& operator<<(std::ostream& os, const Battleship& battleship)
 	os << "Battleship;" << battleship.getName() << ';' << battleship.getCoords().size() << ';';
 	for (const Coords& coord : battleship.getCoords()) 
 	{
-		os << coord << ';';
+		os << coord;
 	}
 	return os;
 }
@@ -255,7 +255,7 @@ std::ostream& operator<<(std::ostream& os, const Cruiser& cruiser)
 	os << "Cruiser;" << cruiser.getName() << ';' << cruiser.getCoords().size() << ';';
 	for (const Coords& coord : cruiser.getCoords()) 
 	{
-		os << coord << ';';
+		os << coord;
 	}
 	return os;
 }
@@ -306,7 +306,7 @@ std::ostream& operator<<(std::ostream& os, const Destroyer& destroyer)
 	os << "Destroyer;" << destroyer.getName() << ';' << destroyer.getCoords().size() << ';';
 	for (const Coords& coord : destroyer.getCoords()) 
 	{
-		os << coord << ';';
+		os << coord;
 	}
 	return os;
 }
@@ -357,7 +357,7 @@ std::ostream& operator<<(std::ostream& os, const Submarine& submarine)
 	os << "Submarine;" << submarine.getName() << ';' << submarine.getCoords().size() << ';';
 	for (const Coords& coord : submarine.getCoords()) 
 	{
-		os << coord << ';';
+		os << coord;
 	}
 	return os;
 }
