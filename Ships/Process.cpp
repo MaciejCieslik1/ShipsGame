@@ -299,7 +299,7 @@ bool Process::saveGameState(const int& maxBoardSize)
     file << "Islands;" << game->getIslands().size() << ";\n"; 
     for (std::shared_ptr<Island> island : game->getIslands())
     {
-        file << island;
+        file << *island;
     }
 
     savePlayerInfo(file, 0);
@@ -327,9 +327,11 @@ void Process::savePlayerInfo(std::ofstream& file, const int& playerIndex)
     file << shipsTitle << game->getPlayers()[playerIndex]->getShips().size() << ";\n";
     for (std::shared_ptr<Ship> ship : game->getPlayers()[0]->getShips())
     {
-        file << ship;
+        if (auto battleship = std::dynamic_pointer_cast<Battleship>(ship)) file << *battleship;
+        else if (auto cruiser = std::dynamic_pointer_cast<Cruiser>(ship)) file << *cruiser;
+        else if (auto destroyer = std::dynamic_pointer_cast<Destroyer>(ship)) file << *destroyer;
+        else if (auto submarine = std::dynamic_pointer_cast<Submarine>(ship)) file << *submarine;
     }
-
     file << playerTitle << game->getPlayers()[playerIndex]->getName() << ";\n";
 }
 
