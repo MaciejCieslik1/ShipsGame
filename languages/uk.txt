@@ -42,6 +42,7 @@ process_press_1=Натисніть 1 для підтвердження або 0 
 process_player_wins=переміг!
 process_congratulations=Вітаємо!
 process_load_game=Введіть ім’я файлу, де збережено стан гри в каталозі «saved»: 
+process_save_game=Введіть ім'я файлу, в якому буде збережено стан гри в каталозі "saved": 
 process_file_error=Файл не можна відкрити
 game_incorrect_action=Неправильна дія!
 game_winner=Переможець: 

@@ -42,6 +42,7 @@ process_press_1=Drücke 1 zum Bestätigen oder 0 zum Abbrechen:
 process_player_wins= gewinnt!
 process_congratulations=Herzlichen Glückwunsch!
 process_load_game=Geben Sie den Dateinamen ein, unter dem der Spielstand im Verzeichnis „saved“ gespeichert ist: 
+process_save_game=Geben Sie den Dateinamen ein, unter dem der Spielstand im Verzeichnis "saved" gespeichert wird: 
 process_file_error=Datei kann nicht geöffnet werden
 game_incorrect_action=Ungültige Aktion!
 game_winner=Sieger: 

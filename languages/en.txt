@@ -42,6 +42,7 @@ process_press_1=Press 1 to confirm or 0 to cancel:
 process_player_wins= wins!
 process_congratulations=Congratulations!
 process_load_game=Enter filename where game state is saved in "saved" directory: 
+process_save_game=Enter filename where game state will be saved in "saved" directory: 
 process_file_error=File cannot be opened
 game_incorrect_action=Incorrrect action!
 game_winner=Winner: 
