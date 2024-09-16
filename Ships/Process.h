@@ -18,6 +18,7 @@ public:
 	static void clearScreen(void);
 
 	bool loadGameState(int& maxBoardSize);
+	bool saveGameState(const int& maxBoardSize);
 	bool throwExceptionAndReturn();
 	void loadShip(const std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, const int& maxBoardSize);
 	void checkLineCorrectness(std::ifstream& file, std::string& line, std::vector<std::string>& words);
@@ -28,8 +29,8 @@ public:
 		const int& maxBoardSize);
 	void loadAllPlayerInfo(std::ifstream& file, std::string& line, int& shipsNumber, std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships,
 		const std::string& shipTitle, const std::string& playerTitle, std::vector<std::string>& playerNames, const int& maxBoardSize);
+	void savePlayerInfo(std::ofstream& file, const int& playerIndex);
 	void finishGamePreparation(void);
 	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
-	void saveGameState(void);
 	void startGame(const int& maxBoardSize);
 };

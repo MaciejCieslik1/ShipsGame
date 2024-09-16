@@ -280,6 +280,60 @@ void Process::finishGamePreparation()
 }
 
 
+bool Process::saveGameState(const int& maxBoardSize)
+{
+    std::string fileName;
+    std::cout << langOptions->getCommunicate("process_save_game");
+    std::cin >> fileName;
+    std::string filePath = "saved/" + fileName;
+    std::ofstream file(filePath);
+
+    if (!file) 
+    {
+        std::cerr << langOptions->getCommunicate("process_file_error") << std::endl;
+        return false;
+    }
+
+    file << "Game;" << maxBoardSize << ';' << game->getCurrentPlayerIndex() << ";\n";
+
+    file << "Islands;" << game->getIslands().size() << ";\n"; 
+    for (std::shared_ptr<Island> island : game->getIslands())
+    {
+        file << island;
+    }
+
+    savePlayerInfo(file, 0);
+    savePlayerInfo(file, 1);
+
+    file.close();
+    return true;
+}
+
+
+void Process::savePlayerInfo(std::ofstream& file, const int& playerIndex)
+{
+    std::string shipsTitle;
+    std::string playerTitle;
+    if (playerIndex == 0) 
+    {
+        shipsTitle = "Ships1;";
+        playerTitle = "Player1;";
+    }
+    else 
+    {
+        shipsTitle = "Ships2;";
+        playerTitle = "Player2;";
+    }
+    file << shipsTitle << game->getPlayers()[playerIndex]->getShips().size() << ";\n";
+    for (std::shared_ptr<Ship> ship : game->getPlayers()[0]->getShips())
+    {
+        file << ship;
+    }
+
+    file << playerTitle << game->getPlayers()[playerIndex]->getName() << ";\n";
+}
+
+
 void Process::startGame(const int& maxBoardSize)
 {
 	int input;
