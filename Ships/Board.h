@@ -22,7 +22,7 @@ public:
 	void removeShip(std::shared_ptr<Ship> newShip, std::vector<Coords> shipCoords);
 	bool moveShipToFieldFirstX(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);
 	bool moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<Coords>& shipCoords, const int& destinationX, const int& destinationY);
-	bool moveShipToField(const Field& beginningField, const int& destinationX, const int& destinationY);
+	bool moveShipToField(const std::shared_ptr<Ship>& shipPtr, const int& destinationX, const int& destinationY);
 	Field findField(const Coords& fieldCoords);
 
 	void boardDisplay(void);

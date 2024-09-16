@@ -299,15 +299,14 @@ bool Board::moveShipToFieldFirstY(const Coords& closestCoord, const std::vector<
 }
 
 
-bool Board::moveShipToField(const Field& beginningField, const int& destinationX, const int& destinationY)
+bool Board::moveShipToField(const std::shared_ptr<Ship>& ship, const int& destinationX, const int& destinationY)
 {
-	std::shared_ptr<Ship> ship = beginningField.getShipOnField();
 	std::vector<Coords> shipCoords = ship->getCoords();
 	std::vector<Coords> extremeCoords = ship->extremeCoords();
 	Coords extremeBig = extremeCoords[0];
 	Coords extremeSmall = extremeCoords[1];
-	int distanceBig = abs(destinationX - extremeBig.getX() + destinationY - extremeBig.getY());
-	int distanceSmall = abs(destinationX - extremeSmall.getX() + destinationY - extremeSmall.getY());
+	int distanceBig = abs(destinationX - extremeBig.getX()) + abs(destinationY - extremeBig.getY());
+	int distanceSmall = abs(destinationX - extremeSmall.getX()) + abs(destinationY - extremeSmall.getY());
 	Coords closestCoord;
 	if (distanceBig < distanceSmall) { closestCoord = extremeBig; }
 	else { closestCoord = extremeSmall; }
@@ -316,7 +315,7 @@ bool Board::moveShipToField(const Field& beginningField, const int& destinationX
 	int deltaX = destinationX - closestCoord.getX();
 	int deltaY = destinationY - closestCoord.getY();
 
-	// check if ship has enouh movement to be moved
+	// check if ship has enough movement to be moved
 	if (ship->getMovement() < deltaX + deltaY) { return false; }
 
 	std::vector<Coords> CoordsOfShip = ship->getCoords();
