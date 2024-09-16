@@ -161,8 +161,7 @@ bool Player::move(std::shared_ptr<Ship> shipPtr, Field& destination)
 {
 	Coords choosenCoords = shipPtr->getCoords()[0];
 	Coords destinationCoords = destination.getCoords();
-	Field shipField = boardPtr->findField(choosenCoords);
-	return boardPtr->moveShipToField(shipField, destinationCoords.getX(), destinationCoords.getY());
+	return boardPtr->moveShipToField(shipPtr, destinationCoords.getX(), destinationCoords.getY());
 }
 
 
