@@ -14,10 +14,13 @@ class LanguageManager {
 	std::vector<std::string> splitString(const std::string& s, char delimiter);
 
 public:
+
 	LanguageManager(const std::string fileHandle);
 	~LanguageManager() = default;
 
 	void setFilename(const std::string& name);
+
 	void loadCommunicates(void);
 	std::string getCommunicate(const std::string& key) const;
+	
 };

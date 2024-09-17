@@ -5,12 +5,14 @@
 
 class Process
 {
+
 	std::unique_ptr<Game> game;
 	std::unique_ptr<Player> player_1;
 	std::unique_ptr<Player> player_2;
 	std::shared_ptr<LanguageManager> langOptions;
 
 public:
+
 	Process() = default;
 	Process(std::shared_ptr<LanguageManager> language);
 
@@ -18,6 +20,12 @@ public:
 	static void clearScreen(void);
 
 	bool loadGameState(int& maxBoardSize);
+	
+	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
+	void startGame(const int& maxBoardSize);
+
+private:
+
 	bool saveGameState(const int& maxBoardSize);
 	bool throwExceptionAndReturn();
 	void loadShip(const std::vector<std::string>& words, std::vector<std::shared_ptr<Ship>>& ships, const int& maxBoardSize);
@@ -31,6 +39,5 @@ public:
 		const std::string& shipTitle, const std::string& playerTitle, std::vector<std::string>& playerNames, const int& maxBoardSize);
 	void savePlayerInfo(std::ofstream& file, const int& playerIndex);
 	void finishGamePreparation(void);
-	void initializeNewGame(std::vector<std::string>& playerNames, const int& maxBoardSize);
-	void startGame(const int& maxBoardSize);
+
 };

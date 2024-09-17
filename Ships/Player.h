@@ -5,6 +5,7 @@
 
 class Player
 {
+
     std::string name;
     std::vector<std::shared_ptr<Ship>> ships;
     std::shared_ptr<Board> boardPtr;
@@ -13,7 +14,9 @@ class Player
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
     friend std::istream& operator>>(std::istream& is, Player& player);
+
 public:
+
 	Player() = default;
     Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles,
     const std::shared_ptr<LanguageManager>& langOptions);
@@ -29,11 +32,15 @@ public:
     void setAllMissiles(const std::vector<CruiseMissile>& newAllMissiles);
 
     bool fire(std::shared_ptr<Ship> ship, Field& destination, const int& missileID);
-    bool checkRocketPath(const int& altitude, const int& range, const Coords& beginningCoords, const Coords& endingCoords);
     bool move(std::shared_ptr<Ship> ship, Field& destination);
     void forgetShip(std::shared_ptr<Ship> ship);
     void shipsInfo() const;
 
     bool operator==(const Player& other) const;
     bool operator!=(const Player& other) const;
+    
+private:
+
+    bool checkRocketPath(const int& altitude, const int& range, const Coords& beginningCoords, const Coords& endingCoords);
+    
 };

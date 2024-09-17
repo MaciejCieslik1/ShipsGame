@@ -25,9 +25,12 @@ public:
 	void setAdjacentFields(const std::vector<std::shared_ptr<Field>>& newAdjacentFields);
 	void setShipOnField(std::shared_ptr<Ship> newShipOnField);
 	void setIslandOnField(const std::shared_ptr<Island>& newIsland);
-	void addAdjacentField(std::shared_ptr<Field> field);
 
 	std::string displayFieldCrate(void) const;
-	void setFieldEmpty(void);
 	void shipHit(const int& damage);
+
+private:
+	void addAdjacentField(std::shared_ptr<Field> field);
+	void setFieldEmpty(void);
+	
 };

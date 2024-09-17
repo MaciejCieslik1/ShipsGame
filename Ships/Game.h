@@ -6,7 +6,9 @@
 
 class Game
 {
+
 private:
+
 	std::shared_ptr<Board> board;
 	std::vector<std::shared_ptr<Player>> players;
 	std::vector<std::shared_ptr<Island>> islands;
@@ -20,6 +22,7 @@ private:
 	int action; std::shared_ptr<Ship> ship; Field destination; int missile;
 
 public:
+
 	Game(std::shared_ptr<LanguageManager> langOptions);
 	Game(const std::vector<std::shared_ptr<Player>>& players, const std::vector<std::shared_ptr<Island>>& islands, 
 	const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
@@ -42,18 +45,18 @@ public:
 	void setTurnStage(const int& newStage);
 
 	void turnGameOn();
-	void turnGameOff();
-	void generateBoard(const int& maxBoardSize);
-	void checkIfShipSunked();
 	void mainGameProcess(const int& input, const int& maxBoardSize, bool& correctMoveFlag);
 	void displayInfo();
 
 private:
+
+	void turnGameOff();
+	void generateBoard(const int& maxBoardSize);
+	void checkIfShipSunked();
 	void pickAction(const int& input);
 	void pickShip(const int& input);
 	void pickDestination(const int& input, const int& maxBoardSize);
 	void pickMissile(const int& input);
 	void confirm(const int& input, bool& correctMoveFlag);
-
 	void newTurn();
 };
