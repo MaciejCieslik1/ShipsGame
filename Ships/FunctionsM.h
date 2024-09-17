@@ -9,6 +9,7 @@
 
 bool isCorrectInt(const int& number);
 bool isCorrectIntVector(const std::vector<int>& numbers);
+bool isCorrectIntVectorPlus0(const std::vector<int>& numbers);
 bool isLetter(char character);
 bool isCorrectCoordsVector(std::vector<Coords> shipCoords, const int& maxBoardSize);
 bool isCorrectCoordsVectorLimits(std::vector<Coords> shipCoords, const int& maxBoardSize);

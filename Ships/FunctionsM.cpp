@@ -18,6 +18,17 @@ bool isCorrectIntVector(const std::vector<int>& numbers)
 }
 
 
+bool isCorrectIntVectorPlus0(const std::vector<int>& numbers) 
+{
+	for (int number : numbers)
+	{
+		if (!isCorrectInt(number) && number != 0) { return false; }
+	}
+	return true;
+}
+
+
+
 bool isLetter(char character) {
     return std::isalpha(static_cast<unsigned char>(character));
 }
