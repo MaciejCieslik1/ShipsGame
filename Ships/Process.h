@@ -16,6 +16,10 @@ public:
 	Process() = default;
 	Process(std::shared_ptr<LanguageManager> language);
 
+	std::shared_ptr<LanguageManager> getLangOptions() const;
+
+	void setLangOptions(const std::shared_ptr<LanguageManager>& newLangOptions);
+
 	static void sleep(unsigned int milliseconds);
 	static void clearScreen(void);
 

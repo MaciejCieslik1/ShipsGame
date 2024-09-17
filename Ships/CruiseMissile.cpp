@@ -40,15 +40,22 @@ int CruiseMissile::getAltitude() const
 
 void CruiseMissile::setRange(const int& newRange)
 {
-	if (isCorrectInt(newRange)) { range = newRange; }
-	else { throw std::invalid_argument("Range must be positive integer"); }
+	if (isCorrectInt(newRange)) range = newRange;
+	else throw std::invalid_argument("Range must be positive integer");
 }
 
 
 void CruiseMissile::setDamage(const int& newDamage)
 {
-	if (isCorrectInt(newDamage)) { damage = newDamage; }
-	else { throw std::invalid_argument("Damage must be positive integer"); }
+	if (isCorrectInt(newDamage)) damage = newDamage;
+	else throw std::invalid_argument("Damage must be positive integer");
+}
+
+
+void CruiseMissile::setMissileID(const int& newMissileID)
+{
+	if (isCorrectInt(newMissileID) || newMissileID == 0) missileID = newMissileID;
+	else throw std::invalid_argument("Invalid Missile ID");
 }
 
 

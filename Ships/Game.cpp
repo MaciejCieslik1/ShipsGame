@@ -9,7 +9,7 @@ Game::Game(std::shared_ptr<LanguageManager> language) : langOptions(language)
     numberOfTurns = 1;
     winner = nullptr;
     int maxBoardSize = 10;
-    turnGameOn();
+    setIsOn(true);
     generateBoard(maxBoardSize);
 }
 
@@ -21,7 +21,7 @@ Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const std::ve
     currentPlayer = 0;
     numberOfTurns = 1;
     winner = nullptr;
-    turnGameOn();
+    setIsOn(true);
     generateBoard(maxBoardSize);
 }
 
@@ -71,6 +71,30 @@ int Game::getTurnStage() const
 bool Game::getIsOn() const 
 {
     return isOn;
+}
+
+
+int Game::getAction() const
+{
+    return action;
+}
+
+
+std::shared_ptr<Ship> Game::getShip() const
+{
+    return ship;
+}
+
+
+Field Game::destinaion() const
+{
+    return destination;
+}
+
+
+int Game::getMissileID() const
+{
+    return missileID;
 }
 
 
@@ -125,15 +149,29 @@ void Game::setTurnStage(const int& newStage)
 }
 
 
-void Game::turnGameOn() 
+void Game::setIsOn(const bool& state)
 {
-    isOn = true;
+    isOn = state;
 }
 
 
-void Game::turnGameOff() 
+void Game::setAction(const int& newAction)
 {
-    isOn = false;
+    if (action == 0 || action == 1 || action == 2) action = newAction;
+    else throw std::invalid_argument("New action must be equal to 0, 1 or 2");
+}
+
+
+void Game::setShip(const std::shared_ptr<Ship>& newShip)
+{
+    ship = newShip;
+}
+
+
+void Game::setMissileID(const int& newMissileID)
+{
+    if (isCorrectInt(newMissileID) || newMissileID == 0) missileID = newMissileID;
+    else throw std::invalid_argument("New missileID must be a positive integer");
 }
 
 
@@ -189,7 +227,7 @@ void Game::pickMissile(const int& input)
 {
     if (ship->hasMissile(input)) 
     {
-        missile = input;
+        missileID = input;
         turnStage = 4;
     }
 }
@@ -202,7 +240,7 @@ void Game::confirm(const int& input, bool& correctMoveFlag)
         switch (action) 
         {
             case 0: correctMoveFlag = players[currentPlayer]->move(ship, destination); break;
-            case 1: correctMoveFlag = players[currentPlayer]->fire(ship, destination, missile); checkIfShipSunked();  break;
+            case 1: correctMoveFlag = players[currentPlayer]->fire(ship, destination, missileID); checkIfShipSunked();  break;
         }
         turnStage = 0;
         if (correctMoveFlag) newTurn();
@@ -247,7 +285,7 @@ void Game::newTurn()
             #endif
             this->getBoard()->boardDisplay();
             std::cout << langOptions->getCommunicate("game_winner") << getWinner()->getName() << std::endl;
-            turnGameOff();
+            setIsOn(false);
         }
     }
     if (currentPlayer == players.size()-1) setCurrentPlayerIndex(0);

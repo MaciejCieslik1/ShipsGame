@@ -18,6 +18,7 @@ public:
 
     void setRange(const int& newRange);
     void setDamage(const int& newDamage);
+    void setMissileID(const int& newID);
     void setAltitude(const int& newAltitude);
     
     void effect(Field& destination);

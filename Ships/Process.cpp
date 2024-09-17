@@ -8,6 +8,18 @@ Process::Process(std::shared_ptr<LanguageManager> language)
     : langOptions(language) {}
 
 
+std::shared_ptr<LanguageManager> Process::getLangOptions() const
+{
+    return langOptions;
+}
+
+
+void Process::setLangOptions(const std::shared_ptr<LanguageManager>& newLangOptions)
+{
+    langOptions = newLangOptions;
+}
+
+
 void Process::clearScreen(void)
 {
     #ifdef WINDOWS
@@ -274,7 +286,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 
 void Process::finishGamePreparation()
 {
-    game->turnGameOn();
+    game->setIsOn(true);
     game->getPlayers()[0]->setBoard(game->getBoard());
     game->getPlayers()[1]->setBoard(game->getBoard());
 }

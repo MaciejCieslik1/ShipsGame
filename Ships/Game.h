@@ -19,7 +19,10 @@ private:
 	bool isOn;
 	std::shared_ptr<LanguageManager> langOptions;
 
-	int action; std::shared_ptr<Ship> ship; Field destination; int missile;
+	int action; 
+	std::shared_ptr<Ship> ship; 
+	Field destination; 
+	int missileID;
 
 public:
 
@@ -35,6 +38,10 @@ public:
 	std::shared_ptr<Player> getWinner() const;
 	int getTurnStage() const;
 	bool getIsOn() const;
+	int getAction() const;
+	std::shared_ptr<Ship> getShip() const;
+	Field destinaion() const;
+	int getMissileID() const;
 
 	void setBoard(std::shared_ptr<Board> new_board);
 	void setPlayers(const std::vector<std::shared_ptr<Player>>& new_players);
@@ -43,14 +50,16 @@ public:
 	void setNumberOfTurns(const int& new_number_of_turns);
 	void setWinner(std::shared_ptr<Player> new_winner);
 	void setTurnStage(const int& newStage);
+	void setIsOn(const bool& state);
+	void setAction(const int& newAction);
+	void setShip(const std::shared_ptr<Ship>& newShip);
+	void setMissileID(const int& newMissileID); 
 
-	void turnGameOn();
 	void mainGameProcess(const int& input, const int& maxBoardSize, bool& correctMoveFlag);
 	void displayInfo();
 
 private:
 
-	void turnGameOff();
 	void generateBoard(const int& maxBoardSize);
 	void checkIfShipSunked();
 	void pickAction(const int& input);

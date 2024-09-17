@@ -25,11 +25,13 @@ public:
     std::shared_ptr<Board> getBoardPtr() const;
     std::vector<CruiseMissile> getAllMissilies() const;
     std::string getName() const;
+    std::shared_ptr<LanguageManager> getLangOptions() const;
 
     void setName(const std::string newName);
     void setShips(const std::vector<std::shared_ptr<Ship>>& newShips);
     void setBoard(std::shared_ptr<Board> newBoard);
     void setAllMissiles(const std::vector<CruiseMissile>& newAllMissiles);
+    void setNewLangOptions(const std::shared_ptr<LanguageManager>& newLangOptions);
 
     bool fire(std::shared_ptr<Ship> ship, Field& destination, const int& missileID);
     bool move(std::shared_ptr<Ship> ship, Field& destination);

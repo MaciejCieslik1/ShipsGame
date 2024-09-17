@@ -34,6 +34,13 @@ std::string Player::getName() const
     return name;
 }
 
+
+std::shared_ptr<LanguageManager> Player::getLangOptions() const
+{
+	return langOptions;
+}
+
+
 void Player::setName(const std::string newName)
 {
 	for (const char& v : newName) if(v == ' ') {
@@ -58,6 +65,12 @@ void Player::setBoard(std::shared_ptr<Board> newBoard)
 void Player::setAllMissiles(const std::vector<CruiseMissile>& newAllMissiles)
 {
 	allMissiles = newAllMissiles;
+}
+
+
+void Player::setNewLangOptions(const std::shared_ptr<LanguageManager>& newLangOptions)
+{
+	langOptions = newLangOptions;
 }
 
 
