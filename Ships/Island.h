@@ -19,6 +19,4 @@ public:
 	void setCoords(const std::vector<Coords>& newCoords);
 	void setHeight(const int& newHeight);
 
-	bool operator==(const Island& other) const;
-	bool operator!=(const Island& other) const;
 };

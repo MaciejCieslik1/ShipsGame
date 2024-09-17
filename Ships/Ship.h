@@ -29,9 +29,6 @@ public:
 	bool isAlive() const;
 	bool hasMissile(const int& missileID) const;
 	std::vector<Coords> extremeCoords() const;
-
-	bool operator==(const Ship& other) const;
-	bool operator!=(const Ship& other) const;
 };
 
 class Battleship : public Ship 

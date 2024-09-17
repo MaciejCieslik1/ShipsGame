@@ -160,28 +160,6 @@ std::vector<Coords> Ship::extremeCoords() const
 }
 
 
-bool Ship::operator==(const Ship &other) const
-{
-	if (this->getHitPoints() != other.getHitPoints() || this->getMovement() != other.getMovement()) { return false; }
-	if (this->getCoords().size() != other.getCoords().size() || this->getMissileIDs().size() != other.getMissileIDs().size()) { return false; }
-	for (int i = 0; i < this->getCoords().size(); i++)
-	{
-		if (this->getCoords()[i].getX() != other.getCoords()[i].getX() || this->getCoords()[i].getY() != other.getCoords()[i].getY()) { return false; }
-	}
-	for (int i = 0; i < this->getMissileIDs().size(); i++)
-	{
-		if (this->getMissileIDs()[i] != other.getMissileIDs()[i]) { return false; }
-	}
-	return true;
-}
-
-
-bool Ship::operator!=(const Ship& other) const
-{
-	return !(*this == other);
-}
-
-
 // Battleship________________________________________________________________________________________
 Battleship::Battleship(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(4, 10, newName, newCoords, maxBoardSize)

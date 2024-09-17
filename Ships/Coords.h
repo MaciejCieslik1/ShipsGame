@@ -16,6 +16,4 @@ public:
     int getY() const;
     void setX(const int& newX);
     void setY(const int& newY);
-    bool operator==(const Coords& other);
-    bool operator!=(const Coords& other);
 };

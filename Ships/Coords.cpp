@@ -48,18 +48,6 @@ void Coords::setY(const int& newY)
 }
 
 
-bool Coords::operator==(const Coords& other) 
-{
-	return (x==other.getX() && y==other.getY());
-}
-
-
-bool Coords::operator!=(const Coords& other) 
-{
-	return !(operator==(other));
-}
-
-
 std::ostream& operator<<(std::ostream& os, const Coords& coords)
 {
 	os << coords.getX() << ';' << coords.getY() << ';';

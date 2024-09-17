@@ -37,23 +37,6 @@ void Island::setHeight(const int& newHeight)
 }
 
 
-bool Island::operator==(const Island &other) const
-{
-	if (this->getCoords().size() != other.getCoords().size()) { return false; }
-	for (int i = 0; i < this->getCoords().size(); i++)
-	{
-		if (this->getCoords()[i].getX() != other.getCoords()[i].getX() || this->getCoords()[i].getY() != other.getCoords()[i].getY()) { return false; }
-	}
-	return true;
-}
-
-
-bool Island::operator!=(const Island& other) const
-{
-	return !(*this == other);
-}
-
-
 // File handling___________________________________________________________________________________
 std::ostream& operator<<(std::ostream& os, const Island& island)
 {

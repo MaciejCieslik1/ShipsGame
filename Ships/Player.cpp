@@ -220,24 +220,3 @@ std::istream& operator>>(std::istream& is, Player& player)
 
     return is;
 }
-
-
-bool Player::operator==(const Player& other) const 
-{
-	if (name != other.name) return false;
-    if (ships.size() != other.ships.size()) return false;
-    for (size_t i = 0; i < ships.size(); ++i) {
-        if (*ships[i] != *other.ships[i]) return false;
-    }
-
-    if (boardPtr != other.boardPtr) return false;
-    if (allMissiles != other.allMissiles) return false;
-
-    return true;
-}
-
-
-bool Player::operator!=(const Player& other) const 
-{
-	return !(*this == other);
-}

@@ -35,9 +35,6 @@ public:
     bool move(std::shared_ptr<Ship> ship, Field& destination);
     void forgetShip(std::shared_ptr<Ship> ship);
     void shipsInfo() const;
-
-    bool operator==(const Player& other) const;
-    bool operator!=(const Player& other) const;
     
 private:
 
