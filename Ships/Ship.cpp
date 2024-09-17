@@ -81,7 +81,7 @@ void Ship::setCoords(const std::vector<Coords>& newCoords)
 
 void Ship::setMissileIDs(const std::vector<int>& newMissileIDs)
 {
-	if (isCorrectIntVector(newMissileIDs)) { missileIDs = newMissileIDs; }
+	if (isCorrectIntVectorPlus0(newMissileIDs)) { missileIDs = newMissileIDs; }
 	else { throw invalid_missle_id("Missilies IDs must be vector of positive integers"); }
 }
 
@@ -186,16 +186,16 @@ bool Ship::operator!=(const Ship& other) const
 Battleship::Battleship(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(4, 10, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
-		missileIDs = { 0, 1, 2, 3 };
+		if (this->getCoords().size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
+		this->setMissileIDs({ 0, 1, 2, 3 });
 	}
 
 
 Battleship::Battleship(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
-		missileIDs = { 0, 1, 2, 3 };
+		if (this->getCoords().size() != 4) throw invalid_coordinate("Battleship must take exactly 4 fields"); 
+		this->setMissileIDs({ 0, 1, 2, 3 });
 	}
 
 
@@ -238,16 +238,16 @@ std::istream& operator>>(std::istream& is, Battleship& battleship)
 Cruiser::Cruiser(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(6, 8, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
-		missileIDs = { 0, 1, 2 };
+		if (this->getCoords().size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
+		this->setMissileIDs({ 0, 1, 2 });
 	}
 
 
 Cruiser::Cruiser(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
-		missileIDs = { 0, 1, 2 };
+		if (this->getCoords().size() != 3) throw invalid_coordinate("Cruiser must take exactly 3 fields"); 
+		this->setMissileIDs({ 0, 1, 2 });
 	}
 
 
@@ -290,16 +290,16 @@ std::istream& operator>>(std::istream& is, Cruiser& cruiser)
 Destroyer::Destroyer(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(8, 6, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
-		missileIDs = { 0, 1 };
+		if (this->getCoords().size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
+		this->setMissileIDs({ 0, 1 });
 	}
 
 
 Destroyer::Destroyer(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
-		missileIDs = { 0, 1 };
+		if (this->getCoords().size() != 2) throw invalid_coordinate("Destroyer must take exactly 2 fields"); 
+		this->setMissileIDs({ 0, 1 });
 	}
 
 
@@ -342,16 +342,16 @@ std::istream& operator>>(std::istream& is, Destroyer& destroyer)
 Submarine::Submarine(const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(10, 4, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
-		missileIDs = { 0 };
+		if (this->getCoords().size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		this->setMissileIDs({ 0 });
 	}
 
 
 Submarine::Submarine(const int& movement, const int& hitPoints, const char& newName, const std::vector<Coords>& newCoords, const int& maxBoardSize)
     : Ship(movement, hitPoints, newName, newCoords, maxBoardSize)
 	{
-		if (coords.size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
-		missileIDs = { 0 };
+		if (this->getCoords().size() != 1) throw invalid_coordinate("Submarine must take exactly 1 field"); 
+		this->setMissileIDs({ 0 });
 	}
 
 
