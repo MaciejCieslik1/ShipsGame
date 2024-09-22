@@ -26,7 +26,6 @@ private:
 
 public:
 
-	Game(std::shared_ptr<LanguageManager> langOptions);
 	Game(const std::vector<std::shared_ptr<Player>>& players, const std::vector<std::shared_ptr<Island>>& islands, 
 	const int& maxBoardSize, std::shared_ptr<LanguageManager> langOptions);
 

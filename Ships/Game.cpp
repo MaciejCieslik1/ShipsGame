@@ -1,19 +1,6 @@
 #include "Game.h"
 
 
-Game::Game(std::shared_ptr<LanguageManager> language) : langOptions(language)
-{
-    std::vector<std::shared_ptr<Player>> newPlayers;
-    players = newPlayers;
-    currentPlayer = 0;
-    numberOfTurns = 1;
-    winner = nullptr;
-    int maxBoardSize = 10;
-    setIsOn(true);
-    generateBoard(maxBoardSize);
-}
-
-
 Game::Game(const std::vector<std::shared_ptr<Player>>& newPlayers, const std::vector<std::shared_ptr<Island>>& islands, 
     const int& maxBoardSize, std::shared_ptr<LanguageManager> language) 
     : langOptions(language), players(newPlayers), islands(islands)

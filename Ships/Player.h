@@ -18,8 +18,6 @@ class Player
 public:
 
 	Player() = default;
-    Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles,
-    const std::shared_ptr<LanguageManager>& langOptions);
     Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::shared_ptr<LanguageManager>& langOptions);
     std::vector<std::shared_ptr<Ship>> getShips() const;
     std::shared_ptr<Board> getBoardPtr() const;

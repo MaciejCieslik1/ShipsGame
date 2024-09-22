@@ -1,8 +1,5 @@
 #include "Player.h"
 
-Player::Player(const std::string &name, const std::vector<std::shared_ptr<Ship>> &newShips, const std::vector<CruiseMissile> &newAllMissiles,
-	const std::shared_ptr<LanguageManager>& langOptions)
-	: name(name), ships(newShips), allMissiles(newAllMissiles), langOptions(langOptions){}
 
 Player::Player(const std::string& name, const std::vector<std::shared_ptr<Ship>>& newShips, const std::shared_ptr<LanguageManager>& langOptions)
 	: name(name), ships(newShips), langOptions(langOptions)
