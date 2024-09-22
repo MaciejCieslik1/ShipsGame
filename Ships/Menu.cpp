@@ -164,11 +164,6 @@ void Menu::handleMainSelection(int idx)
     }
 }
 
-void Menu::handleOptionsSelection(int idx) 
-{
-
-}
-
 
 void Menu::handleCreditsSelection(char quit) 
 {

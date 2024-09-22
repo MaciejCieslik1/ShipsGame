@@ -16,7 +16,6 @@ class Menu
 	int getMaxBoardSize(void) const;
 	void handleStartSelection(int idx);
 	void handleMainSelection(int idx);
-	void handleOptionsSelection(int idx);
 	void handleCreditsSelection(char quit);
 
 	template <typename T>
