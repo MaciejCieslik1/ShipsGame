@@ -29,3 +29,65 @@ Game requires C++ 20 or newer.
     ```sh
     ./program
     ```
+    
+## 🎯 Game Preparation
+
+1. **Start**: Allows you to go deeper into game preparation settings.
+
+2. **New Game**: Allows the player to start a new game using hardcoded game parameters. The user must provide the players' names and select a board size from the range of <10, 30>.
+   
+3. **Load Game**: Allows the player to load the game state from a file, which includes all game parameters such as players' names, board size, ships, and islands.
+
+## ℹ️ Game Rules
+
+In "Ships Game" 2 players compete to destroy oponent's ships. Every ship is armed with rockets, which are used to attack other ships.
+
+1. **Ships**:
+In game there are 4 types of ships with different values of health points, size, movement and they carry different rockets. All ships are on the board in a horizontal position, meaning all squares have the same Y coordinate.
+All squares of the ship must be adjacent to each other."
+
+    **Battleship**:
+       Size: 4 fields
+       Health points: 10
+       Movement: 4
+       Missiles ID's: 0, 1, 2, 3
+   
+   **Cruiser**:
+       Size: 3 fields
+       Health points: 8
+       Movement: 6
+       Missiles ID's: 0, 1, 2
+
+   **Destroyer**:
+       Size: 2 fields
+       Health points: 6
+       Movement: 8
+       Missiles ID's: 0, 1
+
+   **Submarine**:
+       Size: 1 field
+       Health points: 4
+       Movement: 10
+       Missiles ID's: 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
