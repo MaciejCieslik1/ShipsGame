@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <sstream>
 #include <cctype>
+#include <iostream>
+#include <limits>
 #include "Coords.h"
 
 
@@ -15,3 +17,4 @@ bool isCorrectCoordsVector(std::vector<Coords> shipCoords, const int& maxBoardSi
 bool isCorrectCoordsVectorLimits(std::vector<Coords> shipCoords, const int& maxBoardSize);
 bool areAdjacent(const Coords& coords1, const Coords& coords2);
 std::vector<std::string> splitLine(const std::string& line);
+void readInput(int& input);

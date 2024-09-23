@@ -83,3 +83,15 @@ std::vector<std::string> splitLine(const std::string& line)
     }
     return words;
 }
+
+
+void readInput(int& input) 
+{
+    std::cin >> input;
+    if (std::cin.fail()) 
+	{
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw std::invalid_argument("Input must be an integer");
+    }
+}
