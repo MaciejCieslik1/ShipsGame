@@ -287,6 +287,7 @@ void Process::initializeNewGame(std::vector<std::string>& playerNames, const int
 void Process::finishGamePreparation()
 {
     game->setIsOn(true);
+    game->setTurnStage(0);
     game->getPlayers()[0]->setBoard(game->getBoard());
     game->getPlayers()[1]->setBoard(game->getBoard());
 }
