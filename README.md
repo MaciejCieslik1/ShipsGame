@@ -42,9 +42,13 @@ Game requires C++ 20 or newer.
 
 In "Ships Game" 2 players compete to destroy oponent's ships. Every ship is armed with rockets, which are used to attack other ships.
 
-1. **Ships**:
+1. **Field and Board**
+Each field has X and Y coordinate, which are greater than 0 and lower or equal to maximum board size. All fields are squares as is the board. Board size ranges from 10 to 30.
+
+2. **Ships**:
 In game there are 4 types of ships with different values of health points, size, movement and they carry different rockets. All ships are on the board in a horizontal position, meaning all squares have the same Y coordinate.
-All squares of the ship must be adjacent to each other."
+If ship has multiple sqaures, they must be connected as if they formed a rectangle. Ships have also names, described as one chracter. It is recommended to use different capital letters to name firt player's ships and to use
+different small letters to name second player's ships. The ship is displayed on the baord by putting it's name letter on every field, which is occupied by this ship.
 
     **Battleship**:
       - Size: 4 fields
@@ -69,6 +73,9 @@ All squares of the ship must be adjacent to each other."
       - Health points: 4
       - Movement: 10
       - Missiles ID's: 0
+  
+4. **Islands**
+The game provides also islands. Islands are displayed similarly to ships by instead of name letter in the field, the height is displayed. 
 
 
 
