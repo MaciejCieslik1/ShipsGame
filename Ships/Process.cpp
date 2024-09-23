@@ -363,7 +363,7 @@ void Process::startGame(const int& maxBoardSize)
         {
             if (!correctMoveFlag) std::cout << langOptions->getCommunicate("process_invalid_action") << std::endl;
             std::cout << langOptions->getCommunicate("process_player_enter_action_shoot_move");
-            std::cin >> input;
+            readInput(input);
             input -= 1;
             if (input == 2)
             {
@@ -374,24 +374,25 @@ void Process::startGame(const int& maxBoardSize)
         else if (game->getTurnStage() == 1) 
         {
             std::cout << langOptions->getCommunicate("process_choose_ship");
-            std::cin >> input;
+            readInput(input);
         } 
         else if (game->getTurnStage() == 2) 
         {
             int x; int y;
             std::cout << langOptions->getCommunicate("process_choose_destination");
-            std:: cin >> x >> y;
+            readInput(x);
+            readInput(y);
             input = x*100 + y;
         } 
         else if (game->getTurnStage() == 3) 
         {
             std::cout << langOptions->getCommunicate("process_choose_missle_id");
-            std::cin >> input;
+            readInput(input);
         } 
         else 
         {
             std::cout << langOptions->getCommunicate("process_press_1");
-            std::cin >> input;
+            readInput(input);
         }
         if (!gameSaved) game->mainGameProcess(input, maxBoardSize, correctMoveFlag);
     }
