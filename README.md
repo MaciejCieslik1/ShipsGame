@@ -47,28 +47,28 @@ In game there are 4 types of ships with different values of health points, size,
 All squares of the ship must be adjacent to each other."
 
     **Battleship**:
-       Size: 4 fields
-       Health points: 10
-       Movement: 4
-       Missiles ID's: 0, 1, 2, 3
+      - Size: 4 fields
+      - Health points: 10
+      - Movement: 4
+      - Missiles ID's: 0, 1, 2, 3
    
    **Cruiser**:
-       Size: 3 fields
-       Health points: 8
-       Movement: 6
-       Missiles ID's: 0, 1, 2
+      - Size: 3 fields
+      - Health points: 8
+      - Movement: 6
+      - Missiles ID's: 0, 1, 2
 
    **Destroyer**:
-       Size: 2 fields
-       Health points: 6
-       Movement: 8
-       Missiles ID's: 0, 1
+      - Size: 2 fields
+      - Health points: 6
+      - Movement: 8
+      - Missiles ID's: 0, 1
 
    **Submarine**:
-       Size: 1 field
-       Health points: 4
-       Movement: 10
-       Missiles ID's: 0
+      - Size: 1 field
+      - Health points: 4
+      - Movement: 10
+      - Missiles ID's: 0
 
 
 
