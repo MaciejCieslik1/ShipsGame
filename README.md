@@ -120,6 +120,8 @@ The file with game state has strictly defined form. Any deviation from this form
 3. **Correct structure of file**:
 [Download the file](https://github.com/MaciejCieslik1/ShipsGame/blob/master/saved/game_example)
 
+4. **Examplary game state files**: There are a few exemplary files with ame states in **saved** directory.
+
 
 
 
