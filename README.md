@@ -107,17 +107,29 @@ Every ship carries rockets. Each rocket has damage, range, altitude and ID. If t
       - damage: 2
       - altitude: 4
 
-6 **Turn**: In single turn player can move ship to empty sector on the map, shoot to chosen ship or save file with current game state. At the end of the turn user is asked to confirm his decision or to cancel. If the cancel option is chosen, turn goes back to the beggining.
+6. **Turn**: In a single turn player can move ship to empty sector on the map, shoot to chosen ship or save file with current game state. At the end of the turn user is asked to confirm his decision or to cancel. If the cancel option is chosen, turn goes back to the beggining.
 
+## 📄 File handling
 
+1. **Saving data to file**: If you want to save current game state file, you have to chose option **Save** during your turn. Then the player will be asked to type the name of the file, in which
+game will be saved. If the file does not exist, it will be created. Otherwise the existing file will be overwritten.
 
+2. **Loading data from file**: Loading data from file can be done by choosing option **Load Game** in the menu and then by writting file name. IF the filename is incorect, the error will occur.
+The file with game state has strictly defined form. Any deviation from this form is associated with the inability to load the game state correctly.
 
-
-
-
-
-
-
+3. **Correct structure of file**:
+Game;<board size>;<index of the player, who is on the move: 0 or 1>;
+Islands;<number of islands rows, each row is filles with islands with the same height, for example n = 3 >;
+<height of island1>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
+<height of island2>;<number of x, y pairs of coordinates, for example n=3>;<x1>;<y1>;<x2>;<y2>;<x3>;<y3>;
+<height of island3>;<number of x, y pairs of coordinates, for example n=1>;<x1>;<y1>;
+Ships1;<number of ships, for example n = 2>;
+<Ship class name: Submarine, Destroyer, Cruiser or Batleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
+<Ship class name: Submarine, Destroyer, Cruiser or Batleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
+Player1;<player's 1 name>;
+Ships2;<number of ships, for example n = 1>;
+<Ship class name: Submarine, Destroyer, Cruiser or Batleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
+Player2;<player's 2 name>;
 
 
 
