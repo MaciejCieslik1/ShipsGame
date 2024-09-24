@@ -118,7 +118,7 @@ game will be saved. If the file does not exist, it will be created. Otherwise th
 The file with game state has strictly defined form. Any deviation from this form is associated with the inability to load the game state correctly.
 
 3. **Correct structure of file**:
-[Download the file](https://github.com/MaciejCieslik1/ShipsGame/edit/master/saved/game_example.txt)
+[Download the file](https://github.com/MaciejCieslik1/ShipsGame/blob/master/saved/game_example)
 
 
 
