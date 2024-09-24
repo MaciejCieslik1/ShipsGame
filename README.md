@@ -17,7 +17,7 @@ Game requires C++ 20 or newer.
 
 2. Navigate to the project **ShipsGame** directory:
     ```sh
-    cd 203.2-gra-w-statki/
+    cd ShipsGame/
     ```
 
 3. Compile the project:
