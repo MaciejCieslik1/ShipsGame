@@ -46,7 +46,7 @@ Game requires C++ 20 or newer.
 
 In "Ships Game" 2 players compete to destroy oponent's ships. Every ship is armed with rockets, which are used to attack other ships.
 
-1. **Field and Board**
+1. **Field and Board**:
 Each field has X and Y coordinate, which are greater than 0 and lower or equal to maximum board size. All fields are squares as is the board. Board size ranges from 10 to 30.
 
 2. **Ships**:
@@ -78,9 +78,32 @@ different small letters to name second player's ships. The ship is displayed on 
       - Movement: 10
       - Missiles ID's: 0
   
-4. **Islands**
+4. **Islands**:
 The game provides also islands. Islands are displayed similarly to ships, but instead of name letter in the field, the height is displayed. Each island has height and coordinates.
 In contrast to ships, the fields occupied by islands do not have to be adjacent.
+
+5. **Missiles**:
+Every ship carries rockets. Each rocket has damage, range, altitude and ID. If the rocket hits the field on which there is a ship, damage is dealt. The path of the rocket is calculated, using linuar function and if there is a island on the rocket's way and it's heigth is bigger or equal to rocket's altitude the rocket hits this island.
+
+    **Missile ID = 0**:
+       - range: 2
+       - damage: 5
+       - altitude: 1
+    
+    **Missile ID = 1**:
+       - range: 4
+       - damage: 4
+       - altitude: 2
+   
+    **Missile ID = 2**:
+       - range: 6
+       - damage: 3
+       - altitude: 3
+
+    **Missile ID = 3**:
+       - range: 8
+       - damage: 2
+       - altitude: 4
 
 
 
