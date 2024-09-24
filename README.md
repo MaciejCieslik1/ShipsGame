@@ -106,8 +106,8 @@ Every ship carries rockets. Each rocket has damage, range, altitude and ID. If t
       - range: 8
       - damage: 2
       - altitude: 4
-  
 
+6 **Turn**: In single turn player can move ship to empty sector on the map, shoot to chosen ship or save file with current game state. At the end of the turn user is asked to confirm his decision or to cancel. If the cancel option is chosen, turn goes back to the beggining.
 
 
 
