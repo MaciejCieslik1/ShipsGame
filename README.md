@@ -38,9 +38,11 @@ Game requires C++ 20 or newer.
 
 1. **Start**: Allows you to go deeper into game preparation settings.
 
-2. **New Game**: Allows the player to start a new game using hardcoded game parameters. The user must provide the players' names and select a board size from the range of <10, 30>.
+2. **Languages**: There are 10 languages avalaible.
+
+3. **New Game**: Allows the player to start a new game using hardcoded game parameters. The user must provide the players' names and select a board size from the range of <10, 30>.
    
-3. **Load Game**: Allows the player to load the game state from a file, which includes all game parameters such as players' names, board size, ships, and islands.
+4. **Load Game**: Allows the player to load the game state from a file, which includes all game parameters such as players' names, board size, ships, and islands.
 
 ## ℹ️ Game Rules
 
@@ -104,6 +106,8 @@ Every ship carries rockets. Each rocket has damage, range, altitude and ID. If t
       - range: 8
       - damage: 2
       - altitude: 4
+  
+
 
 
 
