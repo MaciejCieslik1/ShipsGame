@@ -50,7 +50,7 @@ In "Ships Game" 2 players compete to destroy oponent's ships. Every ship is arme
 Each field has X and Y coordinate, which are greater than 0 and lower or equal to maximum board size. All fields are squares as is the board. Board size ranges from 10 to 30.
 
 2. **Ships**:
-In game there are 4 types of ships with different values of health points, size, movement and they carry different rockets. All ships are on the board in a horizontal position, meaning all squares have the same Y coordinate.
+In game there are 4 types of ships with different values of health points, size, coordinates, movement and they carry different rockets. All ships are on the board in a horizontal position, meaning all squares have the same Y coordinate.
 If ship has multiple sqaures, they must be connected as if they formed a rectangle. Ships have also names, described as one chracter. It is recommended to use different capital letters to name firt player's ships and to use
 different small letters to name second player's ships. The ship is displayed on the baord by putting it's name letter on every field, which is occupied by this ship.
 
@@ -79,7 +79,10 @@ different small letters to name second player's ships. The ship is displayed on 
       - Missiles ID's: 0
   
 4. **Islands**
-The game provides also islands. Islands are displayed similarly to ships by instead of name letter in the field, the height is displayed. 
+The game provides also islands. Islands are displayed similarly to ships, but instead of name letter in the field, the height is displayed. Each island has height and coordinates.
+In contrast to ships, the fields occupied by islands do not have to be adjacent.
+
+
 
 
 
