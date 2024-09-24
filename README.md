@@ -118,29 +118,7 @@ game will be saved. If the file does not exist, it will be created. Otherwise th
 The file with game state has strictly defined form. Any deviation from this form is associated with the inability to load the game state correctly.
 
 3. **Correct structure of file**:
-Game;<board size>;<index of the player, who is on the move: 0 or 1>;
-
-Islands;<number of islands rows, each row is filled with islands with the same height, for example n = 3 >;
-
-<height of island1>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
-
-<height of island2>;<number of x, y pairs of coordinates, for example n=3>;<x1>;<y1>;<x2>;<y2>;<x3>;<y3>;
-
-<height of island3>;<number of x, y pairs of coordinates, for example n=1>;<x1>;<y1>;
-
-Ships1;<number of ships, for example n = 2>;
-
-<Ship class name: Submarine, Destroyer, Cruiser or Battleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
-
-<Ship class name: Submarine, Destroyer, Cruiser or Battleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
-
-Player1;<player's 1 name>;
-
-Ships2;<number of ships, for example n = 1>;
-
-<Ship class name: Submarine, Destroyer, Cruiser or Battleship>;<ship name(one letter)>;<number of x, y pairs of coordinates, for example n=2>;<x1>;<y1>;<x2>;<y2>;
-
-Player2;<player's 2 name>;
+[Download the file](https://github.com/MaciejCieslik1/ShipsGame/edit/master/saved/game_example.txt)
 
 
 
