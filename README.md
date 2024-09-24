@@ -85,22 +85,26 @@ In contrast to ships, the fields occupied by islands do not have to be adjacent.
 5. **Missiles**:
 Every ship carries rockets. Each rocket has damage, range, altitude and ID. If the rocket hits the field on which there is a ship, damage is dealt. The path of the rocket is calculated, using linuar function and if there is a island on the rocket's way and it's heigth is bigger or equal to rocket's altitude the rocket hits this island.
 
-    **Missile ID = 0**:  
+    **Missile ID = 0**:
+   
        - range: 2
        - damage: 5
        - altitude: 1
     
-    **Missile ID = 1**:  
+    **Missile ID = 1**:
+   
        - range: 4
        - damage: 4
        - altitude: 2
    
-    **Missile ID = 2**:  
+    **Missile ID = 2**:
+   
        - range: 6
        - damage: 3
        - altitude: 3
 
-    **Missile ID = 3**:  
+    **Missile ID = 3**:
+   
        - range: 8
        - damage: 2
        - altitude: 4
