@@ -12,7 +12,7 @@ Game requires C++ 20 or newer.
 
 1. Clone the repository:
     ```sh
-    https://github.com/MaciejCieslik1/ShipsGame.git
+    git clone https://github.com/MaciejCieslik1/ShipsGame.git
     ```
 
 2. Navigate to the project **203.2-gra-w-statki** directory:
