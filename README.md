@@ -4,6 +4,10 @@
 
 "Ships Game" is a simple naval combat game that allows players to compete against each other. Coded in C++, the game features a terminal interface to display the battlefield.
 
+## 📝 Note
+
+This game was initially developed by a team of three students. After receiving their final grades, two members decided to step away from the project. The game was then moved from the university's GitLab platform to this personal GitHub repository. Since that migration, all the work has been done by me, and other students have waived their rights to the project. I chose to continue developing it during the summer on my own.
+
 ## ✅ Requirements
 
 Game requires C++ 20 or newer.
