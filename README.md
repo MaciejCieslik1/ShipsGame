@@ -6,7 +6,7 @@
 
 ## 📝 Note
 
-This game was initially developed by a team of three students. After receiving their final grades, two members decided to step away from the project. The game was then moved from the university's GitLab platform to this personal GitHub repository. Since that migration, all the work has been done by me, and other students have waived their rights to the project. I chose to continue developing it during the summer on my own.
+This game was initially developed by a team of three students. After receiving their final grades, two members decided to step away from the project. The game was then moved from the university's GitLab platform to this personal GitHub repository. Since that migration, all the work has been done by me, and other students have waived their rights to the project. I chose to continue developing it during the summer.
 
 ## ✅ Requirements
 
