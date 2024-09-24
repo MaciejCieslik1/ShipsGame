@@ -15,7 +15,7 @@ Game requires C++ 20 or newer.
     git clone https://github.com/MaciejCieslik1/ShipsGame.git
     ```
 
-2. Navigate to the project **203.2-gra-w-statki** directory:
+2. Navigate to the project **ShipsGame** directory:
     ```sh
     cd 203.2-gra-w-statki/
     ```
