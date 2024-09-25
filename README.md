@@ -130,8 +130,8 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 └── Ships/       # Contains all classes and most of data files
 ```
 
-
-
+## 📜 Licence
+This project is licensed under the MIT License. See the LICENCE file for details. 📝
 
 
 
