@@ -130,7 +130,7 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 │
 └── Ships/       # Contains all classes and most of data files
 │
-└── screenshots/       # screenshots
+└── screenshots/ # screenshots
 ```
 
 ## 📜 Licence
