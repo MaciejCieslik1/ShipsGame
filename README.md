@@ -115,3 +115,52 @@ In "Ships Game," 2 players compete to destroy the opponent's ships. Every ship i
    - [Download the file](https://github.com/MaciejCieslik1/ShipsGame/blob/master/saved/game_example)
 
 4. **Exemplary game state files**: There are a few exemplary files with game states in the **saved** directory.
+
+## 📁 Project Structure
+
+```bash
+ShipsGame/       # Contains all game directiories and files, including main.cpp and makefile
+│
+├── languages/   # Contains language files 
+│
+├── saved/       # Stores saved game stat files
+│
+└── Ships/       # Contains all classes and most of data files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
