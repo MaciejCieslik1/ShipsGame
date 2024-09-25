@@ -133,6 +133,11 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 └── screenshots/ # screenshots
 ```
 
+# 🖼️ Screenshots
+<p align="center">
+  <img src="screenshots/screenshot1.png" alt="Game frame" width="300" />
+</p>
+
 ## 📜 Licence
 This project is licensed under the MIT License. See the [LICENCE](https://github.com/MaciejCieslik1/ShipsGame/blob/master/LICENCE) file for details.
 
