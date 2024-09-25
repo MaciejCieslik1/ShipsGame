@@ -49,6 +49,7 @@ In "Ships Game," 2 players compete to destroy the opponent's ships. Every ship i
 
 1. **Field and Board**:
    - Each field has X and Y coordinates, which are greater than 0 and lower or equal to the maximum board size. All fields are squares, as is the board. The board size ranges from 10 to 30.
+    On one field, there can be a maximum of one ship or island.
 
 2. **Ships**:
    - There are 4 types of ships with different values of health points, size, coordinates, movement, and they carry different rockets. All ships are on the board in a horizontal position, meaning all squares have the same Y coordinate.
