@@ -126,6 +126,7 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 ├── saved/       # Stores saved game stat files
 │
 └── Ships/       # Contains all classes and most of data files
+```
 
 
 
