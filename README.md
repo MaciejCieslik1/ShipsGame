@@ -139,7 +139,7 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 </p>
 
 ## 📜 License
-This project is licensed under the MIT License. See the [LICENCE](https://github.com/MaciejCieslik1/ShipsGame/blob/master/LICENCE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/MaciejCieslik1/ShipsGame/blob/master/LICENCE) file for details.
 
 ## 📬 Contact
 For questions, feedback, or support:
