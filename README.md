@@ -134,7 +134,7 @@ ShipsGame/       # Contains all game directiories and files, including main.cpp 
 ```
 
 # 🖼️ Screenshots
-<p align="center">
+<p align="left">
   <img src="screenshots/screenshot1.png" alt="Game frame" width="300" />
 </p>
 
