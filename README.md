@@ -40,6 +40,7 @@ The game requires C++ 20 or newer.
 2. **Languages**: There are 10 languages available.
 3. **New Game**: Allows the player to start a new game using hardcoded game parameters. The user must provide the players' names and select a board size from the range of <10, 30>.
 4. **Load Game**: Allows the player to load the game state from a file, which includes all game parameters such as players' names, board size, ships, and islands.
+
 **Note**: It is highly recommended to start each game by creating suitable game file and then load it to game.
 
 ## ℹ️ Game Rules
